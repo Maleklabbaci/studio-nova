@@ -1,0 +1,141 @@
+/*
+ * Studio Nova design tokens: warm ivory surfaces, charcoal ink and a confident coral accent.
+ * The app ships one light theme; components consume these tokens so the whole brand can be re-skinned in one place.
+ */
+:root {
+  /* Coral scale */
+  --coral-50: #fff7f4;
+  --coral-100: #ffebe5;
+  --coral-200: #ffd2c7;
+  --coral-300: #ffad9a;
+  --coral-400: #f78169;
+  --coral-500: #e45c46;
+  --coral-600: #c94a36;
+  --coral-700: #ae3d2c;
+  --coral-800: #913527;
+  --coral-900: #742d24;
+  --coral-950: #451d1a;
+
+  /* Brand neutrals and supporting tints */
+  --ink: #292320;
+  --paper: #fffdfa;
+  --pastel-coral: #ffe1d8;
+  --pastel-pink: #ffc9bd;
+  --pastel-blush: #f5826c;
+  --pastel-butter: #ffe8c6;
+  --pastel-mint: #d7e8dd;
+  --pastel-sky: #dce6ef;
+
+  /* Semantic brand colors */
+  --color-brand: var(--coral-700);
+  --color-brand-hover: #953323;
+  --color-brand-active: #762719;
+  --color-brand-soft: #fff0ec;
+  --color-brand-soft-hover: #ffe0d7;
+  --color-on-brand: var(--paper);
+  --accent-coral: #c34431;
+
+  /* Primary actions use ink for strong contrast; coral remains the recognizable accent. */
+  --color-cta: var(--ink);
+  --color-cta-hover: #40342f;
+  --color-on-cta: var(--paper);
+  --color-cta-shadow: var(--coral-300);
+
+  --color-bg: #fbf8f5;
+  --color-bg-subtle: #f7f2ef;
+  --color-bg-muted: #f0e8e3;
+  --color-surface: #fffdfa;
+  --color-surface-raised: #ffffff;
+  --color-canvas-workspace: #ebe3de;
+  --color-border: #e8dcd5;
+  --color-border-strong: #d8c8bf;
+  --color-text: var(--ink);
+  --color-text-muted: #70635d;
+  --color-text-subtle: #84756e;
+  --color-overlay: rgb(41 35 32 / 0.52);
+  /* A presentation stage is a projected screen, not editor chrome. */
+  --color-stage: #000000;
+  --color-on-stage: #ffffff;
+
+  --color-success: #16754f;
+  --color-success-soft: #dff3e8;
+  --color-warning: #9a5a0a;
+  --color-warning-soft: #fff1d6;
+  --color-danger: #a92d2d;
+  --color-danger-soft: #fee3df;
+  --color-info: #245c88;
+  --color-info-soft: #e3eff8;
+
+  --focus-ring: 0 0 0 3px rgb(201 74 54 / 0.28);
+  --selection-color: #c94a36;
+  --guide-color: #e4556c;
+
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Fraunces Variable', 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-hand: 'Caveat Variable', 'Caveat', 'Segoe Print', 'Bradley Hand', cursive;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.9375rem;
+  --text-lg: 1.0625rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.75rem;
+  --text-5xl: 3.75rem;
+  --leading-tight: 1.15;
+  --leading-normal: 1.5;
+
+  /* Space (4px grid) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+
+  /* Shape and depth */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-full: 999px;
+  --shadow-sm: 0 1px 2px rgb(60 40 30 / 0.07), 0 1px 1px rgb(41 35 32 / 0.04);
+  --shadow-md: 0 4px 12px rgb(80 48 35 / 0.1), 0 2px 4px rgb(41 35 32 / 0.04);
+  --shadow-lg: 0 18px 40px rgb(80 48 35 / 0.15), 0 4px 10px rgb(41 35 32 / 0.06);
+  --shadow-artboard: 0 2px 6px rgb(80 48 35 / 0.1), 0 12px 32px rgb(80 48 35 / 0.11);
+  --shadow-card: 0 0 0 1px rgb(41 35 32 / 0.06), 0 2px 0 rgb(41 35 32 / 0.05), 0 28px 50px -18px rgb(164 79 58 / 0.28);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+  --duration-slow: 320ms;
+
+  /* Layout */
+  --editor-topbar-h: 56px;
+  --editor-rail-w: 72px;
+  --editor-panel-w: 340px;
+  --editor-toolbar-h: 48px;
+  --z-dropdown: 50;
+  --z-sticky: 100;
+  --z-drawer: 200;
+  --z-modal: 300;
+  --z-toast: 400;
+
+  color-scheme: light;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+  }
+}

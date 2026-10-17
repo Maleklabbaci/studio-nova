@@ -1,0 +1,97 @@
+name: Studio Nova desktop packages
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    name: Package ${{ matrix.label }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            label: Windows x64
+            script: package:windows
+            file: StudioNova-win-x64.exe
+          - os: macos-latest
+            label: macOS universal
+            script: package:macos
+            file: StudioNova-mac-universal.dmg
+          - os: ubuntu-latest
+            label: Linux x64
+            script: package:linux
+            file: StudioNova-linux-x64.AppImage
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            frontend/package-lock.json
+            mcp-server/package-lock.json
+            desktop/package-lock.json
+      - name: Install Linux packaging dependencies
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libfuse2
+      - name: Install frontend dependencies
+        run: npm ci
+        working-directory: frontend
+      - name: Install MCP dependencies
+        run: npm ci
+        working-directory: mcp-server
+      - name: Install desktop dependencies
+        run: npm ci
+        working-directory: desktop
+      - name: Build desktop resources
+        run: npm run build:resources
+        working-directory: desktop
+      - name: Package installer
+        run: npm run ${{ matrix.script }}
+        working-directory: desktop
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: studio-nova-installer-${{ matrix.label }}
+          path: desktop/release/${{ matrix.file }}
+          if-no-files-found: error
+          retention-days: 30
+
+  assemble-site:
+    name: Assemble landing page and installers
+    needs: package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: studio-nova-installer-*
+          path: frontend/public/downloads
+          merge-multiple: true
+      - name: Write installer manifest
+        run: npm run write-manifest
+        working-directory: desktop
+        env:
+          REQUIRE_ALL_DESKTOP_INSTALLERS: '1'
+      - name: Build static website with install files
+        run: npm ci && npm run build
+        working-directory: frontend
+      - uses: actions/upload-artifact@v4
+        with:
+          name: studio-nova-site
+          path: frontend/dist
+          retention-days: 30

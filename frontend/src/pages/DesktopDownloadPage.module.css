@@ -1,0 +1,119 @@
+.page {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 0 var(--space-4) var(--space-16);
+}
+
+.section {
+  max-width: 62rem;
+  margin: var(--space-10) auto 0;
+}
+
+.sectionHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.heading {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+
+.version {
+  flex: none;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.platforms {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-bottom: var(--space-4);
+  border-radius: 50%;
+  background: var(--color-brand-soft);
+  color: var(--color-brand-strong);
+}
+
+.platformName {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.detail {
+  min-height: 2.8em;
+  margin: var(--space-2) 0 var(--space-5);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.install {
+  margin-top: auto;
+}
+
+.note {
+  max-width: 54rem;
+  margin: var(--space-5) auto 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-weight: 550;
+  line-height: 1.55;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .platforms {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: var(--space-4);
+    align-items: center;
+  }
+
+  .icon {
+    grid-row: span 2;
+    margin: 0;
+  }
+
+  .detail {
+    min-height: 0;
+    margin: var(--space-1) 0 0;
+  }
+
+  .install {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+    margin-top: var(--space-4);
+  }
+}
