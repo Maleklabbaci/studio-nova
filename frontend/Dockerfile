@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 # ---- build the SPA ----
-FROM node:22-alpine AS build
+FROM node:25-alpine AS build
 WORKDIR /app
 COPY package.json package-lock.json ./
 # --ignore-scripts: the install scripts only matter for the test tooling (`canvas` compiles a native module that has
