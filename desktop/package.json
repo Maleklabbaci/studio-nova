@@ -1,0 +1,28 @@
+{
+  "name": "studio-nova-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "author": "Studio Nova",
+  "desktopName": "studio-nova",
+  "engines": { "node": ">=22.12.0" },
+  "description": "Studio Nova desktop application",
+  "main": "main.cjs",
+  "scripts": {
+    "dev": "cross-env STUDIO_NOVA_DESKTOP_DEV=1 electron .",
+    "build:resources": "npm --prefix ../frontend run build -- --base=./ --outDir=dist-desktop && npm --prefix ../mcp-server run build",
+    "package:windows": "electron-builder --win nsis --config electron-builder.yml && node scripts/copy-installers.cjs && node scripts/write-download-manifest.cjs",
+    "package:macos": "electron-builder --mac dmg --config electron-builder.yml && node scripts/copy-installers.cjs && node scripts/write-download-manifest.cjs",
+    "package:linux": "electron-builder --linux AppImage --config electron-builder.yml && node scripts/copy-installers.cjs && node scripts/write-download-manifest.cjs",
+    "package:all": "electron-builder --win nsis --mac dmg --linux AppImage --config electron-builder.yml && node scripts/copy-installers.cjs && node scripts/write-download-manifest.cjs",
+    "write-manifest": "node scripts/write-download-manifest.cjs",
+    "build": "npm run build:resources && npm run package:all"
+  },
+  "dependencies": {
+    "http-proxy": "^1.18.1"
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0",
+    "electron": "44.9.0",
+    "electron-builder": "26.15.3"
+  }
+}

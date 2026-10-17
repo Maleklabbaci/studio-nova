@@ -1,0 +1,56 @@
+appId: ai.studionova.desktop
+productName: Studio Nova
+asar: true
+directories:
+  output: release
+files:
+  - main.cjs
+  - package.json
+extraResources:
+  - from: ../frontend/dist-desktop
+    to: frontend
+    filter:
+      - "**/*"
+  - from: ../mcp-server
+    to: mcp-server
+    filter:
+      - package.json
+      - dist/**/*
+      - node_modules/**/*
+  - from: ../LICENSE
+    to: LICENSE
+  - from: ../NOTICE
+    to: NOTICE
+  - from: desktop-config.example.json
+    to: desktop-config.example.json
+  - from: ../mcp-server/.env.example
+    to: mcp-server/.env.example
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  icon: ../frontend/public/icons/icon-512.png
+  artifactName: StudioNova-win-x64.exe
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+mac:
+  target:
+    - target: dmg
+      arch:
+        - universal
+  icon: ../frontend/public/icons/icon-512.png
+  category: public.app-category.graphics-design
+  artifactName: StudioNova-mac-universal.dmg
+linux:
+  target:
+    - target: AppImage
+      arch:
+        - x64
+  icon: ../frontend/public/icons/icon-512.png
+  category: Graphics
+  artifactName: StudioNova-linux-x64.AppImage

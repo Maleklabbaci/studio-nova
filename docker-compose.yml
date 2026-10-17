@@ -1,0 +1,179 @@
+# Studio Nova (based on Doory): PostgreSQL + API (gunicorn) + real-time server (uvicorn) + web (nginx
+# serving the SPA and proxying the API). Redis is optional (profile "redis").
+#
+#   cp .env.example .env     # then edit it
+#   docker compose up -d --build
+#
+# The site is published on http://localhost:${WEB_PORT:-8080} (set WEB_BIND=127.0.0.1 to keep it
+# private to a reverse proxy running on the same host). Put a TLS-terminating reverse proxy in
+# front of the `web` service for anything public.
+name: doory
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-doory}
+      POSTGRES_USER: ${POSTGRES_USER:-doory}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+
+  api:
+    build:
+      context: ./backend
+      args:
+        INSTALL_CHROMIUM: ${INSTALL_CHROMIUM:-true}
+    restart: unless-stopped
+    init: true  # reaps the Chromium child processes of the PDF export
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file: .env
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      DJANGO_SETTINGS_MODULE: doory.settings.prod
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:?Set DJANGO_SECRET_KEY in .env}
+      SITE_URL: ${SITE_URL:?Set SITE_URL in .env}
+      CSRF_TRUSTED_ORIGINS: ${SITE_URL}
+      DATABASE_URL: postgres://${POSTGRES_USER:-doory}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-doory}
+      CACHE_URL: dbcache://doory_cache
+      MEDIA_ROOT: /app/media
+      REDIS_URL: ${REDIS_URL:-}
+    volumes:
+      - media:/app/media
+    networks:
+      default:
+        # The name the web container's nginx uses; unique even on a network shared with other apps.
+        aliases: [doory-api]
+    healthcheck:
+      test: ["CMD", "python", "/app/healthcheck.py"]
+      interval: 15s
+      timeout: 5s
+      start_period: 90s
+      retries: 5
+    # Chromium (server-side PDF export) needs more shared memory than Docker's 64 MB default.
+    shm_size: "512m"
+
+  # Live editing: the same image as `api`, served by uvicorn so WebSockets work. Run more than one worker
+  # (REALTIME_WORKERS) or replica only together with Redis: `docker compose --profile redis up -d`.
+  realtime:
+    build:
+      context: ./backend
+      args:
+        INSTALL_CHROMIUM: ${INSTALL_CHROMIUM:-true}
+    restart: unless-stopped
+    init: true
+    # A hostile update can make the CRDT engine allocate a lot of memory; the limit makes the kernel stop this
+    # service (and `restart` bring it back) instead of starving the host.
+    mem_limit: ${REALTIME_MEM_LIMIT:-2g}
+    depends_on:
+      api:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+        required: false
+    env_file: .env
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      DJANGO_SETTINGS_MODULE: doory.settings.prod
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:?Set DJANGO_SECRET_KEY in .env}
+      SITE_URL: ${SITE_URL:?Set SITE_URL in .env}
+      CSRF_TRUSTED_ORIGINS: ${SITE_URL}
+      DATABASE_URL: postgres://${POSTGRES_USER:-doory}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-doory}
+      CACHE_URL: dbcache://doory_cache
+      MEDIA_ROOT: /app/media
+      REDIS_URL: ${REDIS_URL:-}
+      HEALTH_PORT: "8001"
+    volumes:
+      - media:/app/media
+    networks:
+      default:
+        aliases: [doory-realtime]
+    command:
+      - uvicorn
+      - doory.asgi:application
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8001"
+      - --workers
+      - ${REALTIME_WORKERS:-1}
+      - --ws
+      - auto
+      - --ws-max-size
+      - "2097152"
+      - --lifespan
+      - "off"
+      - --no-server-header
+      - --timeout-graceful-shutdown
+      - "20"
+    healthcheck:
+      test: ["CMD", "python", "/app/healthcheck.py"]
+      interval: 15s
+      timeout: 5s
+      start_period: 60s
+      retries: 5
+
+  # Optional: shares live rooms between several realtime workers or replicas. Nothing is stored in it.
+  redis:
+    image: redis:7.2-alpine
+    profiles: ["redis"]
+    restart: unless-stopped
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  # AI chat and the Streamable HTTP MCP endpoint; never expose this container directly to the internet.
+  mcp:
+    build:
+      context: ./mcp-server
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: "8787"
+      LLM_BASE_URL: ${LLM_BASE_URL:-https://api.openai.com/v1}
+      LLM_API_KEY: ${LLM_API_KEY:-}
+      LLM_MODEL: ${LLM_MODEL:-gpt-4o-mini}
+      LLM_TIMEOUT_MS: ${LLM_TIMEOUT_MS:-45000}
+      MCP_AUTH_TOKEN: ${MCP_AUTH_TOKEN:-}
+      BRIDGE_ALLOWED_ORIGINS: ${BRIDGE_ALLOWED_ORIGINS:-http://localhost:8080}
+    networks:
+      default:
+        aliases: [studio-nova-mcp]
+
+  web:
+    build:
+      context: ./frontend
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    depends_on:
+      api:
+        condition: service_healthy
+      realtime:
+        condition: service_healthy
+      mcp:
+        condition: service_healthy
+    ports:
+      - "${WEB_BIND:-0.0.0.0}:${WEB_PORT:-8080}:8080"
+    volumes:
+      - media:/srv/media:ro
+
+volumes:
+  pgdata:
+  media:
