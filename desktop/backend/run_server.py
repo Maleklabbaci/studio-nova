@@ -20,6 +20,7 @@ only, so updating the app updates the local database in place.
 from __future__ import annotations
 
 import contextlib
+import hashlib
 import os
 import secrets
 import sys
@@ -67,7 +68,6 @@ def _secret_key(data: Path) -> str:
 # (fonts, models) run in a background thread so first launch stays fast.
 _LOCAL_SEEDS = (
     ("elements.seeded", (("seed_elements", ()), ("sync_element_packs", ()))),
-    ("templates.seeded", (("seed_templates", ()),)),
     ("audio.seeded", (("sync_audio", ()),)),
 )
 _NETWORK_SEEDS = (
@@ -106,6 +106,41 @@ def _run_seed_group(data: Path, group) -> None:
             marker.write_text("ok\n", encoding="utf-8")
 
 
+def _seed_templates(data: Path, backend: Path) -> None:
+    """Install the bundled template catalogue, and refresh it when it changes.
+
+    Unlike the other catalogues this one is expected to grow: a new installer
+    (or a freshly generated set of files) must bring its templates into the
+    local library of an install that already ran. So instead of a once-only
+    marker, each start compares a fingerprint of the bundled manifest with
+    the stamp left behind — an unchanged catalogue costs one file hash,
+    a changed one is re-imported with `--update`, which adds the new designs
+    and refreshes the ones that changed. User designs are separate records
+    and are never touched by this.
+    """
+    from django.core.management import call_command
+
+    manifest = backend / "data" / "templates" / "manifest.json"
+    try:
+        fingerprint = hashlib.sha256(manifest.read_bytes()).hexdigest()
+    except OSError:
+        fingerprint = ""
+    stamp = data / "templates.stamp"
+    try:
+        current = stamp.read_text(encoding="utf-8").strip()
+    except OSError:
+        current = ""
+    if fingerprint and current == fingerprint:
+        return
+    try:
+        call_command("seed_templates", "--update")
+    except Exception as exc:  # a failed seed must not brick the install
+        print(f"[studio-nova-backend] seed seed_templates failed: {exc}", flush=True)
+        return
+    if fingerprint:
+        stamp.write_text(f"{fingerprint}\n", encoding="utf-8")
+
+
 def main() -> None:
     data = _data_dir()
     backend = _backend_dir()
@@ -123,6 +158,7 @@ def main() -> None:
     django.setup()
     _prepare_database()
     _run_seed_group(data, _LOCAL_SEEDS)
+    _seed_templates(data, backend)
 
     import threading
 
