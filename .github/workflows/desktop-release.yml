@@ -89,7 +89,7 @@ jobs:
         working-directory: desktop
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: 'false'
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: studio-nova-installer-${{ matrix.label }}
           path: desktop/release/${{ matrix.file }}
@@ -150,7 +150,7 @@ jobs:
       - name: Build static website with install files
         run: npm ci && npm run build
         working-directory: frontend
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: studio-nova-site
           path: frontend/dist
