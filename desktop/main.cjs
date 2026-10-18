@@ -1,7 +1,9 @@
 'use strict'
 
-const { app, BrowserWindow, dialog, shell } = require('electron')
+const { app, BrowserWindow, dialog, ipcMain, shell } = require('electron')
 const http = require('node:http')
+const https = require('node:https')
+const { isNewerVersion, pickInstaller, installerUrl } = require('./updateCheck.cjs')
 const fs = require('node:fs')
 const path = require('node:path')
 const net = require('node:net')
@@ -410,7 +412,137 @@ function openExternalIfSafe(urlString) {
   }
 }
 
+/**
+ * Window controls for the frameless window. The app's own title bar
+ * (macOS-style traffic lights, drawn by the frontend) sends these; the sender
+ * window is always the one acted on, and nothing else is exposed.
+ */
+let windowControlsRegistered = false
+function registerWindowControls() {
+  if (windowControlsRegistered) return
+  windowControlsRegistered = true
+  const senderWindow = (event) => BrowserWindow.fromWebContents(event.sender)
+  ipcMain.on('studio-nova:window-minimize', (event) => senderWindow(event)?.minimize())
+  ipcMain.on('studio-nova:window-close', (event) => senderWindow(event)?.close())
+  ipcMain.on('studio-nova:window-toggle-maximize', (event) => {
+    const window = senderWindow(event)
+    if (!window) return
+    if (window.isMaximized()) window.unmaximize()
+    else window.maximize()
+  })
+  ipcMain.handle('studio-nova:window-is-maximized', (event) => senderWindow(event)?.isMaximized() ?? false)
+}
+
+/* ---------------------------------------------------------------------------
+ * Update check: the web site already publishes the installers it offers for
+ * download, with a manifest naming the newest version. A few seconds after
+ * launch the app quietly compares that version with its own and, when a
+ * newer one exists, offers the download. Installing still goes through the
+ * installer (designs and settings live in userData and are untouched), but
+ * the user never has to go hunting for a new version again. Failures —
+ * offline, site down — are silent; "Later" snoozes that one version.
+ * ------------------------------------------------------------------------- */
+const DEFAULT_UPDATE_MANIFEST_URL = 'https://studio-nova-b6e.pages.dev/downloads/manifest.json'
+let updateCheckStarted = false
+
+function safeUpdateManifestUrl(value) {
+  if (typeof value !== 'string' || !value.trim()) return ''
+  try {
+    const parsed = new URL(value.trim())
+    if (!['http:', 'https:'].includes(parsed.protocol) || parsed.username || parsed.password) return ''
+    return parsed.href
+  } catch {
+    return ''
+  }
+}
+
+function fetchJson(urlString, redirectsLeft = 3) {
+  return new Promise((resolve, reject) => {
+    const transport = urlString.startsWith('https:') ? https : http
+    const request = transport.get(
+      urlString,
+      { headers: { 'User-Agent': `StudioNova/${app.getVersion()} (update check)` } },
+      (response) => {
+        const status = response.statusCode || 0
+        if (status >= 300 && status < 400 && response.headers.location && redirectsLeft > 0) {
+          response.resume()
+          resolve(fetchJson(new URL(response.headers.location, urlString).href, redirectsLeft - 1))
+          return
+        }
+        if (status !== 200) {
+          response.resume()
+          reject(new Error(`Update check answered HTTP ${status}`))
+          return
+        }
+        const chunks = []
+        response.on('data', (chunk) => chunks.push(chunk))
+        response.on('end', () => {
+          try {
+            resolve(JSON.parse(Buffer.concat(chunks).toString('utf8')))
+          } catch (error) {
+            reject(error)
+          }
+        })
+        response.on('error', reject)
+      },
+    )
+    request.on('error', reject)
+    request.setTimeout(8000, () => request.destroy(new Error('Update check timed out')))
+  })
+}
+
+function readUpdateState() {
+  try {
+    const parsed = JSON.parse(fs.readFileSync(path.join(app.getPath('userData'), 'update-state.json'), 'utf8'))
+    return parsed && typeof parsed === 'object' ? parsed : {}
+  } catch {
+    return {}
+  }
+}
+
+function writeUpdateState(state) {
+  try {
+    fs.writeFileSync(path.join(app.getPath('userData'), 'update-state.json'), `${JSON.stringify(state)}\n`)
+  } catch {
+    // A read-only profile just means the offer comes back next launch.
+  }
+}
+
+async function checkForUpdates() {
+  if (updateCheckStarted || !app.isPackaged || shuttingDown) return
+  updateCheckStarted = true
+  try {
+    const config = loadDesktopConfig()
+    const manifestUrl = safeUpdateManifestUrl(config.updateManifestUrl) || DEFAULT_UPDATE_MANIFEST_URL
+    const manifest = await fetchJson(manifestUrl)
+    const latest = manifest && typeof manifest.version === 'string' ? manifest.version.trim() : ''
+    const current = app.getVersion()
+    if (!latest || !isNewerVersion(latest, current)) return
+    const state = readUpdateState()
+    if (state.snoozedVersion === latest) return
+    const file = pickInstaller(manifest, process.platform)
+    if (!file) return
+    const options = {
+      type: 'info',
+      title: 'Update available',
+      message: `Studio Nova ${latest} is available.`,
+      detail: `You have version ${current}. Download the new installer and run it — your designs and settings stay in place.`,
+      buttons: ['Download', 'Later'],
+      defaultId: 0,
+      cancelId: 1,
+    }
+    const result = mainWindow && !mainWindow.isDestroyed()
+      ? await dialog.showMessageBox(mainWindow, options)
+      : await dialog.showMessageBox(options)
+    if (result.response === 0) openExternalIfSafe(installerUrl(manifestUrl, file))
+    else writeUpdateState({ ...state, snoozedVersion: latest })
+  } catch (error) {
+    console.error('Studio Nova update check failed:', error instanceof Error ? error.message : error)
+  }
+}
+
 function createWindow() {
+  registerWindowControls()
   const iconPath = path.join(webRoot(), 'icons', 'icon-512.png')
   mainWindow = new BrowserWindow({
     width: 1440,
@@ -419,6 +551,9 @@ function createWindow() {
     minHeight: 600,
     show: false,
     title: APP_NAME,
+    // No native frame: the app draws a macOS-style title bar (traffic lights)
+    // and opens straight on the studio, like a native design app.
+    frame: false,
     autoHideMenuBar: true,
     backgroundColor: '#170a1e',
     ...(fs.existsSync(iconPath) ? { icon: iconPath } : {}),
@@ -427,12 +562,23 @@ function createWindow() {
       nodeIntegration: false,
       sandbox: true,
       webSecurity: true,
+      preload: path.join(__dirname, 'preload.cjs'),
     },
   })
+
+  const sendMaximized = () => {
+    if (mainWindow && !mainWindow.isDestroyed()) {
+      mainWindow.webContents.send('studio-nova:window-maximized-changed', mainWindow.isMaximized())
+    }
+  }
+  mainWindow.on('maximize', sendMaximized)
+  mainWindow.on('unmaximize', sendMaximized)
 
   mainWindow.once('ready-to-show', () => {
     mainWindow?.show()
     closeSplash()
+    // A few seconds in, so the offer never delays getting to work.
+    setTimeout(() => void checkForUpdates(), 4000)
   })
   mainWindow.webContents.setWindowOpenHandler(({ url }) => {
     openExternalIfSafe(url)
@@ -447,7 +593,9 @@ function createWindow() {
   })
   mainWindow.on('closed', () => { mainWindow = null })
 
-  const address = process.env.STUDIO_NOVA_DESKTOP_DEV === '1' ? 'http://127.0.0.1:5173' : `${appOrigin}/`
+  // Straight to work: the app opens on the studio (designs, templates,
+  // create), never on the marketing home page.
+  const address = process.env.STUDIO_NOVA_DESKTOP_DEV === '1' ? 'http://127.0.0.1:5173/dashboard' : `${appOrigin}/dashboard`
   void mainWindow.loadURL(address).catch(async (error) => {
     console.error(error)
     closeSplash()

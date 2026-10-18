@@ -16,3 +16,18 @@
   transform: none;
   text-decoration: none;
 }
+
+/* Desktop shell: title bar on top, pages in the remaining window height. */
+.desktopShell {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+
+.desktopMain {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}

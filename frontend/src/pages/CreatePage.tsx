@@ -5,6 +5,7 @@ import { useAuth } from '@/features/auth/AuthProvider'
 import { resolveCreateSpec, type CreateSpec, type TemplateSpec } from '@/features/presets'
 import { designsApi, templatesApi } from '@/lib/api'
 import { createBlankDocument } from '@/lib/document'
+import { loadStaticTemplate } from '@/lib/staticTemplates'
 import { createLocalDesign } from '@/lib/local'
 import { usePageMeta } from '@/lib/usePageMeta'
 import { LocalStorageFullError } from '@/lib/local'
@@ -75,9 +76,16 @@ function isNotFound(error: unknown): boolean {
 
 async function createGuestDesign(spec: CreateSpec | TemplateSpec): Promise<string> {
   if (spec.kind === 'template') {
-    const template = await templatesApi.get(spec.slug)
-    const document = { ...template.document, meta: { ...template.document.meta, presetId: template.document.meta?.presetId ?? (template.preset || undefined) } }
-    const local = await createLocalDesign({ title: template.title, document })
+    // With a backend the API serves the template; on static deployments the
+    // catalogue shipped with the site build does, so templates open anywhere.
+    const fromApi = await templatesApi.get(spec.slug).catch(() => null)
+    const fromStatic = fromApi ? null : await loadStaticTemplate(spec.slug)
+    if (!fromApi && !fromStatic) throw Object.assign(new Error(`Template "${spec.slug}" was not found.`), { status: 404 })
+    const title = fromApi?.title ?? fromStatic?.title ?? spec.slug
+    const source = fromApi ?? fromStatic
+    if (!source) throw Object.assign(new Error(`Template "${spec.slug}" was not found.`), { status: 404 })
+    const document = { ...source.document, meta: { ...source.document.meta, presetId: source.document.meta?.presetId ?? (source.preset || undefined) } }
+    const local = await createLocalDesign({ title, document })
     return `/local/${local.id}`
   }
   const local = await createLocalDesign({ title: spec.title, document: createBlankDocument(spec.width, spec.height, { unit: spec.unit, presetId: spec.presetId }) })

@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
+import { DesktopTitlebar } from '@/app/DesktopTitlebar'
 import { OfflineBanner } from '@/app/OfflineBanner'
 import { AuthModalProvider } from '@/features/auth/AuthModalProvider'
+import { isDesktopApp } from '@/lib/desktop'
 import { scrollToFragment } from '@/lib/navigation'
 import styles from './RootLayout.module.css'
 
@@ -20,10 +22,31 @@ export function RootLayout() {
     if (lastPath.current === location.pathname) return undefined
     lastPath.current = location.pathname
     window.scrollTo(0, 0)
+    document.getElementById('nova-desktop-main')?.scrollTo(0, 0)
     const main = document.getElementById('main')
     main?.focus({ preventScroll: true })
     return undefined
   }, [location.pathname, location.hash, location.key])
+
+  // Inside the desktop app the window is frameless: the app draws its own
+  // macOS-style title bar and the pages live in the column under it, sized to
+  // the window instead of the full viewport (see `--nova-viewport-h`).
+  if (isDesktopApp()) {
+    return (
+      <AuthModalProvider>
+        <a href="#main" className={styles.skip}>
+          Skip to content
+        </a>
+        <div className={styles.desktopShell}>
+          <DesktopTitlebar />
+          <div id="nova-desktop-main" className={styles.desktopMain}>
+            <OfflineBanner />
+            <Outlet />
+          </div>
+        </div>
+      </AuthModalProvider>
+    )
+  }
 
   return (
     <AuthModalProvider>

@@ -84,7 +84,7 @@ describe('/create', () => {
   })
 
   it('shows a friendly page for an unknown template', async () => {
-    renderApp('/create?template=missing', { handlers: [http.get('*/api/v1/templates/missing/', () => err('not_found', 'Not found.', 404))] })
+    renderApp('/create?template=missing', { handlers: [http.get('*/api/v1/templates/missing/', () => err('not_found', 'Not found.', 404)), http.get('*/templates-data/catalogue.json', () => new HttpResponse(null, { status: 404 }))] })
     expect(await screen.findByText('We can’t find that design')).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Browse templates' })).toBeInTheDocument()
   })

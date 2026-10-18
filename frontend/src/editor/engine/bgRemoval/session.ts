@@ -1,4 +1,4 @@
-import * as ort from 'onnxruntime-web/wasm'
+import * as ort from 'onnxruntime-web'
 import { BackgroundRemovalError } from '../bgRemoval'
 import type { ModelDescriptor } from './model'
 
@@ -15,9 +15,18 @@ export function isPolicyBlock(error: unknown): boolean {
   return /unsafe-eval|wasm-unsafe-eval|content security policy|CSP/i.test(text)
 }
 
+/** Whether this browser exposes a GPU the WebGPU backend can run on. */
+export function webgpuAvailable(): boolean {
+  return typeof navigator !== 'undefined' && 'gpu' in navigator
+}
+
 /**
- * Starts the runtime and loads the model. Threads are used only when the page is cross-origin isolated
- * (`SharedArrayBuffer` needs it); otherwise the single-threaded SIMD build runs, which needs no headers.
+ * Starts the runtime and loads the model. WebGPU is tried first when the
+ * machine has a GPU — on real photos it runs the model several times faster
+ * than WebAssembly, which is what makes even the full-size model feel
+ * instant — and WebAssembly stays as the universal fallback. Threads are used
+ * only when the page is cross-origin isolated (`SharedArrayBuffer` needs it);
+ * otherwise the single-threaded SIMD build runs, which needs no headers.
  */
 export async function createSegmenter(
   model: ArrayBuffer,
@@ -28,17 +37,25 @@ export async function createSegmenter(
   ort.env.wasm.wasmPaths = { wasm: wasmUrl }
   ort.env.wasm.numThreads = threads
   ort.env.wasm.proxy = false
-  let session: ort.InferenceSession
-  try {
-    session = await ort.InferenceSession.create(new Uint8Array(model), {
-      executionProviders: ['wasm'],
-      graphOptimizationLevel: 'all',
-    })
-  } catch (error) {
-    if (isPolicyBlock(error) || error instanceof WebAssembly.CompileError) {
-      throw new BackgroundRemovalError('The page blocks WebAssembly.', 'blocked')
+  const attempts: string[][] = webgpuAvailable() ? [['webgpu', 'wasm'], ['wasm']] : [['wasm']]
+  let session: ort.InferenceSession | null = null
+  let lastError: unknown = null
+  for (const executionProviders of attempts) {
+    try {
+      session = await ort.InferenceSession.create(new Uint8Array(model), {
+        executionProviders,
+        graphOptimizationLevel: 'all',
+      })
+      break
+    } catch (error) {
+      if (isPolicyBlock(error) || error instanceof WebAssembly.CompileError) {
+        throw new BackgroundRemovalError('The page blocks WebAssembly.', 'blocked')
+      }
+      lastError = error
     }
-    throw new BackgroundRemovalError(`The model could not be loaded: ${error instanceof Error ? error.message : String(error)}`)
+  }
+  if (!session) {
+    throw new BackgroundRemovalError(`The model could not be loaded: ${lastError instanceof Error ? lastError.message : String(lastError)}`)
   }
   const { size } = descriptor.input
   return {

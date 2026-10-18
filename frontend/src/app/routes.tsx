@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { Navigate, type RouteObject } from 'react-router-dom'
 import { RequireAuth } from '@/features/auth/RequireAuth'
+import { isDesktopApp } from '@/lib/desktop'
 import { PageLoader } from './PageLoader'
 import { RouteErrorPage } from './RouteErrorPage'
 import { AuthLayout } from './layouts/AuthLayout'
@@ -43,7 +44,9 @@ export const routes: RouteObject[] = [
       {
         element: <MarketingLayout />,
         children: [
-          { index: true, element: <LandingPage /> },
+          // The desktop app opens straight on the studio (designs, templates,
+          // create) — the marketing home page is for the web site only.
+          { index: true, element: isDesktopApp() ? <Navigate to="/dashboard" replace /> : <LandingPage /> },
           { path: 'templates', element: <TemplatesPage /> },
           { path: 'templates/:slug', element: <TemplateDetailPage /> },
           { path: 'features', element: <FeaturesPage /> },

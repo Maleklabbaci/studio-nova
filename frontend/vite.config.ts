@@ -1,13 +1,75 @@
 /// <reference types="vitest/config" />
+import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { fileURLToPath, URL } from 'node:url'
 import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
+import { defineConfig, type Plugin } from 'vite'
 
 const API_TARGET = process.env.VITE_API_PROXY ?? 'http://localhost:8000'
 const MCP_TARGET = process.env.VITE_MCP_PROXY ?? 'http://127.0.0.1:8787'
 
+/**
+ * Ships the template catalogue with the static site: the generated template
+ * documents (backend/data/templates) are copied into dist/templates-data, so
+ * a static deployment with no backend (Cloudflare Pages) can still browse
+ * and open templates in the local guest editor. With a backend, the live
+ * API wins and these files are simply never fetched. Starter photos keep
+ * their production URL (/media/templates/photos/…).
+ */
+function staticTemplatesPlugin(): Plugin {
+  return {
+    name: 'studio-nova-static-templates',
+    apply: 'build',
+    closeBundle() {
+      const source = fileURLToPath(new URL('../backend/data/templates', import.meta.url))
+      const dist = fileURLToPath(new URL('./dist', import.meta.url))
+      const outDir = join(dist, 'templates-data')
+      mkdirSync(join(outDir, 'thumbs'), { recursive: true })
+      const catalogue: Array<Record<string, unknown>> = []
+      try {
+        const manifest = JSON.parse(readFileSync(join(source, 'manifest.json'), 'utf8')) as { templates?: Array<Record<string, unknown>> }
+        for (const item of manifest.templates ?? []) {
+          const slug = typeof item.slug === 'string' ? item.slug : ''
+          if (!slug) continue
+          try {
+            const raw = readFileSync(join(source, `${slug}.json`), 'utf8')
+            const doc = JSON.parse(raw) as { width?: number; height?: number; pages?: unknown[] }
+            writeFileSync(join(outDir, `${slug}.json`), raw)
+            const thumb = join(source, 'thumbs', `${slug}.webp`)
+            const hasThumb = existsSync(thumb)
+            if (hasThumb) copyFileSync(thumb, join(outDir, 'thumbs', `${slug}.webp`))
+            catalogue.push({
+              slug,
+              title: typeof item.title === 'string' ? item.title : slug,
+              category: typeof item.category === 'string' ? item.category : '',
+              tags: Array.isArray(item.tags) ? item.tags : [],
+              description: typeof item.description === 'string' ? item.description : '',
+              preset: typeof item.preset === 'string' ? item.preset : '',
+              width: typeof doc.width === 'number' ? doc.width : 0,
+              height: typeof doc.height === 'number' ? doc.height : 0,
+              pageCount: Array.isArray(doc.pages) ? doc.pages.length : 1,
+              thumb: hasThumb,
+            })
+          } catch {
+            // A broken generated file must not fail the site build.
+          }
+        }
+        const photos = join(source, 'photos')
+        if (existsSync(photos)) {
+          const target = join(dist, 'media', 'templates', 'photos')
+          mkdirSync(target, { recursive: true })
+          for (const file of readdirSync(photos)) copyFileSync(join(photos, file), join(target, file))
+        }
+      } catch {
+        // No generated catalogue in this checkout: the static site just keeps the API behaviour.
+      }
+      writeFileSync(join(outDir, 'catalogue.json'), JSON.stringify(catalogue))
+    },
+  }
+}
+
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), staticTemplatesPlugin()],
   resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
   // Loaded with import() when a video is made: listed so the dev server bundles them at start instead of discovering them
   // mid-session, which reloads the page under a running test.

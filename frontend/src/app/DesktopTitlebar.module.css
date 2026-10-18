@@ -1,0 +1,108 @@
+/* macOS-style title bar for the frameless desktop window. The whole bar is a
+   drag handle (`-webkit-app-region`); the traffic lights opt back out. */
+.bar {
+  -webkit-app-region: drag;
+  app-region: drag;
+  position: relative;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 2.75rem;
+  padding: 0 0.875rem;
+  background: color-mix(in srgb, var(--color-surface) 86%, transparent);
+  -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  backdrop-filter: blur(16px) saturate(1.5);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
+  user-select: none;
+  -webkit-user-select: none;
+  z-index: var(--z-header, 50);
+}
+
+.lights {
+  -webkit-app-region: no-drag;
+  app-region: no-drag;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.light {
+  display: grid;
+  place-items: center;
+  width: 0.75rem;
+  height: 0.75rem;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition: filter var(--duration-fast) var(--ease-out);
+}
+
+.light svg {
+  width: 0.5rem;
+  height: 0.5rem;
+  fill: none;
+  stroke: rgba(0, 0, 0, 0.55);
+  stroke-width: 1.1;
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+/* Like macOS, the glyphs appear when the pointer is anywhere over the group. */
+.lights:hover .light svg,
+.light:focus-visible svg {
+  opacity: 1;
+}
+
+.light:hover {
+  filter: brightness(1.08);
+}
+
+.light:active {
+  filter: brightness(0.92);
+}
+
+.light:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.close {
+  background: #ff5f57;
+}
+
+.minimize {
+  background: #febc2e;
+}
+
+.maximize {
+  background: #28c840;
+}
+
+.title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.spark {
+  width: 0.95rem;
+  height: 0.95rem;
+  fill: var(--color-brand);
+}
+
+/* Same width as the lights group so the title stays truly centred. */
+.spacer {
+  width: 3.25rem;
+  flex: none;
+}

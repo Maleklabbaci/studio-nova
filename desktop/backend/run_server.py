@@ -73,6 +73,11 @@ _LOCAL_SEEDS = (
 _NETWORK_SEEDS = (
     ("fonts.seeded", (("sync_fonts", "--popular", "100"),)),
     ("models.seeded", (("sync_models", ()),)),
+    # The full-size background-removal model (176 MB, once): markedly better
+    # cut-outs on busy scenes and fine detail than the small default. It is
+    # advertised automatically once installed (highest priority wins); until
+    # then the editor keeps using the small model, so nothing waits on it.
+    ("models.quality.seeded", (("sync_models", "--model", "u2net"),)),
 )
 
 

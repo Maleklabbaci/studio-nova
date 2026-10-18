@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { describeSize, getPreset, presetParts } from '@/features/presets'
 import { flattenPages, useTemplateCategories, useTemplatesList } from '@/lib/api/hooks'
+import { categoryName, filterStaticTemplates, loadStaticCatalogue, staticSummary, type StaticTemplateEntry } from '@/lib/staticTemplates'
 import { useDebouncedValue } from '@/lib/useDebouncedValue'
 import { Button, EmptyState, Input, SegmentedControl, Skeleton } from '@/ui'
 import type { TemplateQuery, TemplateSummary } from '@/types/api'
@@ -79,6 +80,28 @@ export function TemplatesBrowser() {
   const popularIds = new Set(popular.map((template) => template.id))
   const gridTemplates = filtered || popular.length === 0 ? templates : templates.filter((template) => !popularIds.has(template.id))
 
+  // No backend (static deployment): fall back to the catalogue shipped with the site build.
+  const [staticEntries, setStaticEntries] = useState<StaticTemplateEntry[] | null>(null)
+  useEffect(() => {
+    if (!list.isError || staticEntries !== null) return
+    let cancelled = false
+    void loadStaticCatalogue().then((entries) => {
+      if (!cancelled) setStaticEntries(entries ?? [])
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [list.isError, staticEntries])
+  const staticActive = list.isError && (staticEntries?.length ?? 0) > 0
+  const staticCategories = useMemo(() => {
+    const counts = new Map<string, number>()
+    for (const item of staticEntries ?? []) if (item.category) counts.set(item.category, (counts.get(item.category) ?? 0) + 1)
+    return [...counts.entries()].map(([slug, count]) => ({ slug, name: categoryName(slug), count }))
+  }, [staticEntries])
+  const staticFiltered = staticActive
+    ? filterStaticTemplates(staticEntries ?? [], { category: category || undefined, q: urlQuery || undefined, orientation: orientation === 'all' ? undefined : orientation, preset: activePreset?.id }).map(staticSummary)
+    : []
+
   function setParam(key: string, value: string | null) {
     setParams(
       (current) => {
@@ -114,22 +137,36 @@ export function TemplatesBrowser() {
         <SegmentedControl label="Orientation" value={orientation} onChange={(value) => setParam('orientation', value === 'all' ? null : value)} options={ORIENTATIONS} />
       </div>
 
-      <div className={styles.chips} role="group" aria-label="Categories">
-        <button type="button" className={styles.chip} aria-pressed={!category} onClick={() => setParam('category', null)}>
-          All
-        </button>
-        {categories.isPending
-          ? Array.from({ length: 5 }, (_, index) => <Skeleton key={index} width={84} height={34} radius="var(--radius-full)" />)
-          : (categories.data ?? [])
-              // A category nobody has published a template in would only lead to an empty page; the selected one stays.
-              .filter((item) => item.template_count > 0 || item.slug === category)
-              .map((item) => (
-              <button key={item.id} type="button" className={styles.chip} aria-pressed={category === item.slug} onClick={() => setParam('category', category === item.slug ? null : item.slug)}>
-                {item.name}
-                <span className={styles.count}>{item.template_count}</span>
-              </button>
-            ))}
-      </div>
+      {staticActive ? (
+        <div className={styles.chips} role="group" aria-label="Categories">
+          <button type="button" className={styles.chip} aria-pressed={!category} onClick={() => setParam('category', null)}>
+            All
+          </button>
+          {staticCategories.map((item) => (
+            <button key={item.slug} type="button" className={styles.chip} aria-pressed={category === item.slug} onClick={() => setParam('category', category === item.slug ? null : item.slug)}>
+              {item.name}
+              <span className={styles.count}>{item.count}</span>
+            </button>
+          ))}
+        </div>
+      ) : (
+        <div className={styles.chips} role="group" aria-label="Categories">
+          <button type="button" className={styles.chip} aria-pressed={!category} onClick={() => setParam('category', null)}>
+            All
+          </button>
+          {categories.isPending
+            ? Array.from({ length: 5 }, (_, index) => <Skeleton key={index} width={84} height={34} radius="var(--radius-full)" />)
+            : (categories.data ?? [])
+                // A category nobody has published a template in would only lead to an empty page; the selected one stays.
+                .filter((item) => item.template_count > 0 || item.slug === category)
+                .map((item) => (
+                  <button key={item.id} type="button" className={styles.chip} aria-pressed={category === item.slug} onClick={() => setParam('category', category === item.slug ? null : item.slug)}>
+                    {item.name}
+                    <span className={styles.count}>{item.template_count}</span>
+                  </button>
+                ))}
+        </div>
+      )}
 
       {activePreset ? (
         <div className={styles.chips}>
@@ -143,7 +180,7 @@ export function TemplatesBrowser() {
       <PopularRow templates={popular} />
 
       <div aria-live="polite" aria-busy={list.isPending}>
-        {list.isPending ? (
+        {list.isPending || (list.isError && staticEntries === null) ? (
           <ul className={styles.masonry} aria-label="Loading templates">
             {[1.25, 0.8, 1, 1.5, 0.7, 1.1, 0.9, 1.3].map((ratio, index) => (
               <li key={index} className={styles.item}>
@@ -151,6 +188,21 @@ export function TemplatesBrowser() {
               </li>
             ))}
           </ul>
+        ) : staticActive ? (
+          <>
+            <p className={styles.offlineNote}>Built-in catalogue — no server needed, every template opens right here. The Studio Nova app adds the live library, accounts and sharing.</p>
+            {staticFiltered.length === 0 ? (
+              <EmptyState icon={<Search size={28} />} title="No templates match" description="Try different words, or clear the filters to see everything." action={<Button variant="secondary" onClick={clearFilters}>Clear filters</Button>} />
+            ) : (
+              <ul className={styles.masonry}>
+                {staticFiltered.map((template) => (
+                  <li key={template.id} className={styles.item}>
+                    <TemplateCard template={template} />
+                  </li>
+                ))}
+              </ul>
+            )}
+          </>
         ) : list.isError ? (
           <EmptyState icon={<LayoutTemplate size={28} />} title="Templates didn’t load" description="Check your connection and try again." role="alert" action={<Button onClick={() => void list.refetch()}>Try again</Button>} />
         ) : templates.length === 0 ? (

@@ -334,7 +334,7 @@ describe('templates', () => {
   })
 
   it('detail: unknown templates get a friendly 404', async () => {
-    renderApp('/templates/nope', { handlers: [http.get('*/api/v1/templates/nope/', () => HttpResponse.json({ error: { code: 'not_found', message: 'Not found.' } }, { status: 404 }))] })
+    renderApp('/templates/nope', { handlers: [http.get('*/api/v1/templates/nope/', () => HttpResponse.json({ error: { code: 'not_found', message: 'Not found.' } }, { status: 404 })), http.get('*/templates-data/catalogue.json', () => new HttpResponse(null, { status: 404 }))] })
     expect(await screen.findByText('We can’t find that template')).toBeInTheDocument()
   })
 

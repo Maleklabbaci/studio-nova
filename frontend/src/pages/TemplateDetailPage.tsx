@@ -1,4 +1,5 @@
 import { ArrowLeft, Sparkles } from 'lucide-react'
+import { useEffect, useState } from 'react'
 import { useNavigate, useParams, Link } from 'react-router-dom'
 import { useAuth } from '@/features/auth/AuthProvider'
 import { createUrl } from '@/features/presets'
@@ -6,6 +7,8 @@ import { TemplateCard } from '@/features/templates/TemplateCard'
 import { isApiError } from '@/lib/api'
 import { useTemplate, useTemplatesList } from '@/lib/api/hooks'
 import { templatesApi } from '@/lib/api'
+import { loadStaticCatalogue, staticSummary, type StaticTemplateEntry } from '@/lib/staticTemplates'
+import type { TemplateDetail } from '@/types/api'
 import { usePageMeta } from '@/lib/usePageMeta'
 import { useMutation } from '@tanstack/react-query'
 import { Badge, Button, EmptyState, LinkButton, Skeleton, Thumbnail, useToast } from '@/ui'
@@ -17,7 +20,20 @@ export default function TemplateDetailPage() {
   const { status } = useAuth()
   const { toast } = useToast()
   const query = useTemplate(slug)
-  const template = query.data
+  // Static deployments have no API: fall back to the built-in catalogue entry for this slug.
+  const [staticEntry, setStaticEntry] = useState<StaticTemplateEntry | null | undefined>(undefined)
+  useEffect(() => {
+    if (!query.isError || staticEntry !== undefined) return
+    let cancelled = false
+    void loadStaticCatalogue().then((entries) => {
+      if (!cancelled) setStaticEntry(entries?.find((entry) => entry.slug === slug) ?? null)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [query.isError, staticEntry, slug])
+  const isStatic = !query.data && Boolean(staticEntry)
+  const template: TemplateDetail | undefined = query.data ?? (staticEntry ? ({ ...staticSummary(staticEntry), description: staticEntry.description } as TemplateDetail) : undefined)
   usePageMeta({
     title: template?.title ?? 'Template',
     description: template ? (template.description || `A free, editable ${template.width} × ${template.height} px ${template.title} template. Open it in your browser and make it yours.`) : undefined,
@@ -34,7 +50,7 @@ export default function TemplateDetailPage() {
     onError: (error) => toast({ title: 'Couldn’t use this template', description: isApiError(error) ? error.message : 'Please try again.', variant: 'error' }),
   })
 
-  if (query.isPending) {
+  if (query.isPending || (query.isError && staticEntry === undefined)) {
     return (
       <div className={styles.page} aria-busy="true">
         <div className={styles.layout}>
@@ -71,7 +87,7 @@ export default function TemplateDetailPage() {
   const aspect = template.width > 0 && template.height > 0 ? template.width / template.height : 1
 
   function startFromTemplate() {
-    if (status === 'authenticated') use.mutate()
+    if (status === 'authenticated' && !isStatic) use.mutate()
     else navigate(createUrl({ template: slug }))
   }
 

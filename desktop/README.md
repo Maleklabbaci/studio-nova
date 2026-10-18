@@ -2,6 +2,14 @@
 
 Studio Nova Desktop is an Electron shell around the existing Studio Nova editor. The shell serves the built web app from a stable localhost origin so guest designs remain saved between launches, and starts the local MCP bridge alongside the window.
 
+The window is frameless and opens straight on the studio (designs, templates, create) — never on the marketing home page. The app draws a macOS-style title bar with traffic-light window controls (`frontend/src/app/DesktopTitlebar.tsx`, wired to `main.cjs` through the small `preload.cjs` bridge, `window.studioNovaDesktop`) and sizes its layouts to the window minus that bar.
+
+Background removal runs on the GPU (WebGPU) when one is available, with WebAssembly as fallback. On first launch the local server also downloads the full-size U²-Net model in the background (one-time, hash-verified); once installed it is advertised automatically and gives noticeably better cut-outs than the small bundled model.
+
+## Updates
+
+A few seconds after launch, the packaged app compares its own version with the one in the web site's `/downloads/manifest.json` (published alongside the installers). When a newer version exists it offers the download; "Later" snoozes that version, and installing over the top keeps every design and setting (they live in the per-user data directory, not the install folder). The feed can be overridden with `updateManifestUrl` in `desktop-config.json`. Version comparison lives in `updateCheck.cjs` (`npm test` here runs its assertions).
+
 ## Develop the desktop shell
 
 Start Vite and the MCP service in separate terminals, then launch Electron:

@@ -5,6 +5,8 @@ directories:
   output: release
 files:
   - main.cjs
+  - preload.cjs
+  - updateCheck.cjs
   - package.json
 extraResources:
   - from: backend-dist/studio-nova-backend
