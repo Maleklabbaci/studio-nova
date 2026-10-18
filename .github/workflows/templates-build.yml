@@ -1,0 +1,79 @@
+name: Generate the 310 templates
+
+# One click (Actions tab -> this workflow -> Run workflow): composes every
+# template design with the real editor engine in Chromium, writes the
+# documents + thumbnails + manifest into backend/data/templates, refreshes
+# the test snapshots, and pushes the result back to this branch. The push
+# re-deploys the web site, whose build embeds the catalogue automatically —
+# and the desktop backend seeds the same files. The generated folder is also
+# kept as a downloadable artifact in case the push is ever refused.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: templates-build
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    name: Compose, render and commit the template catalogue
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install frontend dependencies
+        run: npm ci
+        working-directory: frontend
+
+      - name: Install Chromium for the generator
+        run: |
+          npx playwright install --with-deps chromium
+          CHROME="$(find "$HOME/.cache/ms-playwright" \( -name chrome -o -name headless_shell \) -type f | head -n 1)"
+          test -n "$CHROME"
+          echo "PW_CHROMIUM=$CHROME" >> "$GITHUB_ENV"
+        working-directory: frontend
+
+      - name: Generate documents, thumbnails and manifest
+        run: npm run templates:build
+        working-directory: frontend
+
+      - name: Refresh the template test snapshots
+        run: npx vitest run scripts/templates/starter.test.ts -u
+        working-directory: frontend
+
+      - name: Run the template tests for real
+        run: npx vitest run scripts/templates/starter.test.ts scripts/templates/factory.test.ts
+        working-directory: frontend
+
+      - name: Commit and push the generated catalogue
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add backend/data/templates frontend/scripts/templates/starter.test.ts
+          if git diff --cached --quiet; then
+            echo "The catalogue is already up to date."
+          else
+            COUNT="$(find backend/data/templates -maxdepth 1 -name '*.json' ! -name manifest.json | wc -l)"
+            git commit -m "Generate the template catalogue ($COUNT templates)"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Keep the generated catalogue as an artifact (fallback)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: studio-nova-templates
+          path: backend/data/templates
+          if-no-files-found: warn
+          retention-days: 30
