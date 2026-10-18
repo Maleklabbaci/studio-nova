@@ -50,7 +50,12 @@ jobs:
         working-directory: desktop
       - name: Install Linux packaging dependencies
         if: runner.os == 'Linux'
-        run: sudo apt-get update && sudo apt-get install -y libfuse2
+        # libfuse2 was renamed libfuse2t64 in recent Ubuntu releases; try
+        # both names and never let this helper step kill the package job -
+        # if FUSE is truly unavailable, the AppImage step says so itself.
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libfuse2t64 || sudo apt-get install -y libfuse2 || echo "No FUSE package available; continuing without it"
       - name: Install frontend dependencies
         run: npm ci
         working-directory: frontend
