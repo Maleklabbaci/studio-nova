@@ -38,12 +38,40 @@ describe('template factory', () => {
     for (const palette of Object.values(PALETTES)) {
       for (const variant of ['bold', 'light', 'pop'] as const) {
         const s = styleFor(palette, variant)
-        // Every factory text is set large (>= 24 px), where the kit requires 3:1.
+        // The factory.ts archetypes set these pairs large (>= 24 px), where
+        // the kit requires 3:1. Small text in the formats factory goes
+        // through readable()/bestOn() instead - covered by the two palette
+        // invariants below, which is where a bad step actually bites.
         expect(contrast(s.ink, s.bg)).toBeGreaterThanOrEqual(3)
         expect(contrast(s.soft, s.bg)).toBeGreaterThanOrEqual(3)
         expect(contrast(s.ink, s.card)).toBeGreaterThanOrEqual(3)
         expect(contrast(s.soft, s.card)).toBeGreaterThanOrEqual(3)
         expect(contrast(s.pillText, s.pill)).toBeGreaterThanOrEqual(3)
+      }
+    }
+  })
+
+  it('keeps white text readable on every palette 600 step', () => {
+    // palette[600] is a text background for small text: the pop page
+    // background (flyer/invitation/card small print) and the resume
+    // sidebar. synth 600 once sat at luminance 0.188, where white is
+    // only 4.42:1 - the templates build died on it after minutes of
+    // generation. Every 600 step must clear 4.5 against white.
+    for (const palette of Object.values(PALETTES)) {
+      expect(contrast('#ffffff', palette[600])).toBeGreaterThanOrEqual(4.5)
+    }
+  })
+
+  it('keeps the black/white rescue readable on every background step', () => {
+    // factoryFormats' readable()/bestOn() fall back to white or #111111
+    // for small text. That rescue has a blind spot: for background
+    // luminances around 0.183-0.200 BOTH fail 4.5:1, and the build's
+    // contrast gate then rejects the design. Background steps must
+    // stay out of that band.
+    for (const palette of Object.values(PALETTES)) {
+      for (const step of [500, 600, 700, 900, 950] as const) {
+        const rescued = Math.max(contrast('#ffffff', palette[step]), contrast('#111111', palette[step]))
+        expect(rescued).toBeGreaterThanOrEqual(4.5)
       }
     }
   })
