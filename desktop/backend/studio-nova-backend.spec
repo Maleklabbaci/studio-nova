@@ -9,16 +9,26 @@ ROOT = os.path.abspath(os.path.join(SPECPATH, "..", ".."))
 BACKEND = os.path.join(ROOT, "backend")
 
 datas = [
-    # Catalogue seeds, model/audio manifests and other data files the
-    # management commands read at first start.
-    (os.path.join(BACKEND, "data"), os.path.join("backend", "data")),
+    # The bundled backend tree, laid out under the bundle root exactly like
+    # the checkout (doory/, apps/, data/ side by side). This matters twice:
+    # the settings compute BASE_DIR from their own file location, which in
+    # the frozen app is the bundle root, so data files (catalogue seeds,
+    # manifests) must sit at <root>/data - and having the sources as real
+    # files means imports never depend solely on static analysis finding
+    # every dynamically-loaded Django module (app configs, middleware,
+    # management commands are all referenced by string).
+    (os.path.join(BACKEND, "data"), "data"),
+    (os.path.join(BACKEND, "doory"), "doory"),
+    (os.path.join(BACKEND, "apps"), "apps"),
 ]
+if os.path.isdir(os.path.join(BACKEND, "templates")):
+    datas.append((os.path.join(BACKEND, "templates"), "templates"))
 # Django app templates, migrations-adjacent data and package data files.
 for package in ("django", "rest_framework", "drf_spectacular", "unfold", "corsheaders", "django_filters"):
     datas += collect_data_files(package)
 
 hiddenimports = []
-for package in ("doory", "apps", "uvicorn", "channels", "pycrdt"):
+for package in ("doory", "apps", "uvicorn", "channels", "pycrdt", "rest_framework", "drf_spectacular", "corsheaders", "django_filters", "unfold", "environ", "whitenoise"):
     hiddenimports += collect_submodules(package)
 hiddenimports += ["doory.settings.desktop", "doory.asgi", "doory.wsgi"]
 

@@ -31,6 +31,13 @@ def _backend_dir() -> Path:
     """The Django project root: next to this file in a checkout, bundled by PyInstaller when packaged."""
     here = Path(__file__).resolve().parent
     candidates = [here / "backend", here.parent.parent / "backend", here]
+    # Frozen (PyInstaller): the backend tree ships as data files under
+    # sys._MEIPASS (doory/, apps/, data/ side by side). That directory is
+    # also the BASE_DIR the bundled settings compute from their own file
+    # location, so code and data resolve to the same root.
+    meipass = getattr(sys, "_MEIPASS", None)
+    if meipass:
+        candidates.insert(0, Path(meipass))
     for candidate in candidates:
         if (candidate / "doory" / "asgi.py").is_file():
             return candidate
