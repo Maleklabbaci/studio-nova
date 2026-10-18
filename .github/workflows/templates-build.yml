@@ -71,7 +71,7 @@ jobs:
 
       - name: Keep the generated catalogue as an artifact (fallback)
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: studio-nova-templates
           path: backend/data/templates
