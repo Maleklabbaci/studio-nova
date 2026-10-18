@@ -1,4 +1,4 @@
-import * as ort from 'onnxruntime-web'
+import * as ort from 'onnxruntime-web/wasm'
 import { BackgroundRemovalError } from '../bgRemoval'
 import type { ModelDescriptor } from './model'
 
@@ -21,12 +21,15 @@ export function webgpuAvailable(): boolean {
 }
 
 /**
- * Starts the runtime and loads the model. WebGPU is tried first when the
- * machine has a GPU — on real photos it runs the model several times faster
- * than WebAssembly, which is what makes even the full-size model feel
- * instant — and WebAssembly stays as the universal fallback. Threads are used
- * only when the page is cross-origin isolated (`SharedArrayBuffer` needs it);
- * otherwise the single-threaded SIMD build runs, which needs no headers.
+ * Starts the runtime and loads the model. In the desktop build — the one that
+ * ships the GPU-capable runtime (vite.config.ts swaps the module in, the web
+ * build keeps the small WebAssembly-only runtime because static hosts cap
+ * file sizes) — WebGPU is tried first when the machine has a GPU: on real
+ * photos it runs the model several times faster than WebAssembly, which is
+ * what makes even the full-size model feel instant. WebAssembly stays as the
+ * universal fallback. Threads are used only when the page is cross-origin
+ * isolated (`SharedArrayBuffer` needs it); otherwise the single-threaded SIMD
+ * build runs, which needs no headers.
  */
 export async function createSegmenter(
   model: ArrayBuffer,
@@ -37,7 +40,8 @@ export async function createSegmenter(
   ort.env.wasm.wasmPaths = { wasm: wasmUrl }
   ort.env.wasm.numThreads = threads
   ort.env.wasm.proxy = false
-  const attempts: string[][] = webgpuAvailable() ? [['webgpu', 'wasm'], ['wasm']] : [['wasm']]
+  const gpuBuild = typeof __STUDIO_NOVA_DESKTOP_BUILD__ !== 'undefined' && __STUDIO_NOVA_DESKTOP_BUILD__
+  const attempts: string[][] = gpuBuild && webgpuAvailable() ? [['webgpu', 'wasm'], ['wasm']] : [['wasm']]
   let session: ort.InferenceSession | null = null
   let lastError: unknown = null
   for (const executionProviders of attempts) {

@@ -8,6 +8,13 @@ import { defineConfig, type Plugin } from 'vite'
 const API_TARGET = process.env.VITE_API_PROXY ?? 'http://localhost:8000'
 const MCP_TARGET = process.env.VITE_MCP_PROXY ?? 'http://127.0.0.1:8787'
 
+// The desktop build (desktop/package.json's build:resources sets this) ships
+// the GPU-capable ONNX runtime for background removal. The web build keeps
+// the small WebAssembly-only runtime: its .wasm is 13.6 MiB while the GPU
+// build's is 27 MiB, over the 25 MiB per-file limit of static hosts such as
+// Cloudflare Pages — and there is no limit inside an installed app.
+const DESKTOP_BUILD = process.env.STUDIO_NOVA_DESKTOP_BUILD === '1'
+
 /**
  * Ships the template catalogue with the static site: the generated template
  * documents (backend/data/templates) are copied into dist/templates-data, so
@@ -68,9 +75,39 @@ function staticTemplatesPlugin(): Plugin {
   }
 }
 
+/**
+ * Background removal imports two ONNX runtime builds (small WebAssembly one,
+ * GPU-capable one) and picks per build flavour; Rollup emits both .wasm
+ * assets either way, so drop the one this flavour does not ship — the web
+ * build must never carry the 27 MiB GPU file (see DESKTOP_BUILD above).
+ */
+function bgRuntimeAssetsPlugin(): Plugin {
+  return {
+    name: 'studio-nova-bg-runtime-assets',
+    generateBundle(_options, bundle) {
+      for (const fileName of Object.keys(bundle)) {
+        if (!fileName.endsWith('.wasm')) continue
+        const isGpuWasm = fileName.includes('.jsep-')
+        const isPlainWasm = fileName.includes('ort-wasm-simd-threaded-') && !isGpuWasm
+        if ((DESKTOP_BUILD && isPlainWasm) || (!DESKTOP_BUILD && isGpuWasm)) delete bundle[fileName]
+      }
+    },
+  }
+}
+
 export default defineConfig({
-  plugins: [react(), staticTemplatesPlugin()],
-  resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
+  plugins: [react(), staticTemplatesPlugin(), bgRuntimeAssetsPlugin()],
+  define: { __STUDIO_NOVA_DESKTOP_BUILD__: JSON.stringify(DESKTOP_BUILD) },
+  resolve: {
+    alias: [
+      { find: '@', replacement: fileURLToPath(new URL('./src', import.meta.url)) },
+      // Desktop only: swap the WebAssembly-only runtime for the full build
+      // that can also run on WebGPU (the engine picks per session).
+      ...(DESKTOP_BUILD
+        ? [{ find: /^onnxruntime-web\/wasm$/, replacement: 'onnxruntime-web' }]
+        : []),
+    ],
+  },
   // Loaded with import() when a video is made: listed so the dev server bundles them at start instead of discovering them
   // mid-session, which reloads the page under a running test.
   optimizeDeps: { include: ['mp4-muxer', 'webm-muxer', 'gifenc'] },
