@@ -66,6 +66,36 @@ jobs:
           if-no-files-found: error
           retention-days: 30
 
+  publish-release:
+    name: Publish GitHub Release
+    # The landing page's download buttons point at
+    # releases/latest/download/<installer>: uploading the installers here is
+    # what makes them work (they are too large for Cloudflare Pages' 25 MB
+    # per-file limit, so they are deliberately not hosted on the site itself).
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: package
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: studio-nova-installer-*
+          path: installers
+          merge-multiple: true
+      - name: Create or update the release with the installers
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" installers/* --repo "$GITHUB_REPOSITORY" --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" installers/* \
+              --repo "$GITHUB_REPOSITORY" \
+              --title "Studio Nova $GITHUB_REF_NAME" \
+              --generate-notes
+          fi
+
   assemble-site:
     name: Assemble landing page and installers
     needs: package

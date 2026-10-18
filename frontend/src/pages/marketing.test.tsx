@@ -174,6 +174,24 @@ describe('features, FAQ and contact pages', () => {
     expect(screen.getByRole('link', { name: 'Download .AppImage' })).toHaveAttribute('href', '/downloads/StudioNova-linux-x64.AppImage')
   })
 
+  it('links to externally hosted installers (e.g. GitHub Releases) from the manifest', async () => {
+    renderApp('/download', {
+      handlers: [http.get('*/downloads/manifest.json', () => HttpResponse.json({
+        version: '0.1.0',
+        downloads: {
+          windows: 'https://github.com/Maleklabbaci/studio-nova/releases/latest/download/StudioNova-win-x64.exe',
+          linux: 'http://insecure.example.com/StudioNova-linux-x64.AppImage',
+        },
+      }))],
+    })
+    expect(await screen.findByRole('link', { name: 'Download .exe' })).toHaveAttribute(
+      'href',
+      'https://github.com/Maleklabbaci/studio-nova/releases/latest/download/StudioNova-win-x64.exe',
+    )
+    // Non-https entries are rejected: no Linux download link is offered.
+    expect(screen.queryByRole('link', { name: 'Download .AppImage' })).not.toBeInTheDocument()
+  })
+
   it('the FAQ is an accessible accordion with one answer open at a time', async () => {
     renderApp('/faq')
     const first = await screen.findByRole('button', { name: 'Do I need an account to design?' })
