@@ -13,16 +13,21 @@
 !include "LogicLib.nsh"
 !include "nsDialogs.nsh"
 
+; Everything below only exists in the installer script. This file is also
+; compiled into the uninstaller (BUILD_UNINSTALLER is defined there), and
+; the template never inserts any of these hooks in that pass: customInit
+; sits in the installer's .onInit branch, installSection.nsh (the caller
+; of customInstall) is not even included, and customPageAfterChangeDir is
+; only inserted if defined. electron-builder treats every NSIS warning
+; as an error, so anything left declared-but-unused in the uninstaller
+; pass kills the Windows build - first the page functions (6010), then
+; the variables themselves (6001). Hence the whole block, variables
+; included, is guarded. All three hooks are invoked through !ifmacrodef
+; by the template, so their absence in the uninstaller pass is clean.
+!ifndef BUILD_UNINSTALLER
 Var DesktopShortcutWanted
 Var DesktopShortcutCheckboxHandle
 
-; The page only exists in the installer script. This file is also compiled
-; into the uninstaller (BUILD_UNINSTALLER is defined there), where a page
-; function nothing references is warning 6010 - and electron-builder treats
-; NSIS warnings as errors, which failed the whole Windows build. The
-; uninstaller does not need the page: the template removes the shortcut
-; from the registry info it writes itself.
-!ifndef BUILD_UNINSTALLER
 Function DesktopShortcutPageCreate
   ; Never interrupt a silent install; the default from customInit applies.
   IfSilent 0 showPage
@@ -57,7 +62,6 @@ FunctionEnd
 !macro customPageAfterChangeDir
   Page custom DesktopShortcutPageCreate DesktopShortcutPageLeave
 !macroend
-!endif
 
 !macro customInit
   StrCpy $DesktopShortcutWanted "1"
@@ -71,3 +75,4 @@ FunctionEnd
     System::Call 'Shell32::SHChangeNotify(i 0x8000000, i 0, i 0, i 0)'
   ${EndIf}
 !macroend
+!endif
