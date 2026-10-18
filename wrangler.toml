@@ -1,7 +1,7 @@
 # Cloudflare Pages configuration for the Studio Nova static site.
 # The app lives in frontend/ — building from the repository root without
 # this file serves an empty directory and Cloudflare answers HTTP 404.
-name = "studio-nova-b6e"
+name = "studio-nova"
 compatibility_date = "2026-10-18"
 pages_build_output_dir = "frontend/dist"
 
