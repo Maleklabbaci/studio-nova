@@ -9,7 +9,6 @@ const downloadsDir = path.join(root, 'frontend', 'public', 'downloads')
 const expected = {
   windows: 'StudioNova-win-x64.exe',
   macos: 'StudioNova-mac-universal.dmg',
-  linux: 'StudioNova-linux-x64.AppImage',
 }
 const downloads = Object.fromEntries(
   Object.entries(expected).filter(([, filename]) => fs.existsSync(path.join(downloadsDir, filename))),

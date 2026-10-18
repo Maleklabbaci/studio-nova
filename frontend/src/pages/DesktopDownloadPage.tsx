@@ -5,13 +5,12 @@ import { usePageMeta } from '@/lib/usePageMeta'
 import { AnchorButton, Button } from '@/ui'
 import styles from './DesktopDownloadPage.module.css'
 
-type Platform = 'windows' | 'macos' | 'linux'
+type Platform = 'windows' | 'macos'
 type DownloadManifest = { version?: string; downloads?: Partial<Record<Platform, string>> }
 
 const PLATFORMS: Array<{ id: Platform; name: string; detail: string; extension: string }> = [
   { id: 'windows', name: 'Windows', detail: 'Windows 10 or later · 64-bit', extension: '.exe' },
   { id: 'macos', name: 'macOS', detail: 'Apple silicon and Intel · universal', extension: '.dmg' },
-  { id: 'linux', name: 'Linux', detail: 'x86_64 · AppImage', extension: '.AppImage' },
 ]
 
 /**
@@ -22,10 +21,9 @@ const PLATFORMS: Array<{ id: Platform; name: string; detail: string; extension: 
 const FALLBACK_DOWNLOADS: Partial<Record<Platform, string>> = {
   windows: 'https://github.com/Maleklabbaci/studio-nova/releases/latest/download/StudioNova-win-x64.exe',
   macos: 'https://github.com/Maleklabbaci/studio-nova/releases/latest/download/StudioNova-mac-universal.dmg',
-  linux: 'https://github.com/Maleklabbaci/studio-nova/releases/latest/download/StudioNova-linux-x64.AppImage',
 }
 
-const INSTALLER_FILE = /^[A-Za-z0-9._-]+\.(?:exe|dmg|AppImage)$/
+const INSTALLER_FILE = /^[A-Za-z0-9._-]+\.(?:exe|dmg)$/
 
 /**
  * Resolve a manifest entry to a download href. Entries may be a plain file
@@ -51,7 +49,7 @@ export default function DesktopDownloadPage() {
 
   usePageMeta({
     title: 'Studio Nova for desktop',
-    description: 'Install Studio Nova on Windows, macOS or Linux and keep designing from your computer.',
+    description: 'Install Studio Nova on Windows or macOS and keep designing from your computer.',
     canonical: '/download',
   })
 
@@ -68,14 +66,12 @@ export default function DesktopDownloadPage() {
         const fromManifest: Partial<Record<Platform, string>> = {
           windows: validInstaller(manifest.downloads?.windows) ?? undefined,
           macos: validInstaller(manifest.downloads?.macos) ?? undefined,
-          linux: validInstaller(manifest.downloads?.linux) ?? undefined,
         }
         // An empty/stale manifest must not disable the buttons: fall back
         // to the latest GitHub release per missing platform.
         setDownloads({
           windows: fromManifest.windows ?? FALLBACK_DOWNLOADS.windows,
           macos: fromManifest.macos ?? FALLBACK_DOWNLOADS.macos,
-          linux: fromManifest.linux ?? FALLBACK_DOWNLOADS.linux,
         })
       })
       .catch(() => setDownloads(FALLBACK_DOWNLOADS))

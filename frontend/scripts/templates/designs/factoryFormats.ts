@@ -43,7 +43,7 @@ const facebookPost: Build = (doc, theme, s, f) => {
 
 const slideTitle: Build = (doc, theme, s, f) => {
   const p = doc.page('Title slide', { type: 'solid', color: s.bg })
-  p.circle({ name: 'Accent disc', cx: 1760, cy: 130, r: 330, fill: s.accent, opacity: 0.85 })
+  p.circle({ name: 'Accent disc', cx: 1580, cy: 340, r: 320, fill: s.accent, opacity: 0.85 })
   p.placeholder({ name: 'Photo', x: 1230, y: 190, w: 560, h: 700, mask: 'rounded', maskRadius: 0.06 })
   p.text({ name: 'Brand', x: 110, y: 120, w: 900, text: theme.brand, font: f.body, size: 30, bold: true, color: readable(s.bg, s.soft), on: s.bg, upper: true, spacing: 320 })
   p.text({ name: 'Title', x: 104, y: 260, w: 1020, text: theme.headline, font: f.heading, size: 108, bold: headingBold(f.heading), color: readable(s.bg, s.ink), on: s.bg, lh: 1.04 })

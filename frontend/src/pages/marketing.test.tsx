@@ -164,14 +164,12 @@ describe('features, FAQ and contact pages', () => {
         downloads: {
           windows: 'StudioNova-win-x64.exe',
           macos: 'StudioNova-mac-universal.dmg',
-          linux: 'StudioNova-linux-x64.AppImage',
         },
       }))],
     })
     expect(await screen.findByRole('heading', { name: 'Studio Nova for desktop' })).toBeInTheDocument()
     expect(await screen.findByRole('link', { name: 'Download .exe' })).toHaveAttribute('href', '/downloads/StudioNova-win-x64.exe')
     expect(screen.getByRole('link', { name: 'Download .dmg' })).toHaveAttribute('href', '/downloads/StudioNova-mac-universal.dmg')
-    expect(screen.getByRole('link', { name: 'Download .AppImage' })).toHaveAttribute('href', '/downloads/StudioNova-linux-x64.AppImage')
   })
 
   it('falls back to the latest GitHub release when the deployed manifest is empty', async () => {
@@ -190,7 +188,7 @@ describe('features, FAQ and contact pages', () => {
         version: '0.1.0',
         downloads: {
           windows: 'https://github.com/Maleklabbaci/studio-nova/releases/latest/download/StudioNova-win-x64.exe',
-          linux: 'http://insecure.example.com/StudioNova-linux-x64.AppImage',
+          macos: 'http://insecure.example.com/StudioNova-mac-universal.dmg',
         },
       }))],
     })
@@ -199,9 +197,9 @@ describe('features, FAQ and contact pages', () => {
       'https://github.com/Maleklabbaci/studio-nova/releases/latest/download/StudioNova-win-x64.exe',
     )
     // Non-https entries are rejected and replaced by the safe release fallback.
-    expect(screen.getByRole('link', { name: 'Download .AppImage' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: 'Download .dmg' })).toHaveAttribute(
       'href',
-      'https://github.com/Maleklabbaci/studio-nova/releases/latest/download/StudioNova-linux-x64.AppImage',
+      'https://github.com/Maleklabbaci/studio-nova/releases/latest/download/StudioNova-mac-universal.dmg',
     )
   })
 

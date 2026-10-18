@@ -3,6 +3,10 @@ import { FACTORY_FORMAT_DESIGNS } from './designs/factoryFormats'
 import { DESIGNS } from './designs'
 import { contrast } from './kit'
 import { PALETTES } from './palette'
+import { rotatedBounds } from '@/editor/engine/geometry'
+import { objectCenter } from '@/editor/engine/magicResize'
+import type { DocObject, SlotSpec } from '@/types/document'
+import type { TemplateDesign } from './registry'
 
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
 
@@ -117,4 +121,71 @@ describe('template formats factory', () => {
       expect(contrast(palette[700], '#ffffff')).toBeGreaterThanOrEqual(4.5)
     }
   })
+
+  it('keeps every non-text object inside its page, one design per layout', async () => {
+    // Object geometry depends only on the builder, not on theme/variant, so
+    // one representative per layout covers the whole factory. The accent
+    // discs once bled off the top-right corner (promo/youtube/slide); the
+    // engine keeps no off-page paint, and starter.test.ts rejects such
+    // designs - but only after a full catalogue generation in CI. Catch it
+    // here in seconds. Text boxes are skipped: their extents depend on font
+    // metrics (kit's line-count rules + the CI starter tests guard those).
+    ensureMeasurableContext()
+    const seen = new Map<string, TemplateDesign>()
+    for (const design of [...FACTORY_DESIGNS, ...FACTORY_FORMAT_DESIGNS]) {
+      const layout = design.slug.split('-').slice(0, 2).join('-')
+      if (!seen.has(layout)) seen.set(layout, design)
+    }
+    for (const design of seen.values()) {
+      const doc = (await design.build()).build()
+      for (const page of doc.pages) {
+        for (const object of page.objects) {
+          if (object.type === 'textbox') continue
+          const box = boundsOf(object)
+          const slack = (object.stroke ? Number(object.strokeWidth ?? 0) / 2 : 0) + 0.6
+          const label = `${design.slug} "${String(object.name)}"`
+          expect(box.left, `${label} left`).toBeGreaterThanOrEqual(-slack)
+          expect(box.top, `${label} top`).toBeGreaterThanOrEqual(-slack)
+          expect(box.left + box.width, `${label} right`).toBeLessThanOrEqual(doc.width + slack)
+          expect(box.top + box.height, `${label} bottom`).toBeLessThanOrEqual(doc.height + slack)
+        }
+      }
+    }
+  }, 120_000)
 })
+
+/** Same bounds the template tests use: the photo frame when slotted, else the rotated object box. */
+function boundsOf(object: DocObject) {
+  const slot = object.slot as SlotSpec | undefined
+  if (slot) return rotatedBounds(slot.cx, slot.cy, slot.width, slot.height, slot.angle)
+  const centre = objectCenter(object)
+  const w = Math.abs(Number(object.width ?? 0) * Number(object.scaleX ?? 1))
+  const h = Math.abs(Number(object.height ?? 0) * Number(object.scaleY ?? 1))
+  return rotatedBounds(centre.x, centre.y, w, h, Number(object.angle ?? 0))
+}
+
+/**
+ * Composing measures text through a 2d canvas context. Real CI installs one;
+ * a bare jsdom has none and Fabric crashes on it, so stand in a stub with
+ * approximate metrics (shape bounds asserted above are exact regardless).
+ */
+function ensureMeasurableContext(): void {
+  let works = false
+  try {
+    works = document.createElement('canvas').getContext('2d') != null
+  } catch {
+    works = false
+  }
+  if (works) return
+  const makeCtx = (canvas: unknown) =>
+    new Proxy(
+      { canvas, measureText: (t: string) => ({ width: String(t).length * 10, actualBoundingBoxAscent: 10, actualBoundingBoxDescent: 3 }) },
+      {
+        get: (target, prop) => (prop in target ? (target as Record<string | symbol, unknown>)[prop] : () => undefined),
+        set: () => true,
+      },
+    )
+  HTMLCanvasElement.prototype.getContext = function (this: HTMLCanvasElement) {
+    return makeCtx(this) as unknown as CanvasRenderingContext2D
+  } as unknown as typeof HTMLCanvasElement.prototype.getContext
+}

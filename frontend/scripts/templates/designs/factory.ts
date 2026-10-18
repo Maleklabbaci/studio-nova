@@ -113,7 +113,10 @@ export type Build = (doc: DocBuilder, theme: Theme, style: Style, fonts: { headi
 
 const promoPost: Build = (doc, theme, s, f) => {
   const p = doc.page('Promo', { type: 'solid', color: s.bg })
-  p.circle({ name: 'Accent disc', cx: 880, cy: 190, r: 300, fill: s.accent, opacity: 0.9 })
+  // Tucked into the top-right corner but fully in page: every object must
+  // stay inside its page (the engine clamps nothing; Magic Resize and the
+  // template tests require in-bounds objects).
+  p.circle({ name: 'Accent disc', cx: 780, cy: 290, r: 280, fill: s.accent, opacity: 0.9 })
   p.circle({ name: 'Small disc', cx: 120, cy: 920, r: 120, fill: s.accent, opacity: 0.55 })
   p.placeholder({ name: 'Photo', x: 590, y: 330, w: 400, h: 470, mask: 'rounded', maskRadius: 0.08 })
   p.text({ name: 'Brand', x: 80, y: 90, w: 700, text: theme.brand, font: f.body, size: 30, bold: true, color: s.soft, on: s.bg, upper: true, spacing: 240 })
@@ -160,7 +163,7 @@ const eventPoster: Build = (doc, theme, s, f) => {
 
 const youtubeThumb: Build = (doc, theme, s, f) => {
   const p = doc.page('Thumbnail', { type: 'solid', color: s.bg })
-  p.circle({ name: 'Accent disc', cx: 1130, cy: 90, r: 260, fill: s.accent, opacity: 0.85 })
+  p.circle({ name: 'Accent disc', cx: 1035, cy: 245, r: 225, fill: s.accent, opacity: 0.85 })
   p.placeholder({ name: 'Photo', x: 790, y: 90, w: 420, h: 540, mask: 'rounded', maskRadius: 0.07 })
   p.rect({ name: 'Tag chip', x: 70, y: 80, w: 360, h: 74, fill: s.pill, radius: 37 })
   p.text({ name: 'Tag', x: 70, y: 99, w: 360, text: theme.videoTag, font: f.body, size: 26, bold: true, color: s.pillText, on: s.pill, align: 'center', spacing: 120 })

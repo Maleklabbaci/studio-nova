@@ -9,7 +9,6 @@ const downloadsDir = path.join(root, 'frontend', 'public', 'downloads')
 const installers = [
   'StudioNova-win-x64.exe',
   'StudioNova-mac-universal.dmg',
-  'StudioNova-linux-x64.AppImage',
 ]
 
 fs.mkdirSync(downloadsDir, { recursive: true })
