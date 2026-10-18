@@ -4,7 +4,7 @@
 import os
 import sys
 
-from PyInstaller.utils.hooks import collect_data_files, collect_submodules
+from PyInstaller.utils.hooks import collect_all, collect_data_files, collect_submodules
 
 ROOT = os.path.abspath(os.path.join(SPECPATH, "..", ".."))
 BACKEND = os.path.join(ROOT, "backend")
@@ -43,6 +43,22 @@ for package in ("doory", "apps", "uvicorn", "channels", "pycrdt", "rest_framewor
     hiddenimports += collect_submodules(package)
 hiddenimports += ["doory.settings.desktop", "doory.asgi", "doory.wsgi"]
 
+# pycrdt ships a native extension that the realtime stack imports when
+# the ASGI app loads. Force its binaries, data and submodules into the
+# bundle instead of trusting static analysis alone to pick up the
+# extension - and even if it ever goes missing, run_server now degrades
+# to plain HTTP instead of dying at serve time.
+extra_binaries = []
+for package in ("pycrdt",):
+    _pkg_datas, _pkg_binaries, _pkg_hidden = collect_all(package)
+    datas += _pkg_datas
+    extra_binaries += _pkg_binaries
+    hiddenimports += _pkg_hidden
+# The native extension itself, named explicitly: as a Python extension
+# module it travels via import analysis, not via collect_dynamic_libs,
+# so name it to be sure it lands in the bundle on every OS.
+hiddenimports += ["pycrdt._pycrdt"]
+
 # Never ship a hollow sidecar again: if first-party collection silently
 # missed a Django app, fail the build here - loudly, at packaging time -
 # instead of letting the smoke test (or worse, a user) discover it.
@@ -62,7 +78,7 @@ if _missing:
 a = Analysis(
     [os.path.join(SPECPATH, "run_server.py")],
     pathex=[BACKEND, SPECPATH],
-    binaries=[],
+    binaries=extra_binaries,
     datas=datas,
     hiddenimports=hiddenimports,
     hookspath=[],

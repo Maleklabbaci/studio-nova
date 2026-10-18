@@ -151,6 +151,29 @@ def _seed_templates(data: Path, backend: Path) -> None:
         stamp.write_text(f"{fingerprint}\n", encoding="utf-8")
 
 
+def _load_asgi_application():
+    """The ASGI app, with the realtime (WebSocket) stack if it loads.
+
+    Co-editing pulls in channels and the pycrdt native extension; if any
+    of that fails to import inside the frozen bundle, the studio must
+    still open - serve plain HTTP and log what was lost, never die here.
+    This import used to happen inside uvicorn (which resolves the
+    "doory.asgi:application" string), i.e. after the long catalogue
+    seeds, so a failure cost a whole build cycle to even become visible.
+    Loading it up front means it either works in seconds or degrades.
+    """
+    try:
+        from doory.asgi import application
+
+        print("[studio-nova-backend] realtime stack OK", flush=True)
+        return application
+    except Exception as exc:
+        print(f"[studio-nova-backend] realtime unavailable: {exc!r}; serving HTTP only", flush=True)
+        from django.core.asgi import get_asgi_application
+
+        return get_asgi_application()
+
+
 def main() -> None:
     data = _data_dir()
     backend = _backend_dir()
@@ -168,6 +191,7 @@ def main() -> None:
 
     django.setup()
     print("[studio-nova-backend] Django ready", flush=True)
+    application = _load_asgi_application()
     _prepare_database()
     print("[studio-nova-backend] database ready", flush=True)
     _run_seed_group(data, _LOCAL_SEEDS)
@@ -184,7 +208,7 @@ def main() -> None:
 
     port = int(os.environ.get("STUDIO_NOVA_BACKEND_PORT", "49317"))
     print(f"[studio-nova-backend] serving on 127.0.0.1:{port}", flush=True)
-    uvicorn.run("doory.asgi:application", host="127.0.0.1", port=port, log_level="warning")
+    uvicorn.run(application, host="127.0.0.1", port=port, log_level="warning")
 
 
 if __name__ == "__main__":

@@ -9,6 +9,7 @@
 //   STUDIO_NOVA_BACKEND_CMD="python3 backend/run_server.py" node backend/smoke-test.mjs
 import { spawn } from 'node:child_process'
 import fs from 'node:fs'
+import net from 'node:net'
 import os from 'node:os'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -31,7 +32,17 @@ function command() {
 
 const { file, args } = command()
 const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'studio-nova-smoke-'))
-const port = 49500 + Math.floor(Math.random() * 900)
+// Ask the OS for a port that is free right now instead of drawing one at
+// random: a collision makes the sidecar exit (address already in use)
+// only after its long first-start seeds, which reads like a crash.
+const port = await new Promise((resolve, reject) => {
+  const probe = net.createServer()
+  probe.once('error', reject)
+  probe.listen(0, '127.0.0.1', () => {
+    const freePort = probe.address().port
+    probe.close(() => resolve(freePort))
+  })
+})
 const origin = `http://127.0.0.1:${port}`
 
 const child = spawn(file, args, {
