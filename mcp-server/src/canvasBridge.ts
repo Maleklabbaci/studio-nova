@@ -11,6 +11,15 @@ export type CanvasMethod =
   | 'delete_selected'
   | 'duplicate_selected'
   | 'rename_design'
+  | 'select_elements'
+  | 'update_element'
+  | 'delete_element'
+  | 'duplicate_element'
+  | 'align_elements'
+  | 'arrange_element'
+  | 'add_image'
+  | 'get_canvas_screenshot'
+  | 'use_template'
 
 interface PendingRequest {
   resolve: (value: unknown) => void

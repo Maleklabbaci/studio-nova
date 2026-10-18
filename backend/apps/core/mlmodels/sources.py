@@ -25,7 +25,7 @@ import requests
 
 from .manifest import ModelSpec, host_allowed
 
-USER_AGENT = "Doory-model-sync/1.0"
+USER_AGENT = "StudioNova-model-sync/1.0"
 CONNECT_TIMEOUT = 10
 READ_TIMEOUT = 60
 ATTEMPTS = 3

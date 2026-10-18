@@ -130,10 +130,9 @@ export function MarketingFooter() {
           </div>
         </nav>
       </div>
-      {/* Required upstream credit (LICENSE/NOTICE); kept as plain text rather than a GitHub button. */}
       <p className={styles.legal}>
-        Doory by Siam, creator and maintainer of Doory, https://github.com/shaongitbd/doory
-        <span> · Studio Nova is distributed under the Attribution Assurance License.</span>
+        © 2026 Studio Nova — Design with a spark.
+        <span> · All rights reserved.</span>
       </p>
     </footer>
   )

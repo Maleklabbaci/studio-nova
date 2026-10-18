@@ -7,6 +7,10 @@ files:
   - main.cjs
   - package.json
 extraResources:
+  - from: backend-dist/studio-nova-backend
+    to: backend/studio-nova-backend
+    filter:
+      - "**/*"
   - from: ../frontend/dist-desktop
     to: frontend
     filter:
@@ -36,8 +40,11 @@ nsis:
   oneClick: false
   perMachine: false
   allowToChangeInstallationDirectory: true
-  createDesktopShortcut: true
+  # The desktop icon is the user's choice: installer.nsh asks on its own page
+  # and creates the shortcut itself, so the built-in step stays off.
+  createDesktopShortcut: false
   createStartMenuShortcut: true
+  include: installer.nsh
 mac:
   target:
     - target: dmg

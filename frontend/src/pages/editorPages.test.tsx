@@ -200,8 +200,7 @@ describe('/design/:id', () => {
     expect(editor).toHaveAttribute('data-mode', 'account')
     expect(editor).toHaveAttribute('data-revision', '7')
     expect(within(editor).getByRole('link', { name: 'Back to your dashboard' })).toHaveAttribute('href', '/dashboard')
-    const attribution = within(editor).getByText(/Doory by Siam, creator and maintainer of Doory, https:\/\/github\.com\/shaongitbd\/doory/)
-    expect(attribution.closest('a')).toBeNull()
+    expect(within(editor).queryByText(/Doory by Siam/)).toBeNull()
   })
 
   it('saves with the loaded revision as base_revision', async () => {

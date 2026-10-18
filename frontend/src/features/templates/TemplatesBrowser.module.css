@@ -71,3 +71,22 @@
   justify-content: center;
   margin-top: var(--space-6);
 }
+
+.sectionTitle {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  margin-bottom: var(--space-4);
+}
+
+.rail {
+  display: flex;
+  gap: var(--space-5);
+  overflow-x: auto;
+  padding-bottom: var(--space-3);
+  scroll-snap-type: x proximity;
+}
+
+.railItem {
+  flex: 0 0 13.5rem;
+  scroll-snap-align: start;
+}

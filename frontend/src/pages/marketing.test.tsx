@@ -99,7 +99,7 @@ describe('landing page', () => {
     expect(within(dialog).getByText('No matching size')).toBeInTheDocument()
   })
 
-  it('has landmarks, a skip link, no upstream repository button, and visible plain-text license credit', async () => {
+  it('has landmarks, a skip link, and the Studio Nova legal line', async () => {
     renderApp('/')
     await screen.findByRole('heading', { level: 1 })
     expect(screen.getAllByRole('banner').length).toBeGreaterThan(0)
@@ -108,8 +108,8 @@ describe('landing page', () => {
     expect(screen.getByRole('link', { name: 'Skip to content' })).toHaveAttribute('href', '#main')
     expect(within(screen.getByRole('navigation', { name: 'Main' })).queryByRole('link', { name: /GitHub/i })).not.toBeInTheDocument()
     expect(document.querySelector('a[href*="github.com/shaongitbd/doory"]')).toBeNull()
-    const attribution = screen.getByText(/Doory by Siam, creator and maintainer of Doory, https:\/\/github\.com\/shaongitbd\/doory/)
-    expect(attribution.closest('a')).toBeNull()
+    expect(screen.getByText(/© 2026 Studio Nova/)).toBeInTheDocument()
+    expect(screen.queryByText(/Doory by Siam/)).toBeNull()
   })
 
   it('the mobile menu toggles and closes after navigating', async () => {
@@ -225,8 +225,8 @@ describe('features, FAQ and contact pages', () => {
     expect(screen.getByText(/Studio Nova support channels are being set up/)).toBeInTheDocument()
     expect(screen.queryByRole('link', { name: /GitHub|Doory/i })).not.toBeInTheDocument()
     expect(document.querySelector('a[href*="github.com/shaongitbd/doory"]')).toBeNull()
-    const attribution = screen.getByText(/Doory by Siam, creator and maintainer of Doory, https:\/\/github\.com\/shaongitbd\/doory/)
-    expect(attribution.closest('a')).toBeNull()
+    expect(screen.getByText(/© 2026 Studio Nova/)).toBeInTheDocument()
+    expect(screen.queryByText(/Doory by Siam/)).toBeNull()
   })
 })
 

@@ -9,6 +9,8 @@ import { modernResume } from './modernResume'
 import { pitchDeck } from './pitchDeck'
 import { quoteCard } from './quoteCard'
 import { saleAnnouncement } from './saleAnnouncement'
+import { FACTORY_DESIGNS } from './factory'
+import { FACTORY_FORMAT_DESIGNS } from './factoryFormats'
 
-/** The starter templates, in gallery order. */
-export const DESIGNS: readonly TemplateDesign[] = [saleAnnouncement, quoteCard, eventStory, pitchDeck, concertPoster, grandOpeningFlyer, botanicalInvitation, modernResume, youtubeThumbnail, businessCard]
+/** The starter templates, in gallery order: the ten hand-made designs, then the factory catalogue. */
+export const DESIGNS: readonly TemplateDesign[] = [saleAnnouncement, quoteCard, eventStory, pitchDeck, concertPoster, grandOpeningFlyer, botanicalInvitation, modernResume, youtubeThumbnail, businessCard, ...FACTORY_DESIGNS, ...FACTORY_FORMAT_DESIGNS]

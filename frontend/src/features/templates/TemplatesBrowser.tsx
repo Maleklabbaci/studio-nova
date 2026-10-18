@@ -1,10 +1,11 @@
 import { LayoutTemplate, Search, X } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { describeSize, getPreset, presetParts } from '@/features/presets'
 import { flattenPages, useTemplateCategories, useTemplatesList } from '@/lib/api/hooks'
 import { useDebouncedValue } from '@/lib/useDebouncedValue'
 import { Button, EmptyState, Input, SegmentedControl, Skeleton } from '@/ui'
-import type { TemplateQuery } from '@/types/api'
+import type { TemplateQuery, TemplateSummary } from '@/types/api'
 import { TemplateCard } from './TemplateCard'
 import styles from './TemplatesBrowser.module.css'
 
@@ -21,10 +22,29 @@ function isOrientation(value: string | null): value is NonNullable<TemplateQuery
   return value === 'landscape' || value === 'portrait' || value === 'square'
 }
 
+/** The most-used templates, as a horizontal rail — shown only while nothing is filtered. */
+function PopularRow({ templates }: { templates: TemplateSummary[] }) {
+  if (templates.length === 0) return null
+  return (
+    <section aria-label="Popular templates">
+      <h2 className={styles.sectionTitle}>Popular right now</h2>
+      <ul className={styles.rail}>
+        {templates.map((template) => (
+          <li key={template.id} className={styles.railItem}>
+            <TemplateCard template={template} frame={4 / 3} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
 /** Category chips, search, orientation filter and a masonry grid with load-more. Filters live in the URL. */
 export function TemplatesBrowser() {
   const [params, setParams] = useSearchParams()
   const category = params.get('category') ?? ''
+  const presetParam = params.get('preset') ?? ''
+  const activePreset = getPreset(presetParam)
   const orientationParam = params.get('orientation')
   const orientation: Orientation = isOrientation(orientationParam) ? orientationParam : 'all'
   const urlQuery = params.get('q') ?? ''
@@ -46,12 +66,18 @@ export function TemplatesBrowser() {
 
   const categories = useTemplateCategories()
   const query: TemplateQuery = useMemo(
-    () => ({ category: category || undefined, q: urlQuery || undefined, orientation: orientation === 'all' ? undefined : orientation }),
-    [category, urlQuery, orientation],
+    () => ({ category: category || undefined, q: urlQuery || undefined, orientation: orientation === 'all' ? undefined : orientation, preset: activePreset?.id }),
+    [category, urlQuery, orientation, activePreset],
   )
   const list = useTemplatesList(query)
   const templates = flattenPages(list.data)
-  const filtered = Boolean(category || urlQuery || orientation !== 'all')
+  const filtered = Boolean(category || urlQuery || orientation !== 'all' || activePreset)
+
+  // Unfiltered, the most-used templates get their own rail; the grid below then skips them (no card twice).
+  const popularList = useTemplatesList({ ordering: '-use_count', page_size: 8 }, !filtered)
+  const popular = filtered ? [] : flattenPages(popularList.data).filter((template) => template.use_count > 0).slice(0, 8)
+  const popularIds = new Set(popular.map((template) => template.id))
+  const gridTemplates = filtered || popular.length === 0 ? templates : templates.filter((template) => !popularIds.has(template.id))
 
   function setParam(key: string, value: string | null) {
     setParams(
@@ -105,6 +131,17 @@ export function TemplatesBrowser() {
             ))}
       </div>
 
+      {activePreset ? (
+        <div className={styles.chips}>
+          <button type="button" className={styles.chip} aria-pressed="true" onClick={() => setParam('preset', null)} aria-label={`Clear the ${presetParts(activePreset).name} format filter`}>
+            Format: {presetParts(activePreset).name} · {describeSize(activePreset)}
+            <X size={14} />
+          </button>
+        </div>
+      ) : null}
+
+      <PopularRow templates={popular} />
+
       <div aria-live="polite" aria-busy={list.isPending}>
         {list.isPending ? (
           <ul className={styles.masonry} aria-label="Loading templates">
@@ -125,7 +162,7 @@ export function TemplatesBrowser() {
         ) : (
           <>
             <ul className={styles.masonry}>
-              {templates.map((template) => (
+              {gridTemplates.map((template) => (
                 <li key={template.id} className={styles.item}>
                   <TemplateCard template={template} />
                 </li>

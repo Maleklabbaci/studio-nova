@@ -1,6 +1,6 @@
 # Third-party software, assets and licences
 
-Doory is released under the Attribution Assurance License ([LICENSE](LICENSE)), which requires credit to its author. It may only bundle, depend on or download material under a
+Studio Nova is released under the Studio Nova licence ([LICENSE](LICENSE)). It may only bundle, depend on or download material under a
 permissive licence: MIT, ISC, BSD-2/3-Clause, Apache-2.0, 0BSD, CC0-1.0, OFL-1.1, Unlicense, Python-2.0 and licences
 of the same kind (MIT-0, Zlib, BlueOak-1.0.0, PSF-2.0, MIT-CMU, ZPL-2.1). Anything else (AGPL, GPL, LGPL, MPL,
 CC-BY, CC-BY-SA, CC-BY-NC, custom or "free for ..." terms) needs a recorded decision, listed under
@@ -8,7 +8,7 @@ CC-BY, CC-BY-SA, CC-BY-NC, custom or "free for ..." terms) needs a recorded deci
 
 | File | What it is |
 |------|------------|
-| [LICENSE](LICENSE) | The licence of Doory itself: the Attribution Assurance License, held by Siam |
+| [LICENSE](LICENSE) | The licence of Studio Nova itself, held by Studio Nova |
 | [NOTICE](NOTICE) | The attribution notices that travel with the product |
 | THIRD_PARTY.md (this file) | Direct dependencies, bundled and downloaded assets, decisions |
 | [licenses/DEPENDENCIES.md](licenses/DEPENDENCIES.md) | Every direct and transitive npm and Python package: version, declared range, licence, source (generated) |
@@ -51,21 +51,21 @@ Read from 466 npm packages (the per-platform binaries of esbuild, rollup and sim
 
 | Item | Licence | Where it is used | Decision |
 |------|---------|------------------|----------|
-| `psycopg2-binary` | LGPL-3.0-or-later with an OpenSSL exception | Server runtime: Django's PostgreSQL driver | **Accept, with a condition.** A separate library installed unmodified from PyPI and imported dynamically; Doory contains none of its code, so Doory keeps its own licence and an operator can replace the library. psycopg 3 is LGPL-3.0 as well and Django supports no permissive PostgreSQL driver, so a swap would not help. Condition: never vendor or patch it |
+| `psycopg2-binary` | LGPL-3.0-or-later with an OpenSSL exception | Server runtime: Django's PostgreSQL driver | **Accept, with a condition.** A separate library installed unmodified from PyPI and imported dynamically; Studio Nova contains none of its code, so Studio Nova keeps its own licence and an operator can replace the library. psycopg 3 is LGPL-3.0 as well and Django supports no permissive PostgreSQL driver, so a swap would not help. Condition: never vendor or patch it |
 | `certifi` | MPL-2.0 | Server runtime (a dependency of `requests`) | **Accept.** File-level copyleft on the CA certificate list (data), installed unmodified from PyPI. `botocore` vendors the same Mozilla bundle |
 | `hypothesis` | MPL-2.0 | Python tests only (`requirements-dev.txt`) | **Accept, dev/test only.** Used unmodified; the Dockerfile installs only `requirements.txt`, so it is neither in the image nor redistributed |
 | `axe-core`, `@axe-core/playwright` | MPL-2.0 | The end-to-end accessibility spec only | **Accept, dev/test only.** Unmodified, not in the production bundle (checked from its source maps), not redistributed |
 | `caniuse-lite` | CC-BY-4.0 (data) | Build tooling: browserslist, through the Vite React plugin | **Accept, build only.** Not in the bundle or in any image, so nothing is distributed that would need the attribution |
-| `dompurify` | MPL-2.0 OR Apache-2.0 | Browser bundle, as an optional dependency of `jspdf` (only used by jsPDF's HTML import, which Doory does not call) | **Use under Apache-2.0** |
+| `dompurify` | MPL-2.0 OR Apache-2.0 | Browser bundle, as an optional dependency of `jspdf` (only used by jsPDF's HTML import, which Studio Nova does not call) | **Use under Apache-2.0** |
 | `rgbcolor` | MIT OR SEE LICENSE IN FEEL-FREE.md | Browser bundle, through `canvg` and `jspdf` | **Use under MIT.** Its `LICENSE.md` is the MIT text (Copyright (c) 2016 Stoyan Stefanov); `FEEL-FREE.md` is a courtesy note |
 | `pako` | MIT AND Zlib | Browser bundle, through `jspdf` and its `fast-png` | Both are permissive; the notices are in `licenses/bundled-licenses.txt` |
 | `guid-typescript` | ISC, declared in `package.json` only | Inlined in the `onnxruntime-web` bundle | **Accept; cannot be fully verified.** Neither the npm package nor its repository carries a licence text, only the ISC declaration |
 | `onnxruntime-web`'s `.wasm` file | MIT, plus the third-party components of onnxruntime | Browser, loaded for background removal | **Accept.** Served unmodified from the npm package; the components Microsoft built into it are listed in [ThirdPartyNotices.txt](https://github.com/microsoft/onnxruntime/blob/main/ThirdPartyNotices.txt) of the onnxruntime repository. That list includes Eigen under MPL-2.0 (file-level copyleft, source at https://gitlab.com/libeigen/eigen); it was not possible to confirm from the binary which listed components the CPU WebAssembly build contains |
-| U²-Net weights (`u2netp`, `u2net`) | Apache-2.0 as released by the authors; see [the model section](#background-removal-models) | Downloaded by `sync_models`, never committed | **Accept, residual risk documented below** |
-| Ubuntu and Ubuntu Mono fonts | UFL-1.0 (Ubuntu Font Licence 1.0) | Two of the 253 curated families, downloaded by `sync_fonts`; `ubuntu` is among the first 100 | **Not in the permissive list; flagged for the product owner.** The UFL is the font equivalent of the OFL: free use, embedding and redistribution, with the font itself kept under the same licence and renamed when modified; documents made with the fonts are unaffected. Doory never modifies or commits them. The Ubuntu woff2 files carry no licence text in their `name` table. To drop both families, remove the two entries from `popular_fonts.json` and `ubuntu` from `PERMISSIVE_LICENSE` in `apps/fonts/sync.py` |
+| U²-Net weights (`u2netp`, `u2net`) | Apache-2.0 as released by the authors; see [the model section](#background-removal-models) | Downloaded by `sync_models`; the small `u2netp` file is also committed unmodified in `frontend/public/models/u2netp/` (with its `NOTICE.txt`) so static-only deployments can offer background removal | **Accept, residual risk documented below** |
+| Ubuntu and Ubuntu Mono fonts | UFL-1.0 (Ubuntu Font Licence 1.0) | Two of the 253 curated families, downloaded by `sync_fonts`; `ubuntu` is among the first 100 | **Not in the permissive list; flagged for the product owner.** The UFL is the font equivalent of the OFL: free use, embedding and redistribution, with the font itself kept under the same licence and renamed when modified; documents made with the fonts are unaffected. Studio Nova never modifies or commits them. The Ubuntu woff2 files carry no licence text in their `name` table. To drop both families, remove the two entries from `popular_fonts.json` and `ubuntu` from `PERMISSIVE_LICENSE` in `apps/fonts/sync.py` |
 | `pdftoppm` (poppler-utils) | GPL-2.0-or-later | Test only: renders PDFs to images in the export tests, which skip when it is missing | **Accept: not a dependency.** A separate command that is never installed in the product image, linked or redistributed |
-| `redis:7-alpine` Docker image | Redis 7.4 is RSALv2 or SSPLv1 (source available, not open source); Redis 7.2 and earlier are BSD-3-Clause; Redis 8 adds AGPL-3.0 | `docker-compose.yml`, optional `redis` profile for several real-time workers | **Flagged for the maintainers.** Doory neither contains nor redistributes Redis; the compose file names an image that operators pull, and the floating tag `7-alpine` is Redis 7.4.11 today (checked 2026-10-09). A permissive choice with the same protocol: `redis:7.2-alpine` (7.2.16, BSD-3-Clause) or `valkey/valkey:8-alpine` (BSD-3-Clause). The Python client `redis` is MIT |
-| Chromium (installed by `playwright install` when `INSTALL_CHROMIUM=true`, and by Playwright for the test suites) | BSD-3-Clause for Chromium, with many third-party components (some LGPL) | Server-side print PDF and the browser suites | **Accept: not redistributed.** The operator's image build downloads it; Doory ships none of it |
+| `redis:7-alpine` Docker image | Redis 7.4 is RSALv2 or SSPLv1 (source available, not open source); Redis 7.2 and earlier are BSD-3-Clause; Redis 8 adds AGPL-3.0 | `docker-compose.yml`, optional `redis` profile for several real-time workers | **Flagged for the maintainers.** Studio Nova neither contains nor redistributes Redis; the compose file names an image that operators pull, and the floating tag `7-alpine` is Redis 7.4.11 today (checked 2026-10-09). A permissive choice with the same protocol: `redis:7.2-alpine` (7.2.16, BSD-3-Clause) or `valkey/valkey:8-alpine` (BSD-3-Clause). The Python client `redis` is MIT |
+| Chromium (installed by `playwright install` when `INSTALL_CHROMIUM=true`, and by Playwright for the test suites) | BSD-3-Clause for Chromium, with many third-party components (some LGPL) | Server-side print PDF and the browser suites | **Accept: not redistributed.** The operator's image build downloads it; Studio Nova ships none of it |
 | Debian, Alpine and nginx base images (`python:3.12-slim`, `nginxinc/nginx-unprivileged`, `postgres:16-alpine`) | Many; nginx is BSD-2-Clause, PostgreSQL has its own permissive licence | Containers | **Accept: not redistributed.** Pulled by operators, never part of this repository |
 
 ## Direct dependencies
@@ -89,7 +89,7 @@ the three small libraries behind the video and GIF export; the type declarations
 | [`@tanstack/react-query`](https://github.com/TanStack/query) | `^5.62.0` | 5.104.1 | MIT | server-state cache of the app shell |
 | [`fabric`](https://github.com/fabricjs/fabric.js) | `^7.2.0` | 7.4.0 | MIT | canvas engine of the editor |
 | [`fflate`](https://github.com/101arrowz/fflate) | `^0.8.3` | 0.8.3 | MIT | ZIP archive of a multi-page image export (lazy-loaded; also a dependency of jspdf) |
-| [`gifenc`](https://github.com/mattdesl/gifenc) | `^1.0.3` | 1.0.3 | MIT | colour reduction (PnnQuant) and LZW compression of the animated GIF export (lazy-loaded, 11 kB minified). Dithering and removal of repeated frames are Doory's own (`frontend/src/editor/engine/export/video/gifPixels.ts`) |
+| [`gifenc`](https://github.com/mattdesl/gifenc) | `^1.0.3` | 1.0.3 | MIT | colour reduction (PnnQuant) and LZW compression of the animated GIF export (lazy-loaded, 11 kB minified). Dithering and removal of repeated frames are Studio Nova's own (`frontend/src/editor/engine/export/video/gifPixels.ts`) |
 | [`jspdf`](https://github.com/parallax/jsPDF) | `^4.2.1` | 4.2.1 | MIT | client-side PDF export (lazy-loaded) |
 | [`lib0`](https://github.com/dmonad/lib0) | `^0.2.119` | 0.2.119 | MIT | binary encoding helpers used by the Yjs protocols |
 | [`lucide-react`](https://github.com/lucide-icons/lucide) | `^1.52.0` | 1.52.0 | ISC | editor and app icons |
@@ -181,7 +181,7 @@ Test only: `yjs`, `y-protocols` and `lib0` also form the reference Yjs client of
 
 ## Assets in this repository
 
-Everything below was made for Doory, except the five starter-template photos (public domain, CC0, listed in
+Everything below was made for Studio Nova, except the five starter-template photos (public domain, CC0, listed in
 "Starter template photos") and the bunny mascot, whose origin is recorded in its row. There is no third-party music
 or font file in the repository.
 
@@ -189,12 +189,12 @@ or font file in the repository.
 |-------|--------|---------|
 | Built-in shapes: the SVG files written by `backend/data/generate_shapes.py` (168 geometric shapes, lines, frames, arrows) | Original work generated from code in this repository | CC0-1.0 |
 | Built-in graphics: the SVG files written by `backend/data/generate_graphics.py` (404 backgrounds and patterns, frames and badges, dividers and borders, speech bubbles, social-media glyphs, sale badges, charts and doodles; the lettering is drawn in `backend/data/graphics/lettering.py`) | Original work generated from code in this repository | CC0-1.0 |
-| Starter templates: `backend/data/templates/*.json` and `thumbs/*.webp` (ten templates), generated by `frontend/scripts/templates/` from original compositions, shapes and sample copy; no third-party artwork or logos. Five of them show one of the CC0 photos below. The thumbnails are pictures of the compositions rendered in the fonts listed below | Original work generated from code in this repository | Attribution Assurance License, like the code |
+| Starter templates: `backend/data/templates/*.json` and `thumbs/*.webp` (ten templates), generated by `frontend/scripts/templates/` from original compositions, shapes and sample copy; no third-party artwork or logos. Five of them show one of the CC0 photos below. The thumbnails are pictures of the compositions rendered in the fonts listed below | Original work generated from code in this repository | Studio Nova licence, like the code |
 | Audio library: the 24 music loops and 88 sound effects under `backend/data/audio/` (Opus in Ogg, about 7 MB) and `backend/data/audio_library.json`, written by `backend/tools/audio/` (a deterministic synthesiser: oscillators, filters, a feedback-delay reverb, seeded note generators; no samples, recordings or third-party music). Encoding uses the `ffmpeg` command-line tool with libopus (BSD-3-Clause) at generation time only; nothing of it ships | Original work generated from code in this repository | CC0-1.0 |
 | The bunny mascot: `frontend/src/assets/bunny-sticker.webp` and `bunny-mark.webp` (the logo mark, the landing page, the auth screens and the footer) | A PNG supplied by the project maintainer on 2026-10-10; the sticker outline, shadow and sizes were made from it with Pillow. **Its author and licence are not recorded yet: confirm both before a public release** | To be confirmed |
-| Favicon, app icons and share image: `frontend/public/icons/*.png` (the bunny's head on a lilac tile) and `frontend/public/og-image.png` (the bunny with "Make something lovely today." set in Fraunces and Nunito, OFL-1.1), made from the bunny above | Original work around the bunny artwork | Attribution Assurance License, like the code, for everything but the bunny itself |
-| `frontend/public/manifest.webmanifest`, `robots.txt` | Original work | Attribution Assurance License, like the code |
-| README images: `.github/readme/*` (the banner, a screen recording of the editor, screenshots of Doory and a collage of its starter templates) | Original work; the templates in them show the CC0 photos listed under "Starter template photos" | Attribution Assurance License, like the code, for everything but those photos |
+| Favicon, app icons and share image: `frontend/public/icons/*.png` (the bunny's head on a lilac tile) and `frontend/public/og-image.png` (the bunny with "Make something lovely today." set in Fraunces and Nunito, OFL-1.1), made from the bunny above | Original work around the bunny artwork | Studio Nova licence, like the code, for everything but the bunny itself |
+| `frontend/public/manifest.webmanifest`, `robots.txt` | Original work | Studio Nova licence, like the code |
+| README images: `.github/readme/*` (the banner, a screen recording of the editor, screenshots of Studio Nova and a collage of its starter templates) | Original work; the templates in them show the CC0 photos listed under "Starter template photos" | Studio Nova licence, like the code, for everything but those photos |
 | Test fonts `frontend/e2e/editor/fixtures/fonts/*.ttf, *.woff2` (solid blocks and diamonds instead of letters), generated by `make_fonts.py` next to them with fontTools; they contain no third-party outlines | Original work generated from code in this repository | CC0-1.0 |
 | `backend/data/popular_fonts.json` and `backend/data/unicode_ranges.json` (family ids and names, categories, script and subset names, CSS unicode ranges) | Compiled from the public Fontsource API metadata (Fontsource is MIT licensed); the unicode ranges follow the subset definitions published with Fontsource | MIT (data) |
 
@@ -234,7 +234,7 @@ The catalogue fonts are Fontsource's subsetted woff2 files. Measured on 2026-10-
 `sync_fonts --popular 100` installs: every file carries its copyright notice in the `name` table, and 97 of the 100
 families also carry the licence description or address there. Tangerine, Ubuntu and Yellowtail carry the copyright only;
 their licence is recorded on `FontFamily.license` and in this file. The files are served unmodified from the
-operator's own server as web fonts; Doory never commits or republishes them.
+operator's own server as web fonts; Studio Nova never commits or republishes them.
 
 ## Icon, emoji and illustration packs
 
@@ -261,7 +261,7 @@ The licence declared by each npm release was read again on 2026-10-09 from the n
 (ISC, MIT, MIT, MIT, Apache-2.0, Apache-2.0, MIT); the two CC0 claims were read on the creators' own pages the same
 day. The sync also re-checks the licence file of every release at install time and refuses a pack whose text changed.
 Candidates that were examined and **not** used (Font Awesome Free, Twemoji, OpenMoji, Remix Icon, Material Design
-Icons, unDraw, ...) are not part of Doory.
+Icons, unDraw, ...) are not part of Studio Nova.
 
 ## Audio packs
 
@@ -294,7 +294,7 @@ What is known about the weights, as read on 2026-10-09:
   Hugging Face mirrors, whose model cards declare `license: apache-2.0`. The SHA-256 of `u2netp.onnx` was recomputed
   from both hosts on 2026-10-09 and equals the pinned value; `u2net.onnx` (176 MB) was not downloaded again.
 * **Residual risk:** whether weights trained on a dataset without a licence that permits commercial use are bound by the
-  dataset's terms is legally unsettled, and the authors never stated a licence for the weights themselves. Doory takes
+  dataset's terms is legally unsettled, and the authors never stated a licence for the weights themselves. Studio Nova takes
   the authors' published position (Apache-2.0 for what the project releases), does not commit or redistribute the
   weights (the operator's own `sync_models` run downloads them, `DOORY_SYNC_MODELS` is off by default), and keeps the
   engine model-agnostic, so a model with cleaner provenance can replace it by editing the manifest.

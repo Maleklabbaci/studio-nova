@@ -1,7 +1,7 @@
 import { useQueryClient } from '@tanstack/react-query'
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { configureBackgroundRemoval } from '@/editor/engine/bgRemoval/install'
-import { ApiError, authApi, configApi, DEFAULT_CONFIG, isApiError, normalizeAppConfig, setUnauthorizedHandler } from '@/lib/api'
+import { ApiError, authApi, configApi, DEFAULT_CONFIG, isApiError, normalizeAppConfig, setUnauthorizedHandler, STATIC_FALLBACK_CONFIG } from '@/lib/api'
 import type { ApiUser, AppConfig, RegisterInput } from '@/types/api'
 
 export type AuthStatus = 'loading' | 'authenticated' | 'anonymous'
@@ -85,6 +85,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setConfig(safeConfig)
         // Before any consumer sees the new config, so the editor's toolbar already knows whether the button works.
         configureBackgroundRemoval(safeConfig)
+      } else {
+        // No backend answered (static-only deployment): enable what runs
+        // entirely in the browser — background removal with the model
+        // bundled with the site — and keep every server-bound feature off.
+        setConfig(STATIC_FALLBACK_CONFIG)
+        configureBackgroundRemoval(STATIC_FALLBACK_CONFIG)
       }
     })()
     return () => controller.abort()

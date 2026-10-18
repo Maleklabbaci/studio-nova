@@ -1,4 +1,5 @@
 import { waitFor } from '@testing-library/react'
+import { http, HttpResponse } from 'msw'
 import { configureBackgroundRemoval } from '@/editor/engine/bgRemoval/install'
 import { isBackgroundRemovalAvailable, registerBackgroundRemover } from '@/editor/engine/bgRemoval'
 import { renderApp } from '@/test/app'
@@ -38,6 +39,14 @@ describe('background removal from /config/', () => {
   it('leaves the editor without the button when the server has no model', async () => {
     await startUp(makeConfig())
     expect(isBackgroundRemovalAvailable()).toBe(false)
+  })
+
+  it('registers the bundled remover when no backend answers (static-only deployment)', async () => {
+    const html = () => new HttpResponse('<html><body>Studio Nova</body></html>', { headers: { 'content-type': 'text/html' } })
+    renderApp('/dashboard', {
+      handlers: [http.get('*/api/v1/config/', html), http.get('*/api/v1/auth/me/', html)],
+    })
+    await waitFor(() => expect(isBackgroundRemovalAvailable()).toBe(true))
   })
 
   it('takes the button away again when a later config no longer has the model', async () => {

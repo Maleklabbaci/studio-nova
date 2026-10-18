@@ -1,3 +1,4 @@
+import { FormatExplorer } from '@/features/templates/FormatExplorer'
 import { TemplatesBrowser } from '@/features/templates/TemplatesBrowser'
 import { usePageMeta } from '@/lib/usePageMeta'
 import styles from './TemplatesPage.module.css'
@@ -11,6 +12,7 @@ export default function TemplatesPage() {
         <h1 className={styles.title}>Start with something beautiful</h1>
         <p className={styles.lead}>Every template is free and fully editable. Open one and change anything. No account required.</p>
       </header>
+      <FormatExplorer />
       <TemplatesBrowser />
     </div>
   )

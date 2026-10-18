@@ -1,4 +1,5 @@
-import { DEFAULT_CONFIG, normalizeAppConfig } from './config'
+import { parseModelDescriptor } from '@/editor/engine/bgRemoval/model'
+import { BUNDLED_BACKGROUND_REMOVAL_MODEL, DEFAULT_CONFIG, normalizeAppConfig, STATIC_FALLBACK_CONFIG } from './config'
 
 describe('normalizeAppConfig', () => {
   it('returns the defaults for missing or malformed payloads', () => {
@@ -14,6 +15,17 @@ describe('normalizeAppConfig', () => {
     expect(config.features).toEqual(DEFAULT_CONFIG.features)
     expect(config.limits).toEqual(DEFAULT_CONFIG.limits)
     expect(config.assets).toEqual(DEFAULT_CONFIG.assets)
+  })
+
+  it('static fallback enables background removal with the bundled model', () => {
+    expect(STATIC_FALLBACK_CONFIG.features.background_removal).toBe(true)
+    expect(STATIC_FALLBACK_CONFIG.assets?.background_removal_model).toBe(BUNDLED_BACKGROUND_REMOVAL_MODEL)
+    // The descriptor must describe the file actually bundled with the site
+    // (same values as backend/data/ml_models.json) and pass validation.
+    expect(BUNDLED_BACKGROUND_REMOVAL_MODEL.url).toBe('/models/u2netp/u2netp-309c8469258d.onnx')
+    expect(parseModelDescriptor(BUNDLED_BACKGROUND_REMOVAL_MODEL, 'https://example.com')).not.toBeNull()
+    expect(STATIC_FALLBACK_CONFIG.features.stock_photos).toBe(false)
+    expect(STATIC_FALLBACK_CONFIG.features.server_pdf).toBe(false)
   })
 
   it('keeps server-provided values and merges partial sections', () => {

@@ -11,16 +11,104 @@ const httpProxy = require('http-proxy')
 const APP_NAME = 'Studio Nova'
 const APP_PORT = 48291 // Stable origin so guest designs persist between launches.
 const MCP_DEFAULT_PORT = 8787
+const BACKEND_DEFAULT_PORT = 49317
 const proxy = httpProxy.createProxyServer({ changeOrigin: true, ws: true, xfwd: true, secure: true })
 let mainWindow = null
 let localServer = null
 let mcpProcess = null
+let backendProcess = null
+let backendPort = BACKEND_DEFAULT_PORT
 let mcpPort = MCP_DEFAULT_PORT
 let appOrigin = `http://127.0.0.1:${APP_PORT}`
 let apiOrigin = ''
 let shuttingDown = false
 
 app.setName(APP_NAME)
+
+/* ---------------------------------------------------------------------------
+ * Branded splash: the first thing the installed app shows. The local engine
+ * can take a while on first start (migrations + catalogues), so instead of
+ * an empty void the user gets the Studio Nova night sky, the star and a
+ * live status line. Shown once at launch, closed when the studio is ready.
+ * ------------------------------------------------------------------------- */
+const SPLASH_HTML = `<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><style>
+  * { margin: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: #fff7f0;
+    background:
+      radial-gradient(420px 260px at 82% -10%, rgba(255, 138, 101, .38), transparent 60%),
+      radial-gradient(520px 340px at 8% 108%, rgba(124, 77, 255, .30), transparent 62%),
+      linear-gradient(140deg, #170a1e 0%, #241031 55%, #31133a 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 14px; overflow: hidden; -webkit-user-select: none; user-select: none;
+  }
+  .mark { filter: drop-shadow(0 10px 28px rgba(255, 122, 89, .45)); animation: float 3.2s ease-in-out infinite; }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  h1 { font-size: 30px; font-weight: 650; letter-spacing: -.02em; }
+  h1 .nova { background: linear-gradient(90deg, #ffb199, #ff7a59 55%, #ffd88a); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .tag { font-size: 13px; color: rgba(255, 240, 230, .72); letter-spacing: .14em; text-transform: uppercase; }
+  .bar { width: 240px; height: 5px; margin-top: 16px; border-radius: 99px; background: rgba(255, 255, 255, .14); overflow: hidden; }
+  .bar i { display: block; height: 100%; width: 40%; border-radius: 99px;
+    background: linear-gradient(90deg, #ff7a59, #ffb199, #ffd88a); animation: slide 1.15s ease-in-out infinite; }
+  @keyframes slide { 0% { transform: translateX(-110%); } 100% { transform: translateX(620%); } }
+  #status { font-size: 13px; color: rgba(255, 240, 230, .85); min-height: 18px; }
+  .foot { position: absolute; bottom: 18px; font-size: 11px; color: rgba(255, 240, 230, .45); letter-spacing: .08em; }
+</style></head><body>
+  <svg class="mark" width="86" height="86" viewBox="0 0 40 40" aria-hidden="true">
+    <rect x="1" y="1" width="38" height="38" rx="12" fill="rgba(255,255,255,.08)"/>
+    <path d="M20 6.5 23.9 16.1 33.5 20 23.9 23.9 20 33.5 16.1 23.9 6.5 20 16.1 16.1Z" fill="#ff8a65"/>
+    <circle cx="20" cy="20" r="4.2" fill="#fff7f0"/>
+    <circle cx="30.2" cy="9.8" r="2.1" fill="#ffd88a"/>
+  </svg>
+  <h1>Studio <span class="nova">Nova</span></h1>
+  <p class="tag">Design with a spark</p>
+  <div class="bar"><i></i></div>
+  <p id="status">Preparing your studio…</p>
+  <p class="foot">LOCAL &amp; PRIVATE BY DESIGN</p>
+  <script>window.__novaStatus = function (text) { document.getElementById('status').textContent = text; };</script>
+</body></html>`
+
+let splashWindow = null
+let splashCreatedAt = 0
+
+function createSplash() {
+  if (splashWindow) return
+  splashCreatedAt = Date.now()
+  splashWindow = new BrowserWindow({
+    width: 540,
+    height: 360,
+    frame: false,
+    resizable: false,
+    movable: true,
+    center: true,
+    show: false,
+    alwaysOnTop: true,
+    skipTaskbar: true,
+    title: APP_NAME,
+    backgroundColor: '#170a1e',
+    webPreferences: { contextIsolation: true, nodeIntegration: false, sandbox: true },
+  })
+  splashWindow.on('closed', () => { splashWindow = null })
+  void splashWindow.loadURL(`data:text/html;charset=utf-8,${encodeURIComponent(SPLASH_HTML)}`)
+    .then(() => splashWindow?.show())
+    .catch(() => { splashWindow?.destroy(); splashWindow = null })
+}
+
+function setSplashStatus(text) {
+  if (!splashWindow || splashWindow.isDestroyed()) return
+  void splashWindow.webContents.executeJavaScript(`window.__novaStatus && window.__novaStatus(${JSON.stringify(text)})`).catch(() => {})
+}
+
+function closeSplash() {
+  if (!splashWindow) return
+  const remaining = Math.max(0, 900 - (Date.now() - splashCreatedAt))
+  const target = splashWindow
+  splashWindow = null
+  setTimeout(() => { if (!target.isDestroyed()) target.close() }, remaining)
+}
 
 const MIME_TYPES = {
   '.avif': 'image/avif',
@@ -217,10 +305,70 @@ async function nextAvailablePort(startAt) {
   }
 }
 
+function backendExecutable() {
+  const file = process.platform === 'win32' ? 'studio-nova-backend.exe' : 'studio-nova-backend'
+  const packaged = path.join(process.resourcesPath, 'backend', 'studio-nova-backend', file)
+  if (app.isPackaged && fs.existsSync(packaged)) return packaged
+  // Development override: a sidecar built with `npm run build:backend`.
+  const fromEnv = process.env.STUDIO_NOVA_BACKEND_BIN || ''
+  if (fromEnv && fs.existsSync(fromEnv)) return fromEnv
+  const built = path.join(__dirname, 'backend-dist', 'studio-nova-backend', file)
+  return fs.existsSync(built) ? built : ''
+}
+
+/**
+ * Starts the embedded Django server (SQLite in the per-user data dir) and
+ * returns its origin, or '' when no sidecar is bundled. A cloud apiOrigin
+ * from desktop-config.json still wins over the local server.
+ */
+async function startBackend() {
+  const executable = backendExecutable()
+  if (!executable) return ''
+  backendPort = await nextAvailablePort(BACKEND_DEFAULT_PORT)
+  const dataDir = path.join(app.getPath('userData'), 'backend-data')
+  fs.mkdirSync(dataDir, { recursive: true })
+  backendProcess = spawn(executable, [], {
+    cwd: dataDir,
+    env: {
+      ...process.env,
+      STUDIO_NOVA_DATA_DIR: dataDir,
+      STUDIO_NOVA_BACKEND_PORT: String(backendPort),
+      SITE_URL: appOrigin,
+    },
+    stdio: 'ignore',
+    windowsHide: true,
+  })
+  backendProcess.on('error', (error) => console.error('Studio Nova local server failed to start:', error))
+  backendProcess.on('exit', (code) => {
+    if (!shuttingDown && code !== 0 && code !== null) console.error(`Studio Nova local server exited with code ${code}.`)
+  })
+  const origin = `http://127.0.0.1:${backendPort}`
+  // First start migrates and seeds the local catalogues: give it a head
+  // start, but open the window even if it is still preparing.
+  const deadline = Date.now() + 20000
+  while (Date.now() < deadline && !shuttingDown) {
+    const healthy = await new Promise((resolve) => {
+      const request = http.get(`${origin}/api/v1/health/`, (response) => {
+        response.resume()
+        resolve(response.statusCode === 200)
+      })
+      request.on('error', () => resolve(false))
+      request.setTimeout(1500, () => {
+        request.destroy()
+        resolve(false)
+      })
+    })
+    if (healthy) break
+    await new Promise((resolve) => setTimeout(resolve, 500))
+  }
+  return origin
+}
+
 async function startPackagedServices() {
   seedConfigurationExamples()
   const config = loadDesktopConfig()
-  apiOrigin = safeOrigin(config.apiOrigin || process.env.STUDIO_NOVA_API_URL || '')
+  const localBackend = await startBackend()
+  apiOrigin = safeOrigin(config.apiOrigin || process.env.STUDIO_NOVA_API_URL || '') || localBackend
 
   localServer = http.createServer(handleRequest)
   await new Promise((resolve, reject) => {
@@ -263,6 +411,7 @@ function openExternalIfSafe(urlString) {
 }
 
 function createWindow() {
+  const iconPath = path.join(webRoot(), 'icons', 'icon-512.png')
   mainWindow = new BrowserWindow({
     width: 1440,
     height: 920,
@@ -271,7 +420,8 @@ function createWindow() {
     show: false,
     title: APP_NAME,
     autoHideMenuBar: true,
-    backgroundColor: '#17191d',
+    backgroundColor: '#170a1e',
+    ...(fs.existsSync(iconPath) ? { icon: iconPath } : {}),
     webPreferences: {
       contextIsolation: true,
       nodeIntegration: false,
@@ -280,7 +430,10 @@ function createWindow() {
     },
   })
 
-  mainWindow.once('ready-to-show', () => mainWindow?.show())
+  mainWindow.once('ready-to-show', () => {
+    mainWindow?.show()
+    closeSplash()
+  })
   mainWindow.webContents.setWindowOpenHandler(({ url }) => {
     openExternalIfSafe(url)
     return { action: 'deny' }
@@ -297,6 +450,7 @@ function createWindow() {
   const address = process.env.STUDIO_NOVA_DESKTOP_DEV === '1' ? 'http://127.0.0.1:5173' : `${appOrigin}/`
   void mainWindow.loadURL(address).catch(async (error) => {
     console.error(error)
+    closeSplash()
     await dialog.showMessageBox({
       type: 'error',
       title: 'Studio Nova could not start',
@@ -330,7 +484,12 @@ if (!hasSingleInstance) {
 
   app.whenReady().then(async () => {
     try {
-      if (process.env.STUDIO_NOVA_DESKTOP_DEV !== '1') await startPackagedServices()
+      if (process.env.STUDIO_NOVA_DESKTOP_DEV !== '1') {
+        createSplash()
+        setSplashStatus('Starting the local engine…')
+        await startPackagedServices()
+        setSplashStatus('Loading your designs…')
+      }
       createWindow()
       if (localServer) {
         localServer.on('upgrade', (req, socket, head) => {
@@ -350,6 +509,7 @@ if (!hasSingleInstance) {
       })
     } catch (error) {
       console.error('Desktop services failed to start:', error)
+      closeSplash()
       await dialog.showMessageBox({
         type: 'error',
         title: 'Studio Nova could not start',
@@ -363,7 +523,10 @@ if (!hasSingleInstance) {
 
 app.on('before-quit', () => {
   shuttingDown = true
+  if (splashWindow && !splashWindow.isDestroyed()) splashWindow.destroy()
+  splashWindow = null
   if (mcpProcess && !mcpProcess.killed) mcpProcess.kill()
+  if (backendProcess && !backendProcess.killed) backendProcess.kill()
   if (localServer?.listening) localServer.close()
 })
 

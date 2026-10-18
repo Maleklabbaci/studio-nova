@@ -20,7 +20,7 @@ import requests
 
 from .manifest import MAX_FILE_BYTES, PackSpec, TrackSpec, host_allowed
 
-USER_AGENT = "Doory-audio-sync/1.0"
+USER_AGENT = "StudioNova-audio-sync/1.0"
 CONNECT_TIMEOUT = 10
 READ_TIMEOUT = 60
 ATTEMPTS = 3

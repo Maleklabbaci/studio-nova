@@ -92,10 +92,6 @@ npm run build
 
 Or use `make test` and `make lint` for repository checks.
 
-## Attribution and license
+## License
 
-The retained `LICENSE` and `NOTICE` require the following visible attribution when this application is redistributed:
-
-> Doory by Siam, creator and maintainer of Doory, https://github.com/shaongitbd/doory
-
-Keep this credit in the application. See `LICENSE` and `NOTICE` for the complete terms.
+Studio Nova — Copyright (c) 2026 Studio Nova. All rights reserved. See `LICENSE` for the terms, and `NOTICE` and `THIRD_PARTY.md` for the third-party components Studio Nova builds on and their licences.

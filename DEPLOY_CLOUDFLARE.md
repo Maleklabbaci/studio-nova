@@ -14,10 +14,16 @@ Dans **Cloudflare → Workers & Pages → studio-nova-b6e → Settings → Build
 | Réglage | Valeur |
 | --- | --- |
 | Production branch | `main` |
-| Root directory | `frontend` |
-| Build command | `npm run build` |
-| Build output directory | `dist` |
+| Root directory | *(racine du dépôt, laisser vide)* |
+| Build command | `npm --prefix frontend ci && npm --prefix frontend run build` |
+| Build output directory | `frontend/dist` |
 | Variable d'environnement | `NODE_VERSION` = `22` |
+
+⚠️ Ne pas mettre `frontend` en Root directory **en plus** de la commande
+ci-dessus (le préfixe `frontend` serait appliqué deux fois). Et ne jamais
+ajouter de section `[build]` dans `wrangler.toml` : Cloudflare Pages la
+refuse (« Configuration file for Pages projects does not support "build" »),
+seul le champ `pages_build_output_dir` y a sa place.
 
 Enregistrer, puis **Deployments → Retry deployment** (ou pousser un commit
 sur `main`). Le fichier `wrangler.toml` à la racine du dépôt décrit la même

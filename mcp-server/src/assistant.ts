@@ -30,17 +30,37 @@ interface OpenAiResponse {
   error?: { message?: string }
 }
 
+type OpenAiContentPart =
+  | { type: 'text'; text: string }
+  | { type: 'image_url'; image_url: { url: string } }
+
 interface OpenAiMessage {
   role: 'system' | 'user' | 'assistant' | 'tool'
-  content: string | null
+  content: string | null | OpenAiContentPart[]
   tool_calls?: OpenAiToolCall[]
   tool_call_id?: string
 }
 
-const MAX_ACTIONS = 6
-const MAX_TOOL_ROUNDS = 4
+const MAX_ACTIONS = 16
+const MAX_TOOL_ROUNDS = 8
+const HISTORY_MESSAGES = 24
 
-const SYSTEM_PROMPT = `You are Studio Nova's design assistant, working inside a visual design editor. Help the user make concrete, thoughtful changes to their current design. Respond in the same language as the user and keep the tone warm and concise. You can directly inspect and edit the active canvas using MCP tools. Use get_canvas_state when you need context; do not claim an edit succeeded unless a tool confirms it. Use the Studio Nova coral-and-charcoal palette when a user asks for a branded or polished look. Ask a short clarifying question rather than making a risky assumption. Only delete selected layers when the user clearly asks for deletion. Do not include session_id in tool calls; the current editor is already selected. The editor supports undo, so summarize applied actions clearly.`
+const SYSTEM_PROMPT = `You are Studio Nova's design assistant, working inside a visual design editor. Help the user make concrete, thoughtful changes to their current design. Respond in the same language as the user and keep the tone warm and concise. You can directly inspect and edit the active canvas using MCP tools. Use get_canvas_state when you need context; it lists every element with its id, and update_element changes any of them (text, position, size, color, font, opacity, rotation). Align and arrange elements to keep layouts tidy, and add_image places a picture from an https URL. Use get_canvas_screenshot after several edits, or whenever the user asks how the design looks, and fix what you see (overlaps, imbalance, unreadable text) instead of guessing. Only use use_template when the user clearly asks to start from a template, and only delete when the user clearly asks for that removal. Do not claim an edit succeeded unless a tool confirms it. Use the Studio Nova coral-and-charcoal palette when a user asks for a branded or polished look. Ask a short clarifying question rather than making a risky assumption. Do not include session_id in tool calls; the current editor is already selected. The editor supports undo, so summarize applied actions clearly.`
+
+/** The MCP image content of a screenshot tool result, when there is one. */
+export function extractImageContent(result: unknown): { data: string; mimeType: string } | null {
+  if (typeof result !== 'object' || result === null) return null
+  const content = (result as { content?: unknown }).content
+  if (!Array.isArray(content)) return null
+  for (const part of content) {
+    if (typeof part !== 'object' || part === null) continue
+    const item = part as { type?: unknown; data?: unknown; mimeType?: unknown }
+    if (item.type === 'image' && typeof item.data === 'string' && typeof item.mimeType === 'string') {
+      return { data: item.data, mimeType: item.mimeType }
+    }
+  }
+  return null
+}
 
 function chatCompletionsUrl(baseUrl: string): string {
   const base = baseUrl.trim().replace(/\/+$/, '')
@@ -102,7 +122,7 @@ export async function runAssistantTurn(
 
   const conversation: OpenAiMessage[] = [
     { role: 'system', content: `${SYSTEM_PROMPT}\nCurrent browser editor session: ${sessionId}.` },
-    ...history.slice(-12).map(({ role, content }) => ({ role, content })),
+    ...history.slice(-HISTORY_MESSAGES).map(({ role, content }) => ({ role, content })),
   ]
   const actions: string[] = []
   const { client, close } = await createAssistantMcpClient(bridge, sessionId)
@@ -147,7 +167,22 @@ export async function runAssistantTurn(
 
         try {
           const result = await client.callTool({ name: call.function.name, arguments: args })
-          conversation.push({ role: 'tool', tool_call_id: call.id, content: toolResultText(result) })
+          const image = extractImageContent(result)
+          conversation.push({
+            role: 'tool',
+            tool_call_id: call.id,
+            content: toolResultText(result) || (image ? 'Screenshot of the current page captured; it is attached in the next message.' : ''),
+          })
+          // Give the model eyes: a screenshot becomes a real image message, not base64 buried in text.
+          if (image) {
+            conversation.push({
+              role: 'user',
+              content: [
+                { type: 'text', text: 'Screenshot of the current page, as requested:' },
+                { type: 'image_url', image_url: { url: `data:${image.mimeType};base64,${image.data}` } },
+              ],
+            })
+          }
           if (!result.isError) actions.push(call.function.name)
         } catch (error) {
           conversation.push({ role: 'tool', tool_call_id: call.id, content: `MCP tool error: ${error instanceof Error ? error.message : 'The action failed.'}` })
