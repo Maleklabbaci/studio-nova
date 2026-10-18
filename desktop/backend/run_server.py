@@ -92,7 +92,10 @@ def _prepare_database() -> None:
     from django.core.management import call_command
 
     call_command("migrate", interactive=False, verbosity=0)
-    call_command("collectstatic", interactive=False, verbosity=0)
+    try:
+        call_command("collectstatic", interactive=False, verbosity=0)
+    except Exception as exc:  # static collection must never brick startup
+        print(f"[studio-nova-backend] collectstatic skipped: {exc}", flush=True)
 
 
 def _run_seed_group(data: Path, group) -> None:
@@ -152,6 +155,7 @@ def main() -> None:
     data = _data_dir()
     backend = _backend_dir()
     sys.path.insert(0, str(backend))
+    print(f"[studio-nova-backend] backend dir: {backend}", flush=True)
 
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "doory.settings.desktop")
     os.environ["STUDIO_NOVA_DATA_DIR"] = str(data)
@@ -163,9 +167,12 @@ def main() -> None:
     import django
 
     django.setup()
+    print("[studio-nova-backend] Django ready", flush=True)
     _prepare_database()
+    print("[studio-nova-backend] database ready", flush=True)
     _run_seed_group(data, _LOCAL_SEEDS)
     _seed_templates(data, backend)
+    print("[studio-nova-backend] catalogues ready", flush=True)
 
     import threading
 
@@ -176,8 +183,15 @@ def main() -> None:
     threading.Thread(target=_run_seed_group, args=(data, _NETWORK_SEEDS), daemon=True).start()
 
     port = int(os.environ.get("STUDIO_NOVA_BACKEND_PORT", "49317"))
+    print(f"[studio-nova-backend] serving on 127.0.0.1:{port}", flush=True)
     uvicorn.run("doory.asgi:application", host="127.0.0.1", port=port, log_level="warning")
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception:
+        import traceback
+
+        traceback.print_exc()
+        raise

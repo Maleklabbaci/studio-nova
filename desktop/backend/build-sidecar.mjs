@@ -32,3 +32,20 @@ if (!fs.existsSync(binary)) {
   process.exit(1)
 }
 console.log(`Embedded server built: ${binary}`)
+
+// Diagnostics: prove the bundle really contains the backend tree (real
+// files under _internal/ on PyInstaller 6+) and surface any first-party
+// module PyInstaller reported missing, so a hollow sidecar can never
+// slip through unnoticed again.
+const bundleDir = path.join(dist, 'studio-nova-backend')
+const inner = fs.existsSync(path.join(bundleDir, '_internal')) ? path.join(bundleDir, '_internal') : bundleDir
+for (const name of ['apps', 'doory', 'data']) {
+  console.log(`bundle check: ${name}/ ${fs.existsSync(path.join(inner, name)) ? 'present' : 'MISSING'}`)
+}
+const warnFile = path.join(here, 'build', 'studio-nova-backend', 'warn-studio-nova-backend.txt')
+if (fs.existsSync(warnFile)) {
+  const missing = fs.readFileSync(warnFile, 'utf8').split('\n')
+    .filter((line) => /missing module named (apps|doory)[.\s]/.test(line))
+    .slice(0, 20)
+  if (missing.length) console.log(`PyInstaller missing-module warnings (first-party):\n${missing.join('\n')}`)
+}

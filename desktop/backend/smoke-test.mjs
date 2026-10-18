@@ -78,7 +78,7 @@ try {
   console.log(`Smoke test OK: health + config on ${origin}, database created (${fs.statSync(db).size} bytes), features: ${JSON.stringify(config.features)}`)
 } catch (error) {
   console.error(`Smoke test FAILED: ${error instanceof Error ? error.message : error}`)
-  console.error(output.slice(-4000))
+  console.error(output.slice(-10000))
   process.exitCode = 1
 } finally {
   stop()

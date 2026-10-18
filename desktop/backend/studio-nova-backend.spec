@@ -2,11 +2,22 @@
 # Build (per OS, on the matching runner):  npm run build:backend
 # Output: desktop/backend-dist/studio-nova-backend/studio-nova-backend[.exe]
 import os
+import sys
 
 from PyInstaller.utils.hooks import collect_data_files, collect_submodules
 
 ROOT = os.path.abspath(os.path.join(SPECPATH, "..", ".."))
 BACKEND = os.path.join(ROOT, "backend")
+
+# collect_submodules() only finds packages that are importable *right now*,
+# and silently returns [] for the rest. During a build, sys.path holds the
+# spec's own directory (desktop/backend) - not the Django project - so
+# without this line the "apps"/"doory" collections come back empty and the
+# frozen server ships hollow: Django apps are referenced by string in the
+# settings, static analysis never sees them, and the sidecar only fails
+# later, at django.setup() inside the smoke test. Put the project on the
+# path first, then verify below that nothing critical went missing.
+sys.path.insert(0, BACKEND)
 
 datas = [
     # The bundled backend tree, laid out under the bundle root exactly like
@@ -31,6 +42,22 @@ hiddenimports = []
 for package in ("doory", "apps", "uvicorn", "channels", "pycrdt", "rest_framework", "drf_spectacular", "corsheaders", "django_filters", "unfold", "environ", "whitenoise"):
     hiddenimports += collect_submodules(package)
 hiddenimports += ["doory.settings.desktop", "doory.asgi", "doory.wsgi"]
+
+# Never ship a hollow sidecar again: if first-party collection silently
+# missed a Django app, fail the build here - loudly, at packaging time -
+# instead of letting the smoke test (or worse, a user) discover it.
+_required = [
+    "apps.core", "apps.accounts", "apps.designs", "apps.assets",
+    "apps.gallery", "apps.elements", "apps.fonts", "apps.brand",
+    "apps.sharing", "apps.exports", "apps.collab",
+    "doory.settings.desktop", "doory.asgi",
+]
+_missing = [name for name in _required if name not in hiddenimports]
+if _missing:
+    raise SystemExit(
+        f"studio-nova-backend.spec: hidden-import collection missed {_missing}; "
+        "refusing to build an embedded server without its Django apps."
+    )
 
 a = Analysis(
     [os.path.join(SPECPATH, "run_server.py")],
