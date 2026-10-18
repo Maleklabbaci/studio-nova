@@ -1,0 +1,4 @@
+# SPA fallback: React Router handles every non-file route client-side.
+# (Cloudflare Pages serves real files first, this only catches app routes
+# such as /download, /features, /create, ...)
+/*  /index.html  200

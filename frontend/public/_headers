@@ -1,0 +1,13 @@
+# Hashed build assets never change: cache them aggressively.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Icons and social image change rarely.
+/icons/*
+  Cache-Control: public, max-age=604800
+/og-image.png
+  Cache-Control: public, max-age=604800
+
+# The download manifest must stay fresh so new releases appear at once.
+/downloads/*
+  Cache-Control: public, max-age=300

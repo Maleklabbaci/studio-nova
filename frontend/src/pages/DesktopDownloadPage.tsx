@@ -14,9 +14,24 @@ const PLATFORMS: Array<{ id: Platform; name: string; detail: string; extension: 
   { id: 'linux', name: 'Linux', detail: 'x86_64 · AppImage', extension: '.AppImage' },
 ]
 
-function validInstaller(filename: unknown): string | null {
-  if (typeof filename !== 'string' || !/^[A-Za-z0-9._-]+\.(?:exe|dmg|AppImage)$/.test(filename)) return null
-  return filename
+const INSTALLER_FILE = /^[A-Za-z0-9._-]+\.(?:exe|dmg|AppImage)$/
+
+/**
+ * Resolve a manifest entry to a download href. Entries may be a plain file
+ * name (served from this site's /downloads/) or a full https URL — desktop
+ * installers are far above the 25 MB per-file limit of static hosts such as
+ * Cloudflare Pages, so releases are hosted on GitHub Releases instead.
+ */
+function validInstaller(entry: unknown): string | null {
+  if (typeof entry !== 'string') return null
+  if (INSTALLER_FILE.test(entry)) return `/downloads/${entry}`
+  try {
+    const url = new URL(entry)
+    if (url.protocol === 'https:' && INSTALLER_FILE.test(url.pathname.split('/').pop() ?? '')) return url.toString()
+  } catch {
+    return null
+  }
+  return null
 }
 
 export default function DesktopDownloadPage() {
@@ -68,14 +83,15 @@ export default function DesktopDownloadPage() {
         </div>
         <ul className={styles.platforms}>
           {PLATFORMS.map(({ id, name, detail, extension }) => {
-            const filename = downloads[id]
+            const href = downloads[id]
+            const filename = href?.split('/').pop()
             return (
               <li key={id} className={styles.card}>
                 <span className={styles.icon} aria-hidden="true"><MonitorDown size={22} /></span>
                 <h3 className={styles.platformName}>{name}</h3>
                 <p className={styles.detail}>{detail}</p>
-                {filename ? (
-                  <AnchorButton href={`/downloads/${filename}`} download={filename} rightIcon={<Download size={17} aria-hidden="true" />} className={styles.install}>
+                {href ? (
+                  <AnchorButton href={href} download={filename} rightIcon={<Download size={17} aria-hidden="true" />} className={styles.install}>
                     Download {extension}
                   </AnchorButton>
                 ) : (

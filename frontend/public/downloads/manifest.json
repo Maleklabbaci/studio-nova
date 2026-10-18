@@ -1,4 +1,8 @@
 {
   "version": "0.1.0",
-  "downloads": {}
+  "downloads": {
+    "windows": "https://github.com/Maleklabbaci/studio-nova/releases/latest/download/StudioNova-win-x64.exe",
+    "macos": "https://github.com/Maleklabbaci/studio-nova/releases/latest/download/StudioNova-mac-universal.dmg",
+    "linux": "https://github.com/Maleklabbaci/studio-nova/releases/latest/download/StudioNova-linux-x64.AppImage"
+  }
 }
