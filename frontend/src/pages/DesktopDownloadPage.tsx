@@ -14,6 +14,17 @@ const PLATFORMS: Array<{ id: Platform; name: string; detail: string; extension: 
   { id: 'linux', name: 'Linux', detail: 'x86_64 · AppImage', extension: '.AppImage' },
 ]
 
+/**
+ * Installers of the latest published release. Used when the deployed
+ * /downloads/manifest.json is missing or still empty, so the download
+ * buttons work on any static deployment of this page.
+ */
+const FALLBACK_DOWNLOADS: Partial<Record<Platform, string>> = {
+  windows: 'https://github.com/Maleklabbaci/studio-nova/releases/latest/download/StudioNova-win-x64.exe',
+  macos: 'https://github.com/Maleklabbaci/studio-nova/releases/latest/download/StudioNova-mac-universal.dmg',
+  linux: 'https://github.com/Maleklabbaci/studio-nova/releases/latest/download/StudioNova-linux-x64.AppImage',
+}
+
 const INSTALLER_FILE = /^[A-Za-z0-9._-]+\.(?:exe|dmg|AppImage)$/
 
 /**
@@ -49,15 +60,25 @@ export default function DesktopDownloadPage() {
     void fetch('/downloads/manifest.json', { signal: controller.signal })
       .then((response) => (response.ok ? response.json() as Promise<DownloadManifest> : null))
       .then((manifest) => {
-        if (!manifest) return
+        if (!manifest) {
+          setDownloads(FALLBACK_DOWNLOADS)
+          return
+        }
         setVersion(typeof manifest.version === 'string' ? manifest.version : null)
-        setDownloads({
+        const fromManifest: Partial<Record<Platform, string>> = {
           windows: validInstaller(manifest.downloads?.windows) ?? undefined,
           macos: validInstaller(manifest.downloads?.macos) ?? undefined,
           linux: validInstaller(manifest.downloads?.linux) ?? undefined,
+        }
+        // An empty/stale manifest must not disable the buttons: fall back
+        // to the latest GitHub release per missing platform.
+        setDownloads({
+          windows: fromManifest.windows ?? FALLBACK_DOWNLOADS.windows,
+          macos: fromManifest.macos ?? FALLBACK_DOWNLOADS.macos,
+          linux: fromManifest.linux ?? FALLBACK_DOWNLOADS.linux,
         })
       })
-      .catch(() => undefined)
+      .catch(() => setDownloads(FALLBACK_DOWNLOADS))
     return () => controller.abort()
   }, [])
 

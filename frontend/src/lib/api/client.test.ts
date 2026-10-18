@@ -162,6 +162,17 @@ describe('http client: errors', () => {
     expect(error.status).toBe(0)
   })
 
+  it('rejects a 200 response that is not JSON instead of returning undefined', async () => {
+    // Static-only hosting answers /api/... with index.html (200, text/html).
+    // Resolving `undefined` here used to be stored as the app config and
+    // crashed bootstrap ("reading 'features'"), wedging pages on a skeleton.
+    server.use(mswHttp.get('*/api/v1/config/', () => new HttpResponse('<html>Studio Nova</html>', { status: 200, headers: { 'content-type': 'text/html' } })))
+    const error = (await http.get('/config/').catch((e: unknown) => e)) as ApiError
+    expect(error).toBeInstanceOf(ApiError)
+    expect(error.code).toBe('invalid_response')
+    expect(error.message).not.toContain('<html>')
+  })
+
   it('handles non-JSON server errors with a friendly message', async () => {
     server.use(mswHttp.get('*/api/v1/config/', () => new HttpResponse('<html>Bad gateway</html>', { status: 502, headers: { 'content-type': 'text/html' } })))
     const error = (await http.get('/config/').catch((e: unknown) => e)) as ApiError

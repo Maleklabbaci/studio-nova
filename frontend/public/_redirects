@@ -1,4 +1,9 @@
-# SPA fallback: React Router handles every non-file route client-side.
+# API routes are NOT app routes: never answer them with index.html.
+# On a static-only deployment there is no backend, so answer 404 and let
+# the app fall back to guest mode with its built-in defaults.
+/api/*  /index.html  404
+
+# SPA fallback: React Router handles every other non-file route client-side.
 # (Cloudflare Pages serves real files first, this only catches app routes
 # such as /download, /features, /create, ...)
 /*  /index.html  200

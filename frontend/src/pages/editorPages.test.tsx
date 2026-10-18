@@ -49,6 +49,18 @@ describe('/create', () => {
     expect(await screen.findByTestId('editor')).toHaveAttribute('data-mode', 'guest')
   })
 
+  it('guests can still create when /api answers HTML (static-only deployment, no backend)', async () => {
+    // Cloudflare Pages without a backend: the SPA fallback (or its 404 page)
+    // answers /api/... with HTML. Bootstrap must treat that as "no backend"
+    // and fall back to guest mode instead of wedging on the skeleton.
+    const html = () => new HttpResponse('<html><body>Studio Nova</body></html>', { headers: { 'content-type': 'text/html' } })
+    const { router } = renderApp('/create?preset=a4', {
+      handlers: [http.get('*/api/v1/config/', html), http.get('*/api/v1/auth/me/', html)],
+    })
+    await waitFor(() => expect(router.state.location.pathname).toMatch(/^\/local\/[0-9a-f-]{36}$/))
+    expect(await screen.findByTestId('editor')).toHaveAttribute('data-mode', 'guest')
+  })
+
   it('defaults to the Instagram post size and honours custom sizes', async () => {
     const first = renderApp('/create')
     await waitFor(() => expect(first.router.state.location.pathname).toMatch(/^\/local\//))

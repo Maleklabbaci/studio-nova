@@ -54,8 +54,8 @@ class LazyRemover implements BackgroundRemover {
  * model, and unregisters it when it stops being so. Call it with every `/config/` response: it does nothing
  * when the model has not changed.
  */
-export function configureBackgroundRemoval(config: BackgroundRemovalConfig): void {
-  const model = config.features?.background_removal === true ? parseModelDescriptor(config.assets?.background_removal_model) : null
+export function configureBackgroundRemoval(config: BackgroundRemovalConfig | null | undefined): void {
+  const model = config?.features?.background_removal === true ? parseModelDescriptor(config.assets?.background_removal_model) : null
   if (!model) {
     if (installed) {
       installed.remover.dispose()

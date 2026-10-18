@@ -226,7 +226,14 @@ async function send(method: Method, path: string, options: RequestOptions, retri
 async function parse<T>(response: Response): Promise<T> {
   if (response.status === 204 || response.status === 205) return undefined as T
   const type = response.headers.get('content-type') ?? ''
-  if (!type.includes('json')) return undefined as T
+  // A 200 that is not JSON is not a payload: on a static-only deployment the
+  // SPA fallback answers /api/... with index.html, and treating that HTML as
+  // a successful `undefined` result used to poison the app config and wedge
+  // every page waiting on bootstrap. Surface it as an error instead, so
+  // callers fall back to their defaults (guest mode without a backend).
+  if (!type.includes('json')) {
+    throw new ApiError({ status: response.status, code: 'invalid_response', message: 'Studio Nova received an unexpected response. Please try again.' })
+  }
   return (await response.json()) as T
 }
 

@@ -174,6 +174,16 @@ describe('features, FAQ and contact pages', () => {
     expect(screen.getByRole('link', { name: 'Download .AppImage' })).toHaveAttribute('href', '/downloads/StudioNova-linux-x64.AppImage')
   })
 
+  it('falls back to the latest GitHub release when the deployed manifest is empty', async () => {
+    renderApp('/download', {
+      handlers: [http.get('*/downloads/manifest.json', () => HttpResponse.json({ version: '0.1.0', downloads: {} }))],
+    })
+    expect(await screen.findByRole('link', { name: 'Download .exe' })).toHaveAttribute(
+      'href',
+      'https://github.com/Maleklabbaci/studio-nova/releases/latest/download/StudioNova-win-x64.exe',
+    )
+  })
+
   it('links to externally hosted installers (e.g. GitHub Releases) from the manifest', async () => {
     renderApp('/download', {
       handlers: [http.get('*/downloads/manifest.json', () => HttpResponse.json({
@@ -188,8 +198,11 @@ describe('features, FAQ and contact pages', () => {
       'href',
       'https://github.com/Maleklabbaci/studio-nova/releases/latest/download/StudioNova-win-x64.exe',
     )
-    // Non-https entries are rejected: no Linux download link is offered.
-    expect(screen.queryByRole('link', { name: 'Download .AppImage' })).not.toBeInTheDocument()
+    // Non-https entries are rejected and replaced by the safe release fallback.
+    expect(screen.getByRole('link', { name: 'Download .AppImage' })).toHaveAttribute(
+      'href',
+      'https://github.com/Maleklabbaci/studio-nova/releases/latest/download/StudioNova-linux-x64.AppImage',
+    )
   })
 
   it('the FAQ is an accessible accordion with one answer open at a time', async () => {

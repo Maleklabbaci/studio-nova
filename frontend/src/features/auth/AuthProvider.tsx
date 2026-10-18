@@ -1,7 +1,7 @@
 import { useQueryClient } from '@tanstack/react-query'
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { configureBackgroundRemoval } from '@/editor/engine/bgRemoval/install'
-import { ApiError, authApi, configApi, DEFAULT_CONFIG, isApiError, setUnauthorizedHandler } from '@/lib/api'
+import { ApiError, authApi, configApi, DEFAULT_CONFIG, isApiError, normalizeAppConfig, setUnauthorizedHandler } from '@/lib/api'
 import type { ApiUser, AppConfig, RegisterInput } from '@/types/api'
 
 export type AuthStatus = 'loading' | 'authenticated' | 'anonymous'
@@ -66,21 +66,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     void (async () => {
       const [me, cfg] = await Promise.allSettled([authApi.me(controller.signal), configApi.get(controller.signal)])
       if (controller.signal.aborted) return
-      if (cfg.status === 'fulfilled') {
-        setConfig(cfg.value)
-        // Before any consumer sees the new config, so the editor's toolbar already knows whether the button works.
-        configureBackgroundRemoval(cfg.value)
-      }
+      // Auth status first: a broken or missing /config/ (e.g. a static-only
+      // deployment with no backend) must never leave the app stuck loading.
       if (me.status === 'fulfilled') {
-        userRef.current = me.value.user
-        setUserState(me.value.user)
-        setStatus(me.value.user ? 'authenticated' : 'anonymous')
+        const nextUser = me.value?.user ?? null
+        userRef.current = nextUser
+        setUserState(nextUser)
+        setStatus(nextUser ? 'authenticated' : 'anonymous')
         setBootstrapError(null)
       } else {
         setBootstrapError(isApiError(me.reason) ? me.reason : new ApiError({ status: 0, code: 'network_error', message: 'Could not reach Studio Nova.' }))
         userRef.current = null
         setUserState(null)
         setStatus('anonymous')
+      }
+      if (cfg.status === 'fulfilled') {
+        const safeConfig = normalizeAppConfig(cfg.value)
+        setConfig(safeConfig)
+        // Before any consumer sees the new config, so the editor's toolbar already knows whether the button works.
+        configureBackgroundRemoval(safeConfig)
       }
     })()
     return () => controller.abort()
