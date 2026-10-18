@@ -16,6 +16,13 @@
 Var DesktopShortcutWanted
 Var DesktopShortcutCheckboxHandle
 
+; The page only exists in the installer script. This file is also compiled
+; into the uninstaller (BUILD_UNINSTALLER is defined there), where a page
+; function nothing references is warning 6010 - and electron-builder treats
+; NSIS warnings as errors, which failed the whole Windows build. The
+; uninstaller does not need the page: the template removes the shortcut
+; from the registry info it writes itself.
+!ifndef BUILD_UNINSTALLER
 Function DesktopShortcutPageCreate
   ; Never interrupt a silent install; the default from customInit applies.
   IfSilent 0 showPage
@@ -50,6 +57,7 @@ FunctionEnd
 !macro customPageAfterChangeDir
   Page custom DesktopShortcutPageCreate DesktopShortcutPageLeave
 !macroend
+!endif
 
 !macro customInit
   StrCpy $DesktopShortcutWanted "1"
