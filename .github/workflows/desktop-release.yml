@@ -24,10 +24,6 @@ jobs:
             label: macOS universal
             script: package:macos
             file: StudioNova-mac-universal.dmg
-          - os: ubuntu-latest
-            label: Linux x64
-            script: package:linux
-            file: StudioNova-linux-x64.AppImage
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -48,14 +44,6 @@ jobs:
       - name: Smoke-test the embedded server binary
         run: npm run smoke:backend
         working-directory: desktop
-      - name: Install Linux packaging dependencies
-        if: runner.os == 'Linux'
-        # libfuse2 was renamed libfuse2t64 in recent Ubuntu releases; try
-        # both names and never let this helper step kill the package job -
-        # if FUSE is truly unavailable, the AppImage step says so itself.
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libfuse2t64 || sudo apt-get install -y libfuse2 || echo "No FUSE package available; continuing without it"
       - name: Install frontend dependencies
         run: npm ci
         working-directory: frontend
