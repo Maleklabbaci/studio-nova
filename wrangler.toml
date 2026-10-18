@@ -1,9 +1,11 @@
 # Cloudflare Pages configuration for the Studio Nova static site.
-# The app lives in frontend/ — building from the repository root without
-# this file serves an empty directory and Cloudflare answers HTTP 404.
+# The app lives in frontend/ — this file only tells Pages where the built
+# site lands. NOTE: Pages does not accept a [build] section here (that is
+# Workers-only and fails validation); the build command itself is set in
+# the Cloudflare dashboard (Settings -> Builds):
+#   Root directory:  (repository root)
+#   Build command:   npm --prefix frontend ci && npm --prefix frontend run build
+#   Output:          frontend/dist (from pages_build_output_dir below)
 name = "studio-nova"
 compatibility_date = "2026-10-18"
 pages_build_output_dir = "frontend/dist"
-
-[build]
-command = "npm --prefix frontend ci && npm --prefix frontend run build"
