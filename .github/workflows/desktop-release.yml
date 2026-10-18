@@ -39,6 +39,15 @@ jobs:
             frontend/package-lock.json
             mcp-server/package-lock.json
             desktop/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build embedded local server (same OS as the installer)
+        run: npm run build:backend
+        working-directory: desktop
+      - name: Smoke-test the embedded server binary
+        run: npm run smoke:backend
+        working-directory: desktop
       - name: Install Linux packaging dependencies
         if: runner.os == 'Linux'
         run: sudo apt-get update && sudo apt-get install -y libfuse2
@@ -54,6 +63,27 @@ jobs:
       - name: Build desktop resources
         run: npm run build:resources
         working-directory: desktop
+      - name: Verify package inputs
+        shell: bash
+        run: |
+          BIN="desktop/backend-dist/studio-nova-backend/studio-nova-backend"
+          if [ "$RUNNER_OS" = "Windows" ]; then BIN="$BIN.exe"; fi
+          ok=1
+          if [ ! -f "$BIN" ]; then
+            echo "::error::Embedded backend missing at $BIN - the installer would ship without its local server."
+            find desktop -maxdepth 3 -name 'studio-nova-backend*' -print || true
+            ok=0
+          fi
+          if [ ! -f frontend/dist-desktop/index.html ]; then
+            echo "::error::Built web app missing at frontend/dist-desktop/index.html."
+            ok=0
+          fi
+          if [ ! -f mcp-server/dist/index.js ]; then
+            echo "::error::Assistant service missing at mcp-server/dist/index.js."
+            ok=0
+          fi
+          [ "$ok" = "1" ] || exit 1
+          echo "Package inputs OK"
       - name: Package installer
         run: npm run ${{ matrix.script }}
         working-directory: desktop
