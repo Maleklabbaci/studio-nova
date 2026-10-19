@@ -143,6 +143,30 @@
   flex: none;
 }
 
+.preparing {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.preparingSpin {
+  animation: preparing-spin 1s linear infinite;
+}
+
+@keyframes preparing-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.preparingElapsed {
+  font-variant-numeric: tabular-nums;
+  opacity: 0.75;
+}
+
 .loading {
   padding: var(--space-10) var(--space-4);
   color: var(--color-text-muted);

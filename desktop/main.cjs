@@ -57,6 +57,7 @@ const SPLASH_HTML = `<!doctype html>
     background: linear-gradient(90deg, #ff7a59, #ffb199, #ffd88a); animation: slide 1.15s ease-in-out infinite; }
   @keyframes slide { 0% { transform: translateX(-110%); } 100% { transform: translateX(620%); } }
   #status { font-size: 13px; color: rgba(255, 240, 230, .85); min-height: 18px; }
+  #tip { font-size: 12px; font-style: italic; color: rgba(255, 240, 230, .55); min-height: 16px; max-width: 380px; text-align: center; transition: opacity .35s ease; }
   .foot { position: absolute; bottom: 18px; font-size: 11px; color: rgba(255, 240, 230, .45); letter-spacing: .08em; }
 </style></head><body>
   <svg class="mark" width="86" height="86" viewBox="0 0 40 40" aria-hidden="true">
@@ -69,8 +70,17 @@ const SPLASH_HTML = `<!doctype html>
   <p class="tag">Design with a spark</p>
   <div class="bar"><i></i></div>
   <p id="status">Preparing your studio…</p>
+  <p id="tip"></p>
   <p class="foot">LOCAL &amp; PRIVATE BY DESIGN</p>
-  <script>window.__novaStatus = function (text) { document.getElementById('status').textContent = text; };</script>
+  <script>
+    window.__novaStatus = function (text) { document.getElementById('status').textContent = text; };
+    window.__novaTip = function (text) {
+      const el = document.getElementById('tip');
+      if (el.textContent === text) return;
+      el.style.opacity = '0';
+      setTimeout(() => { el.textContent = text; el.style.opacity = '1'; }, 180);
+    };
+  </script>
 </body></html>`
 
 let splashWindow = null
@@ -103,6 +113,19 @@ function setSplashStatus(text) {
   if (!splashWindow || splashWindow.isDestroyed()) return
   void splashWindow.webContents.executeJavaScript(`window.__novaStatus && window.__novaStatus(${JSON.stringify(text)})`).catch(() => {})
 }
+
+function setSplashTip(text) {
+  if (!splashWindow || splashWindow.isDestroyed()) return
+  void splashWindow.webContents.executeJavaScript(`window.__novaTip && window.__novaTip(${JSON.stringify(text)})`).catch(() => {})
+}
+
+/** Shown under the progress line while the engine prepares: the wait doubles as a short introduction. */
+const SPLASH_TIPS = [
+  'Your designs stay on this machine — nothing is uploaded without you.',
+  'Templates, shapes, stickers and sounds: all bundled, all offline.',
+  'Remove backgrounds privately, right on your computer.',
+  'Guest designs save in this browser until you make an account.',
+]
 
 function closeSplash() {
   if (!splashWindow) return
@@ -307,6 +330,21 @@ async function nextAvailablePort(startAt) {
   }
 }
 
+function backendDataDir() {
+  return path.join(app.getPath('userData'), 'backend-data')
+}
+
+/** The sidecar's own progress note (startup-status.json), or '' while there is none. */
+function readStartupStatus() {
+  try {
+    const raw = fs.readFileSync(path.join(backendDataDir(), 'startup-status.json'), 'utf8')
+    const parsed = JSON.parse(raw)
+    return typeof parsed.message === 'string' ? parsed.message : ''
+  } catch {
+    return ''
+  }
+}
+
 function backendExecutable() {
   const file = process.platform === 'win32' ? 'studio-nova-backend.exe' : 'studio-nova-backend'
   const packaged = path.join(process.resourcesPath, 'backend', 'studio-nova-backend', file)
@@ -336,7 +374,7 @@ async function startBackend() {
     return ''
   }
   backendPort = await nextAvailablePort(BACKEND_DEFAULT_PORT)
-  const dataDir = path.join(app.getPath('userData'), 'backend-data')
+  const dataDir = backendDataDir()
   fs.mkdirSync(dataDir, { recursive: true })
   backendProcess = spawn(executable, [], {
     cwd: dataDir,
@@ -356,22 +394,54 @@ async function startBackend() {
   return `http://127.0.0.1:${backendPort}`
 }
 
+/** One health probe of the local server: true when `/api/v1/health/` answers 200. */
+function probeBackendHealth(origin) {
+  return new Promise((resolve) => {
+    const request = http.get(`${origin}/api/v1/health/`, (response) => {
+      response.resume()
+      resolve(response.statusCode === 200)
+    })
+    request.on('error', () => resolve(false))
+    request.setTimeout(1500, () => {
+      request.destroy()
+      resolve(false)
+    })
+  })
+}
+
 /** Resolves true once the local server answers its health check, or false after `timeoutMs`. */
 async function waitForBackend(origin, timeoutMs) {
   const deadline = Date.now() + timeoutMs
   while (Date.now() < deadline && !shuttingDown) {
-    const healthy = await new Promise((resolve) => {
-      const request = http.get(`${origin}/api/v1/health/`, (response) => {
-        response.resume()
-        resolve(response.statusCode === 200)
-      })
-      request.on('error', () => resolve(false))
-      request.setTimeout(1500, () => {
-        request.destroy()
-        resolve(false)
-      })
-    })
-    if (healthy) return true
+    if (await probeBackendHealth(origin)) return true
+    await new Promise((resolve) => setTimeout(resolve, 400))
+  }
+  return false
+}
+
+/**
+ * The same wait, narrated: the splash's status line follows the sidecar's
+ * startup-status.json and a tip rotates underneath, so a first start (about
+ * 30 seconds of migrations and catalogues) reads as an introduction rather
+ * than a frozen window. Resolves true once healthy; the caller decides the
+ * cap after which the window opens anyway.
+ */
+async function waitForBackendWithSplash(origin, timeoutMs) {
+  const deadline = Date.now() + timeoutMs
+  let lastStatus = ''
+  let tipIndex = -1
+  while (Date.now() < deadline && !shuttingDown) {
+    if (await probeBackendHealth(origin)) return true
+    const message = readStartupStatus()
+    if (message && message !== lastStatus) {
+      lastStatus = message
+      setSplashStatus(message)
+    }
+    const nextTip = Math.floor((Date.now() - splashCreatedAt) / 4500) % SPLASH_TIPS.length
+    if (nextTip !== tipIndex) {
+      tipIndex = nextTip
+      setSplashTip(SPLASH_TIPS[tipIndex])
+    }
     await new Promise((resolve) => setTimeout(resolve, 400))
   }
   return false
@@ -388,6 +458,7 @@ async function startPackagedServices() {
   })
 
   const configuredOrigin = safeOrigin(config.apiOrigin || process.env.STUDIO_NOVA_API_URL || '')
+  const useLocalEngine = !configuredOrigin
   if (configuredOrigin) {
     apiOrigin = configuredOrigin
   } else {
@@ -395,15 +466,6 @@ async function startPackagedServices() {
     if (localBackend) {
       // Requests can reach the proxy from the moment the window opens.
       apiOrigin = localBackend
-      // A warm install answers in a second or two: let it, so the app opens
-      // signed in. A cold one keeps preparing in the background.
-      const readyNow = await waitForBackend(localBackend, 5000)
-      if (!readyNow) {
-        void waitForBackend(localBackend, 180000).then((ready) => {
-          if (ready) console.log(`Studio Nova local server ready at ${localBackend}`)
-          else console.error('Studio Nova local server did not become ready; the studio keeps working locally.')
-        })
-      }
     }
   }
 
@@ -430,6 +492,22 @@ async function startPackagedServices() {
   mcpProcess.on('exit', (code) => {
     if (!shuttingDown && code !== 0 && code !== null) console.error(`Studio Nova assistant service exited with code ${code}.`)
   })
+
+  // The splash covers the embedded engine's own startup: a first launch
+  // migrates and installs the catalogues for up to half a minute, and the
+  // status line follows that progress step by step. A warm install answers
+  // in a second or two, so the wait is then imperceptible. The cap keeps a
+  // wedged engine from ever trapping the user behind the splash — the window
+  // opens anyway and the studio keeps working in local mode.
+  if (useLocalEngine && apiOrigin) {
+    const ready = await waitForBackendWithSplash(apiOrigin, 45000)
+    if (!ready) {
+      void waitForBackend(apiOrigin, 180000).then((ok) => {
+        if (ok) console.log(`Studio Nova local server ready at ${apiOrigin}`)
+        else console.error('Studio Nova local server did not become ready; the studio keeps working locally.')
+      })
+    }
+  }
 }
 
 function openExternalIfSafe(urlString) {
@@ -663,7 +741,7 @@ if (!hasSingleInstance) {
     try {
       if (process.env.STUDIO_NOVA_DESKTOP_DEV !== '1') {
         createSplash()
-        setSplashStatus('Starting the local engine…')
+        setSplashStatus('Preparing your studio…')
         await startPackagedServices()
         setSplashStatus('Opening your studio…')
       }

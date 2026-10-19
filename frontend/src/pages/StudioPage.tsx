@@ -1,4 +1,4 @@
-import { Cloud, FolderOpen, HardDrive, LayoutTemplate, RefreshCw, Trash2, WifiOff } from 'lucide-react'
+import { Cloud, FolderOpen, HardDrive, LayoutTemplate, LoaderCircle, RefreshCw, Trash2, WifiOff } from 'lucide-react'
 import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AccountMenu } from '@/features/auth/AccountMenu'
@@ -26,6 +26,7 @@ export default function StudioPage() {
   const { toast } = useToast()
   const [designs, setDesigns] = useState<LocalDesignSummary[] | null>(null)
   const [pending, setPending] = useState<LocalDesignSummary | null>(null)
+  const [prepElapsed, setPrepElapsed] = useState(0)
 
   const refresh = useCallback(async () => {
     try {
@@ -56,6 +57,20 @@ export default function StudioPage() {
   }, [refresh])
 
   const unreachable = bootstrapError !== null && bootstrapError.status !== 401
+
+  // While the local engine prepares, count up: the wait reads as progress, not a hang.
+  // The counter resets when the notice is re-entered (state adjusted during render).
+  const [prevUnreachable, setPrevUnreachable] = useState(unreachable)
+  if (prevUnreachable !== unreachable) {
+    setPrevUnreachable(unreachable)
+    setPrepElapsed(0)
+  }
+  useEffect(() => {
+    if (!unreachable) return
+    const startedAt = Date.now()
+    const id = setInterval(() => setPrepElapsed(Math.floor((Date.now() - startedAt) / 1000)), 1000)
+    return () => clearInterval(id)
+  }, [unreachable])
 
   async function remove(design: LocalDesignSummary) {
     try {
@@ -114,8 +129,12 @@ export default function StudioPage() {
             <div className={styles.noticeText}>
               <strong>Working in local mode</strong>
               <p>
-                Studio Nova’s local engine isn’t answering yet. Keep designing: everything on this page is saved on this computer. Accounts, sharing and AI
-                come back once it is ready.
+                Studio Nova’s local engine isn’t answering yet — on a first launch it installs templates, shapes and sounds, which takes about 30 seconds.
+                Keep designing: everything on this page is saved on this computer. Accounts, sharing and AI come back once it is ready.
+              </p>
+              <p className={styles.preparing}>
+                <LoaderCircle size={14} aria-hidden="true" className={styles.preparingSpin} />
+                Preparing your studio… {prepElapsed > 0 ? <span className={styles.preparingElapsed}>{prepElapsed}s</span> : null}
               </p>
             </div>
             <Button variant="secondary" size="sm" leftIcon={<RefreshCw size={15} />} loading={status === 'loading'} onClick={retryBootstrap}>

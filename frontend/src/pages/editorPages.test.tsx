@@ -235,7 +235,7 @@ describe('/design/:id', () => {
   it('shows the offline page when the network is down, and retries', async () => {
     let down = true
     renderApp('/design/abc', { user: makeUser(), handlers: [http.get('*/api/v1/designs/abc/', () => (down ? HttpResponse.error() : json(designDetail('abc'))))] })
-    expect(await screen.findByText('You’re offline')).toBeInTheDocument()
+    expect(await screen.findByText('We couldn’t reach Studio Nova')).toBeInTheDocument()
     down = false
     await userEvent.click(screen.getByRole('button', { name: 'Try again' }))
     expect(await screen.findByTestId('editor')).toBeInTheDocument()

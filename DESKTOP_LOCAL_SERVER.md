@@ -51,9 +51,13 @@ la config MCP de l'utilisateur).
 
 ## Limites connues / phases suivantes
 
-1. **Premier démarrage ~30 s** (migrations + catalogues) ; la fenêtre
-   s'ouvre tout de suite sur le studio local, et les fonctions de compte
-   s'activent dès que le serveur répond (sans redémarrage).
+1. **Premier démarrage ~30 s** (migrations + catalogues) ; le splash
+   couvre désormais cette préparation : sa ligne de statut suit
+   `startup-status.json` écrit par le sidecar (workspace, assets,
+   templates…) et une rotation d'astuces fait office d'introduction. La
+   fenêtre s'ouvre dès que `health` répond (plafond 45 s) ; au-delà elle
+   s'ouvre quand même sur le studio local, avec une carte « préparation »
+   qui compte les secondes et relance la connexion automatiquement.
 2. **PDF serveur off** : l'export PDF navigateur continue de marcher.
    Embarquer Chromium = phase 2.
 3. **Taille** : le sidecar ajoute quelques dizaines de Mo à l'installeur.

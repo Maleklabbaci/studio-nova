@@ -29,7 +29,11 @@ export type EditorProblem = 'not-found' | 'forbidden' | 'offline' | 'error' | 'l
 const COPY: Record<EditorProblem, { icon: ReactNode; title: string; description: string }> = {
   'not-found': { icon: <FileQuestion size={28} />, title: 'We can’t find that design', description: 'It may have been deleted, or the link is wrong.' },
   forbidden: { icon: <Lock size={28} />, title: 'You don’t have access to this design', description: 'Ask the owner to share it with you, or sign in with a different account.' },
-  offline: { icon: <WifiOff size={28} />, title: 'You’re offline', description: 'Reconnect to the internet to open this design. Nothing has been lost.' },
+  offline: {
+    icon: <WifiOff size={28} />,
+    title: 'We couldn’t reach Studio Nova',
+    description: 'Check your connection and try again. If you use the desktop app, the local engine may still be starting — give it a few seconds. Nothing has been lost.',
+  },
   error: { icon: <ServerCrash size={28} />, title: 'This design didn’t load', description: 'Something went wrong on our side. Your work is safe. Try again in a moment.' },
   'local-missing': {
     icon: <FileQuestion size={28} />,

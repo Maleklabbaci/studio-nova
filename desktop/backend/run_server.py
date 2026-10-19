@@ -15,12 +15,17 @@ First start runs the migrations and the local catalogue seeds (elements,
 templates, audio — all bundled data); network-backed syncs (fonts,
 models) are best-effort and never block startup. Later starts migrate
 only, so updating the app updates the local database in place.
+
+While this runs, each step is noted in `startup-status.json` inside the
+data directory: the desktop splash tails it so a first launch reads as
+live progress instead of a silent wait.
 """
 
 from __future__ import annotations
 
 import contextlib
 import hashlib
+import json
 import os
 import secrets
 import sys
@@ -69,6 +74,23 @@ def _secret_key(data: Path) -> str:
     return value
 
 
+def _write_status(data: Path, step: str, message: str) -> None:
+    """Best-effort progress note for the desktop splash (`startup-status.json`).
+
+    The Electron shell tails this file while the health check is still down, so
+    the first-start wait reads as live progress — and the window can say what
+    the engine is doing instead of looking frozen for half a minute.
+    """
+    try:
+        payload = json.dumps({"step": step, "message": message})
+        target = data / "startup-status.json"
+        tmp = data / "startup-status.json.tmp"
+        tmp.write_text(payload, encoding="utf-8")
+        tmp.replace(target)
+    except OSError:
+        pass
+
+
 # (marker file, commands) run once per install; failures are logged, never fatal:
 # a desktop that starts with an empty catalogue is better than one that does not start.
 # Bundled-data catalogues run before serving; the ones that download
@@ -92,6 +114,16 @@ def _prepare_database() -> None:
     from django.core.management import call_command
 
     call_command("migrate", interactive=False, verbosity=0)
+
+
+def _collect_static() -> None:
+    """Collect admin/static assets out of the startup path: only /admin needs them.
+
+    It used to run before the catalogues on every start; a background thread
+    keeps the local engine (and the app) coming up sooner.
+    """
+    from django.core.management import call_command
+
     try:
         call_command("collectstatic", interactive=False, verbosity=0)
     except Exception as exc:  # static collection must never brick startup
@@ -179,6 +211,7 @@ def main() -> None:
     backend = _backend_dir()
     sys.path.insert(0, str(backend))
     print(f"[studio-nova-backend] backend dir: {backend}", flush=True)
+    _write_status(data, "starting", "Starting the local engine…")
 
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "doory.settings.desktop")
     os.environ["STUDIO_NOVA_DATA_DIR"] = str(data)
@@ -191,10 +224,13 @@ def main() -> None:
 
     django.setup()
     print("[studio-nova-backend] Django ready", flush=True)
+    _write_status(data, "workspace", "Preparing your workspace…")
     application = _load_asgi_application()
     _prepare_database()
     print("[studio-nova-backend] database ready", flush=True)
+    _write_status(data, "assets", "Installing shapes, stickers and sounds…")
     _run_seed_group(data, _LOCAL_SEEDS)
+    _write_status(data, "templates", "Installing the template gallery…")
     _seed_templates(data, backend)
     print("[studio-nova-backend] catalogues ready", flush=True)
 
@@ -205,8 +241,10 @@ def main() -> None:
     # Fonts and the (server-side copy of the) background-removal model
     # download in the background; the editor works without them meanwhile.
     threading.Thread(target=_run_seed_group, args=(data, _NETWORK_SEEDS), daemon=True).start()
+    threading.Thread(target=_collect_static, daemon=True).start()
 
     port = int(os.environ.get("STUDIO_NOVA_BACKEND_PORT", "49317"))
+    _write_status(data, "serving", "Almost ready…")
     print(f"[studio-nova-backend] serving on 127.0.0.1:{port}", flush=True)
     uvicorn.run(application, host="127.0.0.1", port=port, log_level="warning")
 
