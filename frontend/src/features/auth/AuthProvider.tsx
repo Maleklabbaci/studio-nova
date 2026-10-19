@@ -62,6 +62,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [lostSession, setLostSession] = useState<LostSession | null>(null)
   const mounted = useRef(true)
   const userRef = useRef<ApiUser | null>(null)
+  /** True while the last session check failed, so a later success can refresh what failed meanwhile. */
+  const bootstrapFailed = useRef(false)
 
   useEffect(() => {
     mounted.current = true
@@ -101,7 +103,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           setStatus(nextUser ? 'authenticated' : 'anonymous')
           setBootstrapError(null)
           retries = 0
+          // The engine was still starting: queries that failed meanwhile (templates, designs…) get another go.
+          if (bootstrapFailed.current) {
+            bootstrapFailed.current = false
+            void queryClient.invalidateQueries()
+          }
         } else {
+          bootstrapFailed.current = true
           setBootstrapError(isApiError(me.reason) ? me.reason : new ApiError({ status: 0, code: 'network_error', message: 'Could not reach Studio Nova.' }))
           userRef.current = null
           setUserState(null)
@@ -141,7 +149,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       window.removeEventListener('online', retryNow)
       controller.abort()
     }
-  }, [attempt])
+  }, [attempt, queryClient])
 
   const applyUser = useCallback((next: ApiUser | null) => {
     if (next) {
