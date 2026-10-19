@@ -10,8 +10,15 @@ const expected = {
   windows: 'StudioNova-win-x64.exe',
   macos: 'StudioNova-mac-universal.dmg',
 }
+// The published manifest names the GitHub release assets, not files
+// next to it: the installers are far larger than the site host allows, so
+// they live on GitHub Releases and both the download page and the app's
+// in-app update check follow that URL.
+const repository = process.env.GITHUB_REPOSITORY || 'Maleklabbaci/studio-nova'
 const downloads = Object.fromEntries(
-  Object.entries(expected).filter(([, filename]) => fs.existsSync(path.join(downloadsDir, filename))),
+  Object.entries(expected)
+    .filter(([, filename]) => fs.existsSync(path.join(downloadsDir, filename)))
+    .map(([key, filename]) => [key, `https://github.com/${repository}/releases/latest/download/${filename}`]),
 )
 
 if (process.env.REQUIRE_ALL_DESKTOP_INSTALLERS === '1') {

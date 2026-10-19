@@ -24,6 +24,15 @@ assert.strictEqual(pickInstaller(manifest, 'darwin'), 'x.dmg')
 assert.strictEqual(pickInstaller(manifest, 'linux'), '')
 assert.strictEqual(pickInstaller({ downloads: { windows: '../evil.exe' } }, 'win32'), '')
 assert.strictEqual(pickInstaller({ downloads: { windows: 'https://evil.example/x.exe' } }, 'win32'), '')
+assert.strictEqual(pickInstaller({ downloads: { windows: 'http://github.com/x.exe' } }, 'win32'), '')
+assert.strictEqual(pickInstaller({ downloads: { windows: 'https://github.com@evil.example/x.exe' } }, 'win32'), '')
+assert.strictEqual(pickInstaller({ downloads: { windows: 'https://user:pw@github.com/x.exe' } }, 'win32'), '')
+assert.strictEqual(pickInstaller({ downloads: { windows: '//github.com/x.exe' } }, 'win32'), '')
+
+// The published manifest names the GitHub release assets, not files next to it.
+const githubAsset = 'https://github.com/Maleklabbaci/studio-nova/releases/latest/download/StudioNova-win-x64.exe'
+assert.strictEqual(pickInstaller({ version: '0.1.3', downloads: { windows: githubAsset } }, 'win32'), githubAsset)
+assert.strictEqual(installerUrl('https://studio-nova-b6e.pages.dev/downloads/manifest.json', githubAsset), githubAsset)
 assert.strictEqual(pickInstaller(null, 'win32'), '')
 
 assert.strictEqual(
