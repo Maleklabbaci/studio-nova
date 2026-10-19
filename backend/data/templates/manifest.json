@@ -209,6 +209,6666 @@
         "Great Vibes",
         "Inter"
       ]
+    },
+    {
+      "slug": "factory-promo-coffee-shop-bold",
+      "title": "Maison Café — Promo post (Bold)",
+      "category": "social-media",
+      "tags": [
+        "promo",
+        "instagram",
+        "post",
+        "sale",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "bold"
+      ],
+      "description": "A bold promo post for Maison Café: fresh croissants, every morning Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Inter"
+      ]
+    },
+    {
+      "slug": "factory-promo-coffee-shop-light",
+      "title": "Maison Café — Promo post (Light)",
+      "category": "social-media",
+      "tags": [
+        "promo",
+        "instagram",
+        "post",
+        "sale",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "light"
+      ],
+      "description": "A light promo post for Maison Café: fresh croissants, every morning Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Lora"
+      ]
+    },
+    {
+      "slug": "factory-promo-coffee-shop-pop",
+      "title": "Maison Café — Promo post (Pop)",
+      "category": "social-media",
+      "tags": [
+        "promo",
+        "instagram",
+        "post",
+        "sale",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "pop"
+      ],
+      "description": "A pop promo post for Maison Café: fresh croissants, every morning Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Manrope"
+      ]
+    },
+    {
+      "slug": "factory-promo-fashion-bold",
+      "title": "Atelier Lina — Promo post (Bold)",
+      "category": "social-media",
+      "tags": [
+        "promo",
+        "instagram",
+        "post",
+        "sale",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "bold"
+      ],
+      "description": "A bold promo post for Atelier Lina: the autumn collection is here Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-promo-fashion-light",
+      "title": "Atelier Lina — Promo post (Light)",
+      "category": "social-media",
+      "tags": [
+        "promo",
+        "instagram",
+        "post",
+        "sale",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "light"
+      ],
+      "description": "A light promo post for Atelier Lina: the autumn collection is here Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-promo-fashion-pop",
+      "title": "Atelier Lina — Promo post (Pop)",
+      "category": "social-media",
+      "tags": [
+        "promo",
+        "instagram",
+        "post",
+        "sale",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "pop"
+      ],
+      "description": "A pop promo post for Atelier Lina: the autumn collection is here Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-promo-fitness-bold",
+      "title": "Pulse Gym — Promo post (Bold)",
+      "category": "social-media",
+      "tags": [
+        "promo",
+        "instagram",
+        "post",
+        "sale",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "bold"
+      ],
+      "description": "A bold promo post for Pulse Gym: stronger every single week Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-promo-fitness-light",
+      "title": "Pulse Gym — Promo post (Light)",
+      "category": "social-media",
+      "tags": [
+        "promo",
+        "instagram",
+        "post",
+        "sale",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "light"
+      ],
+      "description": "A light promo post for Pulse Gym: stronger every single week Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-promo-fitness-pop",
+      "title": "Pulse Gym — Promo post (Pop)",
+      "category": "social-media",
+      "tags": [
+        "promo",
+        "instagram",
+        "post",
+        "sale",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "pop"
+      ],
+      "description": "A pop promo post for Pulse Gym: stronger every single week Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-promo-beauty-bold",
+      "title": "Glow Studio — Promo post (Bold)",
+      "category": "social-media",
+      "tags": [
+        "promo",
+        "instagram",
+        "post",
+        "sale",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "bold"
+      ],
+      "description": "A bold promo post for Glow Studio: your skin, but luminous Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Manrope"
+      ]
+    },
+    {
+      "slug": "factory-promo-beauty-light",
+      "title": "Glow Studio — Promo post (Light)",
+      "category": "social-media",
+      "tags": [
+        "promo",
+        "instagram",
+        "post",
+        "sale",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "light"
+      ],
+      "description": "A light promo post for Glow Studio: your skin, but luminous Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Josefin Sans"
+      ]
+    },
+    {
+      "slug": "factory-promo-beauty-pop",
+      "title": "Glow Studio — Promo post (Pop)",
+      "category": "social-media",
+      "tags": [
+        "promo",
+        "instagram",
+        "post",
+        "sale",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "pop"
+      ],
+      "description": "A pop promo post for Glow Studio: your skin, but luminous Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "DM Sans"
+      ]
+    },
+    {
+      "slug": "factory-promo-restaurant-bold",
+      "title": "Saveurs — Promo post (Bold)",
+      "category": "social-media",
+      "tags": [
+        "promo",
+        "instagram",
+        "post",
+        "sale",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "bold"
+      ],
+      "description": "A bold promo post for Saveurs: taste the season, fresh daily Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-promo-restaurant-light",
+      "title": "Saveurs — Promo post (Light)",
+      "category": "social-media",
+      "tags": [
+        "promo",
+        "instagram",
+        "post",
+        "sale",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "light"
+      ],
+      "description": "A light promo post for Saveurs: taste the season, fresh daily Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-promo-restaurant-pop",
+      "title": "Saveurs — Promo post (Pop)",
+      "category": "social-media",
+      "tags": [
+        "promo",
+        "instagram",
+        "post",
+        "sale",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "pop"
+      ],
+      "description": "A pop promo post for Saveurs: taste the season, fresh daily Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-promo-real-estate-bold",
+      "title": "Horizon Immobilier — Promo post (Bold)",
+      "category": "social-media",
+      "tags": [
+        "promo",
+        "instagram",
+        "post",
+        "sale",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "bold"
+      ],
+      "description": "A bold promo post for Horizon Immobilier: homes that feel like you Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-promo-real-estate-light",
+      "title": "Horizon Immobilier — Promo post (Light)",
+      "category": "social-media",
+      "tags": [
+        "promo",
+        "instagram",
+        "post",
+        "sale",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "light"
+      ],
+      "description": "A light promo post for Horizon Immobilier: homes that feel like you Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-promo-real-estate-pop",
+      "title": "Horizon Immobilier — Promo post (Pop)",
+      "category": "social-media",
+      "tags": [
+        "promo",
+        "instagram",
+        "post",
+        "sale",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "pop"
+      ],
+      "description": "A pop promo post for Horizon Immobilier: homes that feel like you Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-promo-music-bold",
+      "title": "Nébula Live — Promo post (Bold)",
+      "category": "social-media",
+      "tags": [
+        "promo",
+        "instagram",
+        "post",
+        "sale",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "bold"
+      ],
+      "description": "A bold promo post for Nébula Live: one night, pure energy Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "DM Sans"
+      ]
+    },
+    {
+      "slug": "factory-promo-music-light",
+      "title": "Nébula Live — Promo post (Light)",
+      "category": "social-media",
+      "tags": [
+        "promo",
+        "instagram",
+        "post",
+        "sale",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "light"
+      ],
+      "description": "A light promo post for Nébula Live: one night, pure energy Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Inter"
+      ]
+    },
+    {
+      "slug": "factory-promo-music-pop",
+      "title": "Nébula Live — Promo post (Pop)",
+      "category": "social-media",
+      "tags": [
+        "promo",
+        "instagram",
+        "post",
+        "sale",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "pop"
+      ],
+      "description": "A pop promo post for Nébula Live: one night, pure energy Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Lora"
+      ]
+    },
+    {
+      "slug": "factory-promo-bakery-bold",
+      "title": "Four Doré — Promo post (Bold)",
+      "category": "social-media",
+      "tags": [
+        "promo",
+        "instagram",
+        "post",
+        "sale",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "bold"
+      ],
+      "description": "A bold promo post for Four Doré: warm bread, happy mornings Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-promo-bakery-light",
+      "title": "Four Doré — Promo post (Light)",
+      "category": "social-media",
+      "tags": [
+        "promo",
+        "instagram",
+        "post",
+        "sale",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "light"
+      ],
+      "description": "A light promo post for Four Doré: warm bread, happy mornings Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-promo-bakery-pop",
+      "title": "Four Doré — Promo post (Pop)",
+      "category": "social-media",
+      "tags": [
+        "promo",
+        "instagram",
+        "post",
+        "sale",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "pop"
+      ],
+      "description": "A pop promo post for Four Doré: warm bread, happy mornings Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-quote-coffee-shop-bold",
+      "title": "Maison Café — Quote post (Bold)",
+      "category": "social-media",
+      "tags": [
+        "quote",
+        "instagram",
+        "post",
+        "inspiration",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "bold"
+      ],
+      "description": "A bold quote post for Maison Café: fresh croissants, every morning Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-quote-coffee-shop-light",
+      "title": "Maison Café — Quote post (Light)",
+      "category": "social-media",
+      "tags": [
+        "quote",
+        "instagram",
+        "post",
+        "inspiration",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "light"
+      ],
+      "description": "A light quote post for Maison Café: fresh croissants, every morning Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-quote-coffee-shop-pop",
+      "title": "Maison Café — Quote post (Pop)",
+      "category": "social-media",
+      "tags": [
+        "quote",
+        "instagram",
+        "post",
+        "inspiration",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "pop"
+      ],
+      "description": "A pop quote post for Maison Café: fresh croissants, every morning Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-quote-fashion-bold",
+      "title": "Atelier Lina — Quote post (Bold)",
+      "category": "social-media",
+      "tags": [
+        "quote",
+        "instagram",
+        "post",
+        "inspiration",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "bold"
+      ],
+      "description": "A bold quote post for Atelier Lina: the autumn collection is here Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-quote-fashion-light",
+      "title": "Atelier Lina — Quote post (Light)",
+      "category": "social-media",
+      "tags": [
+        "quote",
+        "instagram",
+        "post",
+        "inspiration",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "light"
+      ],
+      "description": "A light quote post for Atelier Lina: the autumn collection is here Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-quote-fashion-pop",
+      "title": "Atelier Lina — Quote post (Pop)",
+      "category": "social-media",
+      "tags": [
+        "quote",
+        "instagram",
+        "post",
+        "inspiration",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "pop"
+      ],
+      "description": "A pop quote post for Atelier Lina: the autumn collection is here Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-quote-fitness-bold",
+      "title": "Pulse Gym — Quote post (Bold)",
+      "category": "social-media",
+      "tags": [
+        "quote",
+        "instagram",
+        "post",
+        "inspiration",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "bold"
+      ],
+      "description": "A bold quote post for Pulse Gym: stronger every single week Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-quote-fitness-light",
+      "title": "Pulse Gym — Quote post (Light)",
+      "category": "social-media",
+      "tags": [
+        "quote",
+        "instagram",
+        "post",
+        "inspiration",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "light"
+      ],
+      "description": "A light quote post for Pulse Gym: stronger every single week Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-quote-fitness-pop",
+      "title": "Pulse Gym — Quote post (Pop)",
+      "category": "social-media",
+      "tags": [
+        "quote",
+        "instagram",
+        "post",
+        "inspiration",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "pop"
+      ],
+      "description": "A pop quote post for Pulse Gym: stronger every single week Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-quote-beauty-bold",
+      "title": "Glow Studio — Quote post (Bold)",
+      "category": "social-media",
+      "tags": [
+        "quote",
+        "instagram",
+        "post",
+        "inspiration",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "bold"
+      ],
+      "description": "A bold quote post for Glow Studio: your skin, but luminous Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-quote-beauty-light",
+      "title": "Glow Studio — Quote post (Light)",
+      "category": "social-media",
+      "tags": [
+        "quote",
+        "instagram",
+        "post",
+        "inspiration",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "light"
+      ],
+      "description": "A light quote post for Glow Studio: your skin, but luminous Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-quote-beauty-pop",
+      "title": "Glow Studio — Quote post (Pop)",
+      "category": "social-media",
+      "tags": [
+        "quote",
+        "instagram",
+        "post",
+        "inspiration",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "pop"
+      ],
+      "description": "A pop quote post for Glow Studio: your skin, but luminous Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-quote-restaurant-bold",
+      "title": "Saveurs — Quote post (Bold)",
+      "category": "social-media",
+      "tags": [
+        "quote",
+        "instagram",
+        "post",
+        "inspiration",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "bold"
+      ],
+      "description": "A bold quote post for Saveurs: taste the season, fresh daily Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-quote-restaurant-light",
+      "title": "Saveurs — Quote post (Light)",
+      "category": "social-media",
+      "tags": [
+        "quote",
+        "instagram",
+        "post",
+        "inspiration",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "light"
+      ],
+      "description": "A light quote post for Saveurs: taste the season, fresh daily Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-quote-restaurant-pop",
+      "title": "Saveurs — Quote post (Pop)",
+      "category": "social-media",
+      "tags": [
+        "quote",
+        "instagram",
+        "post",
+        "inspiration",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "pop"
+      ],
+      "description": "A pop quote post for Saveurs: taste the season, fresh daily Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-quote-real-estate-bold",
+      "title": "Horizon Immobilier — Quote post (Bold)",
+      "category": "social-media",
+      "tags": [
+        "quote",
+        "instagram",
+        "post",
+        "inspiration",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "bold"
+      ],
+      "description": "A bold quote post for Horizon Immobilier: homes that feel like you Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-quote-real-estate-light",
+      "title": "Horizon Immobilier — Quote post (Light)",
+      "category": "social-media",
+      "tags": [
+        "quote",
+        "instagram",
+        "post",
+        "inspiration",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "light"
+      ],
+      "description": "A light quote post for Horizon Immobilier: homes that feel like you Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-quote-real-estate-pop",
+      "title": "Horizon Immobilier — Quote post (Pop)",
+      "category": "social-media",
+      "tags": [
+        "quote",
+        "instagram",
+        "post",
+        "inspiration",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "pop"
+      ],
+      "description": "A pop quote post for Horizon Immobilier: homes that feel like you Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-quote-music-bold",
+      "title": "Nébula Live — Quote post (Bold)",
+      "category": "social-media",
+      "tags": [
+        "quote",
+        "instagram",
+        "post",
+        "inspiration",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "bold"
+      ],
+      "description": "A bold quote post for Nébula Live: one night, pure energy Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-quote-music-light",
+      "title": "Nébula Live — Quote post (Light)",
+      "category": "social-media",
+      "tags": [
+        "quote",
+        "instagram",
+        "post",
+        "inspiration",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "light"
+      ],
+      "description": "A light quote post for Nébula Live: one night, pure energy Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-quote-music-pop",
+      "title": "Nébula Live — Quote post (Pop)",
+      "category": "social-media",
+      "tags": [
+        "quote",
+        "instagram",
+        "post",
+        "inspiration",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "pop"
+      ],
+      "description": "A pop quote post for Nébula Live: one night, pure energy Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-quote-bakery-bold",
+      "title": "Four Doré — Quote post (Bold)",
+      "category": "social-media",
+      "tags": [
+        "quote",
+        "instagram",
+        "post",
+        "inspiration",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "bold"
+      ],
+      "description": "A bold quote post for Four Doré: warm bread, happy mornings Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-quote-bakery-light",
+      "title": "Four Doré — Quote post (Light)",
+      "category": "social-media",
+      "tags": [
+        "quote",
+        "instagram",
+        "post",
+        "inspiration",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "light"
+      ],
+      "description": "A light quote post for Four Doré: warm bread, happy mornings Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-quote-bakery-pop",
+      "title": "Four Doré — Quote post (Pop)",
+      "category": "social-media",
+      "tags": [
+        "quote",
+        "instagram",
+        "post",
+        "inspiration",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "pop"
+      ],
+      "description": "A pop quote post for Four Doré: warm bread, happy mornings Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-post",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-story-coffee-shop-bold",
+      "title": "Maison Café — Event story (Bold)",
+      "category": "social-media",
+      "tags": [
+        "story",
+        "event",
+        "instagram",
+        "invitation",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "bold"
+      ],
+      "description": "A bold event story for Maison Café: fresh croissants, every morning Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-story",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-story-coffee-shop-light",
+      "title": "Maison Café — Event story (Light)",
+      "category": "social-media",
+      "tags": [
+        "story",
+        "event",
+        "instagram",
+        "invitation",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "light"
+      ],
+      "description": "A light event story for Maison Café: fresh croissants, every morning Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-story",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-story-coffee-shop-pop",
+      "title": "Maison Café — Event story (Pop)",
+      "category": "social-media",
+      "tags": [
+        "story",
+        "event",
+        "instagram",
+        "invitation",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "pop"
+      ],
+      "description": "A pop event story for Maison Café: fresh croissants, every morning Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-story",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-story-fashion-bold",
+      "title": "Atelier Lina — Event story (Bold)",
+      "category": "social-media",
+      "tags": [
+        "story",
+        "event",
+        "instagram",
+        "invitation",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "bold"
+      ],
+      "description": "A bold event story for Atelier Lina: the autumn collection is here Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-story",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Josefin Sans"
+      ]
+    },
+    {
+      "slug": "factory-story-fashion-light",
+      "title": "Atelier Lina — Event story (Light)",
+      "category": "social-media",
+      "tags": [
+        "story",
+        "event",
+        "instagram",
+        "invitation",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "light"
+      ],
+      "description": "A light event story for Atelier Lina: the autumn collection is here Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-story",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "DM Sans"
+      ]
+    },
+    {
+      "slug": "factory-story-fashion-pop",
+      "title": "Atelier Lina — Event story (Pop)",
+      "category": "social-media",
+      "tags": [
+        "story",
+        "event",
+        "instagram",
+        "invitation",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "pop"
+      ],
+      "description": "A pop event story for Atelier Lina: the autumn collection is here Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-story",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Inter"
+      ]
+    },
+    {
+      "slug": "factory-story-fitness-bold",
+      "title": "Pulse Gym — Event story (Bold)",
+      "category": "social-media",
+      "tags": [
+        "story",
+        "event",
+        "instagram",
+        "invitation",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "bold"
+      ],
+      "description": "A bold event story for Pulse Gym: stronger every single week Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-story",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-story-fitness-light",
+      "title": "Pulse Gym — Event story (Light)",
+      "category": "social-media",
+      "tags": [
+        "story",
+        "event",
+        "instagram",
+        "invitation",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "light"
+      ],
+      "description": "A light event story for Pulse Gym: stronger every single week Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-story",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-story-fitness-pop",
+      "title": "Pulse Gym — Event story (Pop)",
+      "category": "social-media",
+      "tags": [
+        "story",
+        "event",
+        "instagram",
+        "invitation",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "pop"
+      ],
+      "description": "A pop event story for Pulse Gym: stronger every single week Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-story",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-story-beauty-bold",
+      "title": "Glow Studio — Event story (Bold)",
+      "category": "social-media",
+      "tags": [
+        "story",
+        "event",
+        "instagram",
+        "invitation",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "bold"
+      ],
+      "description": "A bold event story for Glow Studio: your skin, but luminous Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-story",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-story-beauty-light",
+      "title": "Glow Studio — Event story (Light)",
+      "category": "social-media",
+      "tags": [
+        "story",
+        "event",
+        "instagram",
+        "invitation",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "light"
+      ],
+      "description": "A light event story for Glow Studio: your skin, but luminous Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-story",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-story-beauty-pop",
+      "title": "Glow Studio — Event story (Pop)",
+      "category": "social-media",
+      "tags": [
+        "story",
+        "event",
+        "instagram",
+        "invitation",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "pop"
+      ],
+      "description": "A pop event story for Glow Studio: your skin, but luminous Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-story",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-story-restaurant-bold",
+      "title": "Saveurs — Event story (Bold)",
+      "category": "social-media",
+      "tags": [
+        "story",
+        "event",
+        "instagram",
+        "invitation",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "bold"
+      ],
+      "description": "A bold event story for Saveurs: taste the season, fresh daily Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-story",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Inter"
+      ]
+    },
+    {
+      "slug": "factory-story-restaurant-light",
+      "title": "Saveurs — Event story (Light)",
+      "category": "social-media",
+      "tags": [
+        "story",
+        "event",
+        "instagram",
+        "invitation",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "light"
+      ],
+      "description": "A light event story for Saveurs: taste the season, fresh daily Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-story",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Lora"
+      ]
+    },
+    {
+      "slug": "factory-story-restaurant-pop",
+      "title": "Saveurs — Event story (Pop)",
+      "category": "social-media",
+      "tags": [
+        "story",
+        "event",
+        "instagram",
+        "invitation",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "pop"
+      ],
+      "description": "A pop event story for Saveurs: taste the season, fresh daily Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-story",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Manrope"
+      ]
+    },
+    {
+      "slug": "factory-story-real-estate-bold",
+      "title": "Horizon Immobilier — Event story (Bold)",
+      "category": "social-media",
+      "tags": [
+        "story",
+        "event",
+        "instagram",
+        "invitation",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "bold"
+      ],
+      "description": "A bold event story for Horizon Immobilier: homes that feel like you Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-story",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-story-real-estate-light",
+      "title": "Horizon Immobilier — Event story (Light)",
+      "category": "social-media",
+      "tags": [
+        "story",
+        "event",
+        "instagram",
+        "invitation",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "light"
+      ],
+      "description": "A light event story for Horizon Immobilier: homes that feel like you Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-story",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-story-real-estate-pop",
+      "title": "Horizon Immobilier — Event story (Pop)",
+      "category": "social-media",
+      "tags": [
+        "story",
+        "event",
+        "instagram",
+        "invitation",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "pop"
+      ],
+      "description": "A pop event story for Horizon Immobilier: homes that feel like you Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-story",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-story-music-bold",
+      "title": "Nébula Live — Event story (Bold)",
+      "category": "social-media",
+      "tags": [
+        "story",
+        "event",
+        "instagram",
+        "invitation",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "bold"
+      ],
+      "description": "A bold event story for Nébula Live: one night, pure energy Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-story",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-story-music-light",
+      "title": "Nébula Live — Event story (Light)",
+      "category": "social-media",
+      "tags": [
+        "story",
+        "event",
+        "instagram",
+        "invitation",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "light"
+      ],
+      "description": "A light event story for Nébula Live: one night, pure energy Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-story",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-story-music-pop",
+      "title": "Nébula Live — Event story (Pop)",
+      "category": "social-media",
+      "tags": [
+        "story",
+        "event",
+        "instagram",
+        "invitation",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "pop"
+      ],
+      "description": "A pop event story for Nébula Live: one night, pure energy Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-story",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-story-bakery-bold",
+      "title": "Four Doré — Event story (Bold)",
+      "category": "social-media",
+      "tags": [
+        "story",
+        "event",
+        "instagram",
+        "invitation",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "bold"
+      ],
+      "description": "A bold event story for Four Doré: warm bread, happy mornings Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-story",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Manrope"
+      ]
+    },
+    {
+      "slug": "factory-story-bakery-light",
+      "title": "Four Doré — Event story (Light)",
+      "category": "social-media",
+      "tags": [
+        "story",
+        "event",
+        "instagram",
+        "invitation",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "light"
+      ],
+      "description": "A light event story for Four Doré: warm bread, happy mornings Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-story",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Josefin Sans"
+      ]
+    },
+    {
+      "slug": "factory-story-bakery-pop",
+      "title": "Four Doré — Event story (Pop)",
+      "category": "social-media",
+      "tags": [
+        "story",
+        "event",
+        "instagram",
+        "invitation",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "pop"
+      ],
+      "description": "A pop event story for Four Doré: warm bread, happy mornings Replace the photo slot, wording and colours to make it yours.",
+      "preset": "instagram-story",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "DM Sans"
+      ]
+    },
+    {
+      "slug": "factory-poster-coffee-shop-bold",
+      "title": "Maison Café — Event poster (Bold)",
+      "category": "posters",
+      "tags": [
+        "poster",
+        "event",
+        "print",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "bold"
+      ],
+      "description": "A bold event poster for Maison Café: fresh croissants, every morning Replace the photo slot, wording and colours to make it yours.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Lora"
+      ]
+    },
+    {
+      "slug": "factory-poster-coffee-shop-light",
+      "title": "Maison Café — Event poster (Light)",
+      "category": "posters",
+      "tags": [
+        "poster",
+        "event",
+        "print",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "light"
+      ],
+      "description": "A light event poster for Maison Café: fresh croissants, every morning Replace the photo slot, wording and colours to make it yours.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Manrope"
+      ]
+    },
+    {
+      "slug": "factory-poster-coffee-shop-pop",
+      "title": "Maison Café — Event poster (Pop)",
+      "category": "posters",
+      "tags": [
+        "poster",
+        "event",
+        "print",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "pop"
+      ],
+      "description": "A pop event poster for Maison Café: fresh croissants, every morning Replace the photo slot, wording and colours to make it yours.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Josefin Sans"
+      ]
+    },
+    {
+      "slug": "factory-poster-fashion-bold",
+      "title": "Atelier Lina — Event poster (Bold)",
+      "category": "posters",
+      "tags": [
+        "poster",
+        "event",
+        "print",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "bold"
+      ],
+      "description": "A bold event poster for Atelier Lina: the autumn collection is here Replace the photo slot, wording and colours to make it yours.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-poster-fashion-light",
+      "title": "Atelier Lina — Event poster (Light)",
+      "category": "posters",
+      "tags": [
+        "poster",
+        "event",
+        "print",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "light"
+      ],
+      "description": "A light event poster for Atelier Lina: the autumn collection is here Replace the photo slot, wording and colours to make it yours.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-poster-fashion-pop",
+      "title": "Atelier Lina — Event poster (Pop)",
+      "category": "posters",
+      "tags": [
+        "poster",
+        "event",
+        "print",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "pop"
+      ],
+      "description": "A pop event poster for Atelier Lina: the autumn collection is here Replace the photo slot, wording and colours to make it yours.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-poster-fitness-bold",
+      "title": "Pulse Gym — Event poster (Bold)",
+      "category": "posters",
+      "tags": [
+        "poster",
+        "event",
+        "print",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "bold"
+      ],
+      "description": "A bold event poster for Pulse Gym: stronger every single week Replace the photo slot, wording and colours to make it yours.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-poster-fitness-light",
+      "title": "Pulse Gym — Event poster (Light)",
+      "category": "posters",
+      "tags": [
+        "poster",
+        "event",
+        "print",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "light"
+      ],
+      "description": "A light event poster for Pulse Gym: stronger every single week Replace the photo slot, wording and colours to make it yours.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-poster-fitness-pop",
+      "title": "Pulse Gym — Event poster (Pop)",
+      "category": "posters",
+      "tags": [
+        "poster",
+        "event",
+        "print",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "pop"
+      ],
+      "description": "A pop event poster for Pulse Gym: stronger every single week Replace the photo slot, wording and colours to make it yours.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-poster-beauty-bold",
+      "title": "Glow Studio — Event poster (Bold)",
+      "category": "posters",
+      "tags": [
+        "poster",
+        "event",
+        "print",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "bold"
+      ],
+      "description": "A bold event poster for Glow Studio: your skin, but luminous Replace the photo slot, wording and colours to make it yours.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Josefin Sans"
+      ]
+    },
+    {
+      "slug": "factory-poster-beauty-light",
+      "title": "Glow Studio — Event poster (Light)",
+      "category": "posters",
+      "tags": [
+        "poster",
+        "event",
+        "print",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "light"
+      ],
+      "description": "A light event poster for Glow Studio: your skin, but luminous Replace the photo slot, wording and colours to make it yours.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "DM Sans"
+      ]
+    },
+    {
+      "slug": "factory-poster-beauty-pop",
+      "title": "Glow Studio — Event poster (Pop)",
+      "category": "posters",
+      "tags": [
+        "poster",
+        "event",
+        "print",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "pop"
+      ],
+      "description": "A pop event poster for Glow Studio: your skin, but luminous Replace the photo slot, wording and colours to make it yours.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Inter"
+      ]
+    },
+    {
+      "slug": "factory-poster-restaurant-bold",
+      "title": "Saveurs — Event poster (Bold)",
+      "category": "posters",
+      "tags": [
+        "poster",
+        "event",
+        "print",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "bold"
+      ],
+      "description": "A bold event poster for Saveurs: taste the season, fresh daily Replace the photo slot, wording and colours to make it yours.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-poster-restaurant-light",
+      "title": "Saveurs — Event poster (Light)",
+      "category": "posters",
+      "tags": [
+        "poster",
+        "event",
+        "print",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "light"
+      ],
+      "description": "A light event poster for Saveurs: taste the season, fresh daily Replace the photo slot, wording and colours to make it yours.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-poster-restaurant-pop",
+      "title": "Saveurs — Event poster (Pop)",
+      "category": "posters",
+      "tags": [
+        "poster",
+        "event",
+        "print",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "pop"
+      ],
+      "description": "A pop event poster for Saveurs: taste the season, fresh daily Replace the photo slot, wording and colours to make it yours.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-poster-real-estate-bold",
+      "title": "Horizon Immobilier — Event poster (Bold)",
+      "category": "posters",
+      "tags": [
+        "poster",
+        "event",
+        "print",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "bold"
+      ],
+      "description": "A bold event poster for Horizon Immobilier: homes that feel like you Replace the photo slot, wording and colours to make it yours.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-poster-real-estate-light",
+      "title": "Horizon Immobilier — Event poster (Light)",
+      "category": "posters",
+      "tags": [
+        "poster",
+        "event",
+        "print",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "light"
+      ],
+      "description": "A light event poster for Horizon Immobilier: homes that feel like you Replace the photo slot, wording and colours to make it yours.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-poster-real-estate-pop",
+      "title": "Horizon Immobilier — Event poster (Pop)",
+      "category": "posters",
+      "tags": [
+        "poster",
+        "event",
+        "print",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "pop"
+      ],
+      "description": "A pop event poster for Horizon Immobilier: homes that feel like you Replace the photo slot, wording and colours to make it yours.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-poster-music-bold",
+      "title": "Nébula Live — Event poster (Bold)",
+      "category": "posters",
+      "tags": [
+        "poster",
+        "event",
+        "print",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "bold"
+      ],
+      "description": "A bold event poster for Nébula Live: one night, pure energy Replace the photo slot, wording and colours to make it yours.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Inter"
+      ]
+    },
+    {
+      "slug": "factory-poster-music-light",
+      "title": "Nébula Live — Event poster (Light)",
+      "category": "posters",
+      "tags": [
+        "poster",
+        "event",
+        "print",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "light"
+      ],
+      "description": "A light event poster for Nébula Live: one night, pure energy Replace the photo slot, wording and colours to make it yours.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Lora"
+      ]
+    },
+    {
+      "slug": "factory-poster-music-pop",
+      "title": "Nébula Live — Event poster (Pop)",
+      "category": "posters",
+      "tags": [
+        "poster",
+        "event",
+        "print",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "pop"
+      ],
+      "description": "A pop event poster for Nébula Live: one night, pure energy Replace the photo slot, wording and colours to make it yours.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Manrope"
+      ]
+    },
+    {
+      "slug": "factory-poster-bakery-bold",
+      "title": "Four Doré — Event poster (Bold)",
+      "category": "posters",
+      "tags": [
+        "poster",
+        "event",
+        "print",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "bold"
+      ],
+      "description": "A bold event poster for Four Doré: warm bread, happy mornings Replace the photo slot, wording and colours to make it yours.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-poster-bakery-light",
+      "title": "Four Doré — Event poster (Light)",
+      "category": "posters",
+      "tags": [
+        "poster",
+        "event",
+        "print",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "light"
+      ],
+      "description": "A light event poster for Four Doré: warm bread, happy mornings Replace the photo slot, wording and colours to make it yours.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-poster-bakery-pop",
+      "title": "Four Doré — Event poster (Pop)",
+      "category": "posters",
+      "tags": [
+        "poster",
+        "event",
+        "print",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "pop"
+      ],
+      "description": "A pop event poster for Four Doré: warm bread, happy mornings Replace the photo slot, wording and colours to make it yours.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-youtube-coffee-shop-bold",
+      "title": "Maison Café — YouTube thumbnail (Bold)",
+      "category": "youtube",
+      "tags": [
+        "youtube",
+        "thumbnail",
+        "video",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "bold"
+      ],
+      "description": "A bold youtube thumbnail for Maison Café: fresh croissants, every morning Replace the photo slot, wording and colours to make it yours.",
+      "preset": "youtube-thumbnail",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-youtube-coffee-shop-light",
+      "title": "Maison Café — YouTube thumbnail (Light)",
+      "category": "youtube",
+      "tags": [
+        "youtube",
+        "thumbnail",
+        "video",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "light"
+      ],
+      "description": "A light youtube thumbnail for Maison Café: fresh croissants, every morning Replace the photo slot, wording and colours to make it yours.",
+      "preset": "youtube-thumbnail",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-youtube-coffee-shop-pop",
+      "title": "Maison Café — YouTube thumbnail (Pop)",
+      "category": "youtube",
+      "tags": [
+        "youtube",
+        "thumbnail",
+        "video",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "pop"
+      ],
+      "description": "A pop youtube thumbnail for Maison Café: fresh croissants, every morning Replace the photo slot, wording and colours to make it yours.",
+      "preset": "youtube-thumbnail",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-youtube-fashion-bold",
+      "title": "Atelier Lina — YouTube thumbnail (Bold)",
+      "category": "youtube",
+      "tags": [
+        "youtube",
+        "thumbnail",
+        "video",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "bold"
+      ],
+      "description": "A bold youtube thumbnail for Atelier Lina: the autumn collection is here Replace the photo slot, wording and colours to make it yours.",
+      "preset": "youtube-thumbnail",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-youtube-fashion-light",
+      "title": "Atelier Lina — YouTube thumbnail (Light)",
+      "category": "youtube",
+      "tags": [
+        "youtube",
+        "thumbnail",
+        "video",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "light"
+      ],
+      "description": "A light youtube thumbnail for Atelier Lina: the autumn collection is here Replace the photo slot, wording and colours to make it yours.",
+      "preset": "youtube-thumbnail",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-youtube-fashion-pop",
+      "title": "Atelier Lina — YouTube thumbnail (Pop)",
+      "category": "youtube",
+      "tags": [
+        "youtube",
+        "thumbnail",
+        "video",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "pop"
+      ],
+      "description": "A pop youtube thumbnail for Atelier Lina: the autumn collection is here Replace the photo slot, wording and colours to make it yours.",
+      "preset": "youtube-thumbnail",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-youtube-fitness-bold",
+      "title": "Pulse Gym — YouTube thumbnail (Bold)",
+      "category": "youtube",
+      "tags": [
+        "youtube",
+        "thumbnail",
+        "video",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "bold"
+      ],
+      "description": "A bold youtube thumbnail for Pulse Gym: stronger every single week Replace the photo slot, wording and colours to make it yours.",
+      "preset": "youtube-thumbnail",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Lora"
+      ]
+    },
+    {
+      "slug": "factory-youtube-fitness-light",
+      "title": "Pulse Gym — YouTube thumbnail (Light)",
+      "category": "youtube",
+      "tags": [
+        "youtube",
+        "thumbnail",
+        "video",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "light"
+      ],
+      "description": "A light youtube thumbnail for Pulse Gym: stronger every single week Replace the photo slot, wording and colours to make it yours.",
+      "preset": "youtube-thumbnail",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Manrope"
+      ]
+    },
+    {
+      "slug": "factory-youtube-fitness-pop",
+      "title": "Pulse Gym — YouTube thumbnail (Pop)",
+      "category": "youtube",
+      "tags": [
+        "youtube",
+        "thumbnail",
+        "video",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "pop"
+      ],
+      "description": "A pop youtube thumbnail for Pulse Gym: stronger every single week Replace the photo slot, wording and colours to make it yours.",
+      "preset": "youtube-thumbnail",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Josefin Sans"
+      ]
+    },
+    {
+      "slug": "factory-youtube-beauty-bold",
+      "title": "Glow Studio — YouTube thumbnail (Bold)",
+      "category": "youtube",
+      "tags": [
+        "youtube",
+        "thumbnail",
+        "video",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "bold"
+      ],
+      "description": "A bold youtube thumbnail for Glow Studio: your skin, but luminous Replace the photo slot, wording and colours to make it yours.",
+      "preset": "youtube-thumbnail",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-youtube-beauty-light",
+      "title": "Glow Studio — YouTube thumbnail (Light)",
+      "category": "youtube",
+      "tags": [
+        "youtube",
+        "thumbnail",
+        "video",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "light"
+      ],
+      "description": "A light youtube thumbnail for Glow Studio: your skin, but luminous Replace the photo slot, wording and colours to make it yours.",
+      "preset": "youtube-thumbnail",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-youtube-beauty-pop",
+      "title": "Glow Studio — YouTube thumbnail (Pop)",
+      "category": "youtube",
+      "tags": [
+        "youtube",
+        "thumbnail",
+        "video",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "pop"
+      ],
+      "description": "A pop youtube thumbnail for Glow Studio: your skin, but luminous Replace the photo slot, wording and colours to make it yours.",
+      "preset": "youtube-thumbnail",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-youtube-restaurant-bold",
+      "title": "Saveurs — YouTube thumbnail (Bold)",
+      "category": "youtube",
+      "tags": [
+        "youtube",
+        "thumbnail",
+        "video",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "bold"
+      ],
+      "description": "A bold youtube thumbnail for Saveurs: taste the season, fresh daily Replace the photo slot, wording and colours to make it yours.",
+      "preset": "youtube-thumbnail",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-youtube-restaurant-light",
+      "title": "Saveurs — YouTube thumbnail (Light)",
+      "category": "youtube",
+      "tags": [
+        "youtube",
+        "thumbnail",
+        "video",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "light"
+      ],
+      "description": "A light youtube thumbnail for Saveurs: taste the season, fresh daily Replace the photo slot, wording and colours to make it yours.",
+      "preset": "youtube-thumbnail",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-youtube-restaurant-pop",
+      "title": "Saveurs — YouTube thumbnail (Pop)",
+      "category": "youtube",
+      "tags": [
+        "youtube",
+        "thumbnail",
+        "video",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "pop"
+      ],
+      "description": "A pop youtube thumbnail for Saveurs: taste the season, fresh daily Replace the photo slot, wording and colours to make it yours.",
+      "preset": "youtube-thumbnail",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-youtube-real-estate-bold",
+      "title": "Horizon Immobilier — YouTube thumbnail (Bold)",
+      "category": "youtube",
+      "tags": [
+        "youtube",
+        "thumbnail",
+        "video",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "bold"
+      ],
+      "description": "A bold youtube thumbnail for Horizon Immobilier: homes that feel like you Replace the photo slot, wording and colours to make it yours.",
+      "preset": "youtube-thumbnail",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Josefin Sans"
+      ]
+    },
+    {
+      "slug": "factory-youtube-real-estate-light",
+      "title": "Horizon Immobilier — YouTube thumbnail (Light)",
+      "category": "youtube",
+      "tags": [
+        "youtube",
+        "thumbnail",
+        "video",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "light"
+      ],
+      "description": "A light youtube thumbnail for Horizon Immobilier: homes that feel like you Replace the photo slot, wording and colours to make it yours.",
+      "preset": "youtube-thumbnail",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "DM Sans"
+      ]
+    },
+    {
+      "slug": "factory-youtube-real-estate-pop",
+      "title": "Horizon Immobilier — YouTube thumbnail (Pop)",
+      "category": "youtube",
+      "tags": [
+        "youtube",
+        "thumbnail",
+        "video",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "pop"
+      ],
+      "description": "A pop youtube thumbnail for Horizon Immobilier: homes that feel like you Replace the photo slot, wording and colours to make it yours.",
+      "preset": "youtube-thumbnail",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Inter"
+      ]
+    },
+    {
+      "slug": "factory-youtube-music-bold",
+      "title": "Nébula Live — YouTube thumbnail (Bold)",
+      "category": "youtube",
+      "tags": [
+        "youtube",
+        "thumbnail",
+        "video",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "bold"
+      ],
+      "description": "A bold youtube thumbnail for Nébula Live: one night, pure energy Replace the photo slot, wording and colours to make it yours.",
+      "preset": "youtube-thumbnail",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-youtube-music-light",
+      "title": "Nébula Live — YouTube thumbnail (Light)",
+      "category": "youtube",
+      "tags": [
+        "youtube",
+        "thumbnail",
+        "video",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "light"
+      ],
+      "description": "A light youtube thumbnail for Nébula Live: one night, pure energy Replace the photo slot, wording and colours to make it yours.",
+      "preset": "youtube-thumbnail",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-youtube-music-pop",
+      "title": "Nébula Live — YouTube thumbnail (Pop)",
+      "category": "youtube",
+      "tags": [
+        "youtube",
+        "thumbnail",
+        "video",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "pop"
+      ],
+      "description": "A pop youtube thumbnail for Nébula Live: one night, pure energy Replace the photo slot, wording and colours to make it yours.",
+      "preset": "youtube-thumbnail",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-youtube-bakery-bold",
+      "title": "Four Doré — YouTube thumbnail (Bold)",
+      "category": "youtube",
+      "tags": [
+        "youtube",
+        "thumbnail",
+        "video",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "bold"
+      ],
+      "description": "A bold youtube thumbnail for Four Doré: warm bread, happy mornings Replace the photo slot, wording and colours to make it yours.",
+      "preset": "youtube-thumbnail",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-youtube-bakery-light",
+      "title": "Four Doré — YouTube thumbnail (Light)",
+      "category": "youtube",
+      "tags": [
+        "youtube",
+        "thumbnail",
+        "video",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "light"
+      ],
+      "description": "A light youtube thumbnail for Four Doré: warm bread, happy mornings Replace the photo slot, wording and colours to make it yours.",
+      "preset": "youtube-thumbnail",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-youtube-bakery-pop",
+      "title": "Four Doré — YouTube thumbnail (Pop)",
+      "category": "youtube",
+      "tags": [
+        "youtube",
+        "thumbnail",
+        "video",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "pop"
+      ],
+      "description": "A pop youtube thumbnail for Four Doré: warm bread, happy mornings Replace the photo slot, wording and colours to make it yours.",
+      "preset": "youtube-thumbnail",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-facebook-coffee-shop-bold",
+      "title": "Maison Café — Facebook post (Bold)",
+      "category": "social-media",
+      "tags": [
+        "facebook",
+        "post",
+        "social",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "bold"
+      ],
+      "description": "A bold facebook post for Maison Café, at the exact facebook-post size (1200 x 630). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "facebook-post",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-facebook-coffee-shop-light",
+      "title": "Maison Café — Facebook post (Light)",
+      "category": "social-media",
+      "tags": [
+        "facebook",
+        "post",
+        "social",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "light"
+      ],
+      "description": "A light facebook post for Maison Café, at the exact facebook-post size (1200 x 630). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "facebook-post",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-facebook-coffee-shop-pop",
+      "title": "Maison Café — Facebook post (Pop)",
+      "category": "social-media",
+      "tags": [
+        "facebook",
+        "post",
+        "social",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "pop"
+      ],
+      "description": "A pop facebook post for Maison Café, at the exact facebook-post size (1200 x 630). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "facebook-post",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-facebook-fashion-bold",
+      "title": "Atelier Lina — Facebook post (Bold)",
+      "category": "social-media",
+      "tags": [
+        "facebook",
+        "post",
+        "social",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "bold"
+      ],
+      "description": "A bold facebook post for Atelier Lina, at the exact facebook-post size (1200 x 630). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "facebook-post",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Lora"
+      ]
+    },
+    {
+      "slug": "factory-facebook-fashion-light",
+      "title": "Atelier Lina — Facebook post (Light)",
+      "category": "social-media",
+      "tags": [
+        "facebook",
+        "post",
+        "social",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "light"
+      ],
+      "description": "A light facebook post for Atelier Lina, at the exact facebook-post size (1200 x 630). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "facebook-post",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Manrope"
+      ]
+    },
+    {
+      "slug": "factory-facebook-fashion-pop",
+      "title": "Atelier Lina — Facebook post (Pop)",
+      "category": "social-media",
+      "tags": [
+        "facebook",
+        "post",
+        "social",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "pop"
+      ],
+      "description": "A pop facebook post for Atelier Lina, at the exact facebook-post size (1200 x 630). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "facebook-post",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Josefin Sans"
+      ]
+    },
+    {
+      "slug": "factory-facebook-fitness-bold",
+      "title": "Pulse Gym — Facebook post (Bold)",
+      "category": "social-media",
+      "tags": [
+        "facebook",
+        "post",
+        "social",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "bold"
+      ],
+      "description": "A bold facebook post for Pulse Gym, at the exact facebook-post size (1200 x 630). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "facebook-post",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-facebook-fitness-light",
+      "title": "Pulse Gym — Facebook post (Light)",
+      "category": "social-media",
+      "tags": [
+        "facebook",
+        "post",
+        "social",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "light"
+      ],
+      "description": "A light facebook post for Pulse Gym, at the exact facebook-post size (1200 x 630). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "facebook-post",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-facebook-fitness-pop",
+      "title": "Pulse Gym — Facebook post (Pop)",
+      "category": "social-media",
+      "tags": [
+        "facebook",
+        "post",
+        "social",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "pop"
+      ],
+      "description": "A pop facebook post for Pulse Gym, at the exact facebook-post size (1200 x 630). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "facebook-post",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-facebook-beauty-bold",
+      "title": "Glow Studio — Facebook post (Bold)",
+      "category": "social-media",
+      "tags": [
+        "facebook",
+        "post",
+        "social",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "bold"
+      ],
+      "description": "A bold facebook post for Glow Studio, at the exact facebook-post size (1200 x 630). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "facebook-post",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-facebook-beauty-light",
+      "title": "Glow Studio — Facebook post (Light)",
+      "category": "social-media",
+      "tags": [
+        "facebook",
+        "post",
+        "social",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "light"
+      ],
+      "description": "A light facebook post for Glow Studio, at the exact facebook-post size (1200 x 630). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "facebook-post",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-facebook-beauty-pop",
+      "title": "Glow Studio — Facebook post (Pop)",
+      "category": "social-media",
+      "tags": [
+        "facebook",
+        "post",
+        "social",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "pop"
+      ],
+      "description": "A pop facebook post for Glow Studio, at the exact facebook-post size (1200 x 630). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "facebook-post",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-facebook-restaurant-bold",
+      "title": "Saveurs — Facebook post (Bold)",
+      "category": "social-media",
+      "tags": [
+        "facebook",
+        "post",
+        "social",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "bold"
+      ],
+      "description": "A bold facebook post for Saveurs, at the exact facebook-post size (1200 x 630). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "facebook-post",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Josefin Sans"
+      ]
+    },
+    {
+      "slug": "factory-facebook-restaurant-light",
+      "title": "Saveurs — Facebook post (Light)",
+      "category": "social-media",
+      "tags": [
+        "facebook",
+        "post",
+        "social",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "light"
+      ],
+      "description": "A light facebook post for Saveurs, at the exact facebook-post size (1200 x 630). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "facebook-post",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "DM Sans"
+      ]
+    },
+    {
+      "slug": "factory-facebook-restaurant-pop",
+      "title": "Saveurs — Facebook post (Pop)",
+      "category": "social-media",
+      "tags": [
+        "facebook",
+        "post",
+        "social",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "pop"
+      ],
+      "description": "A pop facebook post for Saveurs, at the exact facebook-post size (1200 x 630). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "facebook-post",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Inter"
+      ]
+    },
+    {
+      "slug": "factory-facebook-real-estate-bold",
+      "title": "Horizon Immobilier — Facebook post (Bold)",
+      "category": "social-media",
+      "tags": [
+        "facebook",
+        "post",
+        "social",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "bold"
+      ],
+      "description": "A bold facebook post for Horizon Immobilier, at the exact facebook-post size (1200 x 630). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "facebook-post",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-facebook-real-estate-light",
+      "title": "Horizon Immobilier — Facebook post (Light)",
+      "category": "social-media",
+      "tags": [
+        "facebook",
+        "post",
+        "social",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "light"
+      ],
+      "description": "A light facebook post for Horizon Immobilier, at the exact facebook-post size (1200 x 630). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "facebook-post",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-facebook-real-estate-pop",
+      "title": "Horizon Immobilier — Facebook post (Pop)",
+      "category": "social-media",
+      "tags": [
+        "facebook",
+        "post",
+        "social",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "pop"
+      ],
+      "description": "A pop facebook post for Horizon Immobilier, at the exact facebook-post size (1200 x 630). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "facebook-post",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-facebook-music-bold",
+      "title": "Nébula Live — Facebook post (Bold)",
+      "category": "social-media",
+      "tags": [
+        "facebook",
+        "post",
+        "social",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "bold"
+      ],
+      "description": "A bold facebook post for Nébula Live, at the exact facebook-post size (1200 x 630). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "facebook-post",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-facebook-music-light",
+      "title": "Nébula Live — Facebook post (Light)",
+      "category": "social-media",
+      "tags": [
+        "facebook",
+        "post",
+        "social",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "light"
+      ],
+      "description": "A light facebook post for Nébula Live, at the exact facebook-post size (1200 x 630). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "facebook-post",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-facebook-music-pop",
+      "title": "Nébula Live — Facebook post (Pop)",
+      "category": "social-media",
+      "tags": [
+        "facebook",
+        "post",
+        "social",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "pop"
+      ],
+      "description": "A pop facebook post for Nébula Live, at the exact facebook-post size (1200 x 630). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "facebook-post",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-facebook-bakery-bold",
+      "title": "Four Doré — Facebook post (Bold)",
+      "category": "social-media",
+      "tags": [
+        "facebook",
+        "post",
+        "social",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "bold"
+      ],
+      "description": "A bold facebook post for Four Doré, at the exact facebook-post size (1200 x 630). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "facebook-post",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Inter"
+      ]
+    },
+    {
+      "slug": "factory-facebook-bakery-light",
+      "title": "Four Doré — Facebook post (Light)",
+      "category": "social-media",
+      "tags": [
+        "facebook",
+        "post",
+        "social",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "light"
+      ],
+      "description": "A light facebook post for Four Doré, at the exact facebook-post size (1200 x 630). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "facebook-post",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Lora"
+      ]
+    },
+    {
+      "slug": "factory-facebook-bakery-pop",
+      "title": "Four Doré — Facebook post (Pop)",
+      "category": "social-media",
+      "tags": [
+        "facebook",
+        "post",
+        "social",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "pop"
+      ],
+      "description": "A pop facebook post for Four Doré, at the exact facebook-post size (1200 x 630). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "facebook-post",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Manrope"
+      ]
+    },
+    {
+      "slug": "factory-slide-coffee-shop-bold",
+      "title": "Maison Café — Presentation slide (Bold)",
+      "category": "presentations",
+      "tags": [
+        "presentation",
+        "slides",
+        "deck",
+        "pitch",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "bold"
+      ],
+      "description": "A bold presentation slide for Maison Café, at the exact presentation size (1920 x 1080). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "presentation",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "DM Sans"
+      ]
+    },
+    {
+      "slug": "factory-slide-coffee-shop-light",
+      "title": "Maison Café — Presentation slide (Light)",
+      "category": "presentations",
+      "tags": [
+        "presentation",
+        "slides",
+        "deck",
+        "pitch",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "light"
+      ],
+      "description": "A light presentation slide for Maison Café, at the exact presentation size (1920 x 1080). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "presentation",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Inter"
+      ]
+    },
+    {
+      "slug": "factory-slide-coffee-shop-pop",
+      "title": "Maison Café — Presentation slide (Pop)",
+      "category": "presentations",
+      "tags": [
+        "presentation",
+        "slides",
+        "deck",
+        "pitch",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "pop"
+      ],
+      "description": "A pop presentation slide for Maison Café, at the exact presentation size (1920 x 1080). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "presentation",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Lora"
+      ]
+    },
+    {
+      "slug": "factory-slide-fashion-bold",
+      "title": "Atelier Lina — Presentation slide (Bold)",
+      "category": "presentations",
+      "tags": [
+        "presentation",
+        "slides",
+        "deck",
+        "pitch",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "bold"
+      ],
+      "description": "A bold presentation slide for Atelier Lina, at the exact presentation size (1920 x 1080). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "presentation",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-slide-fashion-light",
+      "title": "Atelier Lina — Presentation slide (Light)",
+      "category": "presentations",
+      "tags": [
+        "presentation",
+        "slides",
+        "deck",
+        "pitch",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "light"
+      ],
+      "description": "A light presentation slide for Atelier Lina, at the exact presentation size (1920 x 1080). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "presentation",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-slide-fashion-pop",
+      "title": "Atelier Lina — Presentation slide (Pop)",
+      "category": "presentations",
+      "tags": [
+        "presentation",
+        "slides",
+        "deck",
+        "pitch",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "pop"
+      ],
+      "description": "A pop presentation slide for Atelier Lina, at the exact presentation size (1920 x 1080). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "presentation",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-slide-fitness-bold",
+      "title": "Pulse Gym — Presentation slide (Bold)",
+      "category": "presentations",
+      "tags": [
+        "presentation",
+        "slides",
+        "deck",
+        "pitch",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "bold"
+      ],
+      "description": "A bold presentation slide for Pulse Gym, at the exact presentation size (1920 x 1080). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "presentation",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-slide-fitness-light",
+      "title": "Pulse Gym — Presentation slide (Light)",
+      "category": "presentations",
+      "tags": [
+        "presentation",
+        "slides",
+        "deck",
+        "pitch",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "light"
+      ],
+      "description": "A light presentation slide for Pulse Gym, at the exact presentation size (1920 x 1080). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "presentation",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-slide-fitness-pop",
+      "title": "Pulse Gym — Presentation slide (Pop)",
+      "category": "presentations",
+      "tags": [
+        "presentation",
+        "slides",
+        "deck",
+        "pitch",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "pop"
+      ],
+      "description": "A pop presentation slide for Pulse Gym, at the exact presentation size (1920 x 1080). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "presentation",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-slide-beauty-bold",
+      "title": "Glow Studio — Presentation slide (Bold)",
+      "category": "presentations",
+      "tags": [
+        "presentation",
+        "slides",
+        "deck",
+        "pitch",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "bold"
+      ],
+      "description": "A bold presentation slide for Glow Studio, at the exact presentation size (1920 x 1080). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "presentation",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Lora"
+      ]
+    },
+    {
+      "slug": "factory-slide-beauty-light",
+      "title": "Glow Studio — Presentation slide (Light)",
+      "category": "presentations",
+      "tags": [
+        "presentation",
+        "slides",
+        "deck",
+        "pitch",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "light"
+      ],
+      "description": "A light presentation slide for Glow Studio, at the exact presentation size (1920 x 1080). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "presentation",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Manrope"
+      ]
+    },
+    {
+      "slug": "factory-slide-beauty-pop",
+      "title": "Glow Studio — Presentation slide (Pop)",
+      "category": "presentations",
+      "tags": [
+        "presentation",
+        "slides",
+        "deck",
+        "pitch",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "pop"
+      ],
+      "description": "A pop presentation slide for Glow Studio, at the exact presentation size (1920 x 1080). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "presentation",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Josefin Sans"
+      ]
+    },
+    {
+      "slug": "factory-slide-restaurant-bold",
+      "title": "Saveurs — Presentation slide (Bold)",
+      "category": "presentations",
+      "tags": [
+        "presentation",
+        "slides",
+        "deck",
+        "pitch",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "bold"
+      ],
+      "description": "A bold presentation slide for Saveurs, at the exact presentation size (1920 x 1080). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "presentation",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-slide-restaurant-light",
+      "title": "Saveurs — Presentation slide (Light)",
+      "category": "presentations",
+      "tags": [
+        "presentation",
+        "slides",
+        "deck",
+        "pitch",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "light"
+      ],
+      "description": "A light presentation slide for Saveurs, at the exact presentation size (1920 x 1080). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "presentation",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-slide-restaurant-pop",
+      "title": "Saveurs — Presentation slide (Pop)",
+      "category": "presentations",
+      "tags": [
+        "presentation",
+        "slides",
+        "deck",
+        "pitch",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "pop"
+      ],
+      "description": "A pop presentation slide for Saveurs, at the exact presentation size (1920 x 1080). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "presentation",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-slide-real-estate-bold",
+      "title": "Horizon Immobilier — Presentation slide (Bold)",
+      "category": "presentations",
+      "tags": [
+        "presentation",
+        "slides",
+        "deck",
+        "pitch",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "bold"
+      ],
+      "description": "A bold presentation slide for Horizon Immobilier, at the exact presentation size (1920 x 1080). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "presentation",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-slide-real-estate-light",
+      "title": "Horizon Immobilier — Presentation slide (Light)",
+      "category": "presentations",
+      "tags": [
+        "presentation",
+        "slides",
+        "deck",
+        "pitch",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "light"
+      ],
+      "description": "A light presentation slide for Horizon Immobilier, at the exact presentation size (1920 x 1080). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "presentation",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-slide-real-estate-pop",
+      "title": "Horizon Immobilier — Presentation slide (Pop)",
+      "category": "presentations",
+      "tags": [
+        "presentation",
+        "slides",
+        "deck",
+        "pitch",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "pop"
+      ],
+      "description": "A pop presentation slide for Horizon Immobilier, at the exact presentation size (1920 x 1080). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "presentation",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-slide-music-bold",
+      "title": "Nébula Live — Presentation slide (Bold)",
+      "category": "presentations",
+      "tags": [
+        "presentation",
+        "slides",
+        "deck",
+        "pitch",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "bold"
+      ],
+      "description": "A bold presentation slide for Nébula Live, at the exact presentation size (1920 x 1080). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "presentation",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Josefin Sans"
+      ]
+    },
+    {
+      "slug": "factory-slide-music-light",
+      "title": "Nébula Live — Presentation slide (Light)",
+      "category": "presentations",
+      "tags": [
+        "presentation",
+        "slides",
+        "deck",
+        "pitch",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "light"
+      ],
+      "description": "A light presentation slide for Nébula Live, at the exact presentation size (1920 x 1080). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "presentation",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "DM Sans"
+      ]
+    },
+    {
+      "slug": "factory-slide-music-pop",
+      "title": "Nébula Live — Presentation slide (Pop)",
+      "category": "presentations",
+      "tags": [
+        "presentation",
+        "slides",
+        "deck",
+        "pitch",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "pop"
+      ],
+      "description": "A pop presentation slide for Nébula Live, at the exact presentation size (1920 x 1080). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "presentation",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Inter"
+      ]
+    },
+    {
+      "slug": "factory-slide-bakery-bold",
+      "title": "Four Doré — Presentation slide (Bold)",
+      "category": "presentations",
+      "tags": [
+        "presentation",
+        "slides",
+        "deck",
+        "pitch",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "bold"
+      ],
+      "description": "A bold presentation slide for Four Doré, at the exact presentation size (1920 x 1080). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "presentation",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-slide-bakery-light",
+      "title": "Four Doré — Presentation slide (Light)",
+      "category": "presentations",
+      "tags": [
+        "presentation",
+        "slides",
+        "deck",
+        "pitch",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "light"
+      ],
+      "description": "A light presentation slide for Four Doré, at the exact presentation size (1920 x 1080). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "presentation",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-slide-bakery-pop",
+      "title": "Four Doré — Presentation slide (Pop)",
+      "category": "presentations",
+      "tags": [
+        "presentation",
+        "slides",
+        "deck",
+        "pitch",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "pop"
+      ],
+      "description": "A pop presentation slide for Four Doré, at the exact presentation size (1920 x 1080). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "presentation",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-flyer-coffee-shop-bold",
+      "title": "Maison Café — Flyer (Bold)",
+      "category": "flyers",
+      "tags": [
+        "flyer",
+        "print",
+        "promo",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "bold"
+      ],
+      "description": "A bold flyer for Maison Café, at the exact flyer size (528 x 816). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "flyer",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-flyer-coffee-shop-light",
+      "title": "Maison Café — Flyer (Light)",
+      "category": "flyers",
+      "tags": [
+        "flyer",
+        "print",
+        "promo",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "light"
+      ],
+      "description": "A light flyer for Maison Café, at the exact flyer size (528 x 816). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "flyer",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-flyer-coffee-shop-pop",
+      "title": "Maison Café — Flyer (Pop)",
+      "category": "flyers",
+      "tags": [
+        "flyer",
+        "print",
+        "promo",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "pop"
+      ],
+      "description": "A pop flyer for Maison Café, at the exact flyer size (528 x 816). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "flyer",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-flyer-fashion-bold",
+      "title": "Atelier Lina — Flyer (Bold)",
+      "category": "flyers",
+      "tags": [
+        "flyer",
+        "print",
+        "promo",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "bold"
+      ],
+      "description": "A bold flyer for Atelier Lina, at the exact flyer size (528 x 816). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "flyer",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-flyer-fashion-light",
+      "title": "Atelier Lina — Flyer (Light)",
+      "category": "flyers",
+      "tags": [
+        "flyer",
+        "print",
+        "promo",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "light"
+      ],
+      "description": "A light flyer for Atelier Lina, at the exact flyer size (528 x 816). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "flyer",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-flyer-fashion-pop",
+      "title": "Atelier Lina — Flyer (Pop)",
+      "category": "flyers",
+      "tags": [
+        "flyer",
+        "print",
+        "promo",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "pop"
+      ],
+      "description": "A pop flyer for Atelier Lina, at the exact flyer size (528 x 816). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "flyer",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-flyer-fitness-bold",
+      "title": "Pulse Gym — Flyer (Bold)",
+      "category": "flyers",
+      "tags": [
+        "flyer",
+        "print",
+        "promo",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "bold"
+      ],
+      "description": "A bold flyer for Pulse Gym, at the exact flyer size (528 x 816). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "flyer",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "DM Sans"
+      ]
+    },
+    {
+      "slug": "factory-flyer-fitness-light",
+      "title": "Pulse Gym — Flyer (Light)",
+      "category": "flyers",
+      "tags": [
+        "flyer",
+        "print",
+        "promo",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "light"
+      ],
+      "description": "A light flyer for Pulse Gym, at the exact flyer size (528 x 816). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "flyer",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Inter"
+      ]
+    },
+    {
+      "slug": "factory-flyer-fitness-pop",
+      "title": "Pulse Gym — Flyer (Pop)",
+      "category": "flyers",
+      "tags": [
+        "flyer",
+        "print",
+        "promo",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "pop"
+      ],
+      "description": "A pop flyer for Pulse Gym, at the exact flyer size (528 x 816). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "flyer",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Lora"
+      ]
+    },
+    {
+      "slug": "factory-flyer-beauty-bold",
+      "title": "Glow Studio — Flyer (Bold)",
+      "category": "flyers",
+      "tags": [
+        "flyer",
+        "print",
+        "promo",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "bold"
+      ],
+      "description": "A bold flyer for Glow Studio, at the exact flyer size (528 x 816). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "flyer",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-flyer-beauty-light",
+      "title": "Glow Studio — Flyer (Light)",
+      "category": "flyers",
+      "tags": [
+        "flyer",
+        "print",
+        "promo",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "light"
+      ],
+      "description": "A light flyer for Glow Studio, at the exact flyer size (528 x 816). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "flyer",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-flyer-beauty-pop",
+      "title": "Glow Studio — Flyer (Pop)",
+      "category": "flyers",
+      "tags": [
+        "flyer",
+        "print",
+        "promo",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "pop"
+      ],
+      "description": "A pop flyer for Glow Studio, at the exact flyer size (528 x 816). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "flyer",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-flyer-restaurant-bold",
+      "title": "Saveurs — Flyer (Bold)",
+      "category": "flyers",
+      "tags": [
+        "flyer",
+        "print",
+        "promo",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "bold"
+      ],
+      "description": "A bold flyer for Saveurs, at the exact flyer size (528 x 816). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "flyer",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-flyer-restaurant-light",
+      "title": "Saveurs — Flyer (Light)",
+      "category": "flyers",
+      "tags": [
+        "flyer",
+        "print",
+        "promo",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "light"
+      ],
+      "description": "A light flyer for Saveurs, at the exact flyer size (528 x 816). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "flyer",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-flyer-restaurant-pop",
+      "title": "Saveurs — Flyer (Pop)",
+      "category": "flyers",
+      "tags": [
+        "flyer",
+        "print",
+        "promo",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "pop"
+      ],
+      "description": "A pop flyer for Saveurs, at the exact flyer size (528 x 816). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "flyer",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-flyer-real-estate-bold",
+      "title": "Horizon Immobilier — Flyer (Bold)",
+      "category": "flyers",
+      "tags": [
+        "flyer",
+        "print",
+        "promo",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "bold"
+      ],
+      "description": "A bold flyer for Horizon Immobilier, at the exact flyer size (528 x 816). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "flyer",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Lora"
+      ]
+    },
+    {
+      "slug": "factory-flyer-real-estate-light",
+      "title": "Horizon Immobilier — Flyer (Light)",
+      "category": "flyers",
+      "tags": [
+        "flyer",
+        "print",
+        "promo",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "light"
+      ],
+      "description": "A light flyer for Horizon Immobilier, at the exact flyer size (528 x 816). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "flyer",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Manrope"
+      ]
+    },
+    {
+      "slug": "factory-flyer-real-estate-pop",
+      "title": "Horizon Immobilier — Flyer (Pop)",
+      "category": "flyers",
+      "tags": [
+        "flyer",
+        "print",
+        "promo",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "pop"
+      ],
+      "description": "A pop flyer for Horizon Immobilier, at the exact flyer size (528 x 816). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "flyer",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Josefin Sans"
+      ]
+    },
+    {
+      "slug": "factory-flyer-music-bold",
+      "title": "Nébula Live — Flyer (Bold)",
+      "category": "flyers",
+      "tags": [
+        "flyer",
+        "print",
+        "promo",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "bold"
+      ],
+      "description": "A bold flyer for Nébula Live, at the exact flyer size (528 x 816). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "flyer",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-flyer-music-light",
+      "title": "Nébula Live — Flyer (Light)",
+      "category": "flyers",
+      "tags": [
+        "flyer",
+        "print",
+        "promo",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "light"
+      ],
+      "description": "A light flyer for Nébula Live, at the exact flyer size (528 x 816). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "flyer",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-flyer-music-pop",
+      "title": "Nébula Live — Flyer (Pop)",
+      "category": "flyers",
+      "tags": [
+        "flyer",
+        "print",
+        "promo",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "pop"
+      ],
+      "description": "A pop flyer for Nébula Live, at the exact flyer size (528 x 816). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "flyer",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-flyer-bakery-bold",
+      "title": "Four Doré — Flyer (Bold)",
+      "category": "flyers",
+      "tags": [
+        "flyer",
+        "print",
+        "promo",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "bold"
+      ],
+      "description": "A bold flyer for Four Doré, at the exact flyer size (528 x 816). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "flyer",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-flyer-bakery-light",
+      "title": "Four Doré — Flyer (Light)",
+      "category": "flyers",
+      "tags": [
+        "flyer",
+        "print",
+        "promo",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "light"
+      ],
+      "description": "A light flyer for Four Doré, at the exact flyer size (528 x 816). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "flyer",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-flyer-bakery-pop",
+      "title": "Four Doré — Flyer (Pop)",
+      "category": "flyers",
+      "tags": [
+        "flyer",
+        "print",
+        "promo",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "pop"
+      ],
+      "description": "A pop flyer for Four Doré, at the exact flyer size (528 x 816). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "flyer",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-invitation-coffee-shop-bold",
+      "title": "Maison Café — Invitation (Bold)",
+      "category": "invitations",
+      "tags": [
+        "invitation",
+        "event",
+        "print",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "bold"
+      ],
+      "description": "A bold invitation for Maison Café, at the exact invitation size (480 x 672). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "invitation",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-invitation-coffee-shop-light",
+      "title": "Maison Café — Invitation (Light)",
+      "category": "invitations",
+      "tags": [
+        "invitation",
+        "event",
+        "print",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "light"
+      ],
+      "description": "A light invitation for Maison Café, at the exact invitation size (480 x 672). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "invitation",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-invitation-coffee-shop-pop",
+      "title": "Maison Café — Invitation (Pop)",
+      "category": "invitations",
+      "tags": [
+        "invitation",
+        "event",
+        "print",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "pop"
+      ],
+      "description": "A pop invitation for Maison Café, at the exact invitation size (480 x 672). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "invitation",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-invitation-fashion-bold",
+      "title": "Atelier Lina — Invitation (Bold)",
+      "category": "invitations",
+      "tags": [
+        "invitation",
+        "event",
+        "print",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "bold"
+      ],
+      "description": "A bold invitation for Atelier Lina, at the exact invitation size (480 x 672). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "invitation",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-invitation-fashion-light",
+      "title": "Atelier Lina — Invitation (Light)",
+      "category": "invitations",
+      "tags": [
+        "invitation",
+        "event",
+        "print",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "light"
+      ],
+      "description": "A light invitation for Atelier Lina, at the exact invitation size (480 x 672). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "invitation",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-invitation-fashion-pop",
+      "title": "Atelier Lina — Invitation (Pop)",
+      "category": "invitations",
+      "tags": [
+        "invitation",
+        "event",
+        "print",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "pop"
+      ],
+      "description": "A pop invitation for Atelier Lina, at the exact invitation size (480 x 672). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "invitation",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-invitation-fitness-bold",
+      "title": "Pulse Gym — Invitation (Bold)",
+      "category": "invitations",
+      "tags": [
+        "invitation",
+        "event",
+        "print",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "bold"
+      ],
+      "description": "A bold invitation for Pulse Gym, at the exact invitation size (480 x 672). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "invitation",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-invitation-fitness-light",
+      "title": "Pulse Gym — Invitation (Light)",
+      "category": "invitations",
+      "tags": [
+        "invitation",
+        "event",
+        "print",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "light"
+      ],
+      "description": "A light invitation for Pulse Gym, at the exact invitation size (480 x 672). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "invitation",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-invitation-fitness-pop",
+      "title": "Pulse Gym — Invitation (Pop)",
+      "category": "invitations",
+      "tags": [
+        "invitation",
+        "event",
+        "print",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "pop"
+      ],
+      "description": "A pop invitation for Pulse Gym, at the exact invitation size (480 x 672). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "invitation",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-invitation-beauty-bold",
+      "title": "Glow Studio — Invitation (Bold)",
+      "category": "invitations",
+      "tags": [
+        "invitation",
+        "event",
+        "print",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "bold"
+      ],
+      "description": "A bold invitation for Glow Studio, at the exact invitation size (480 x 672). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "invitation",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-invitation-beauty-light",
+      "title": "Glow Studio — Invitation (Light)",
+      "category": "invitations",
+      "tags": [
+        "invitation",
+        "event",
+        "print",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "light"
+      ],
+      "description": "A light invitation for Glow Studio, at the exact invitation size (480 x 672). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "invitation",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-invitation-beauty-pop",
+      "title": "Glow Studio — Invitation (Pop)",
+      "category": "invitations",
+      "tags": [
+        "invitation",
+        "event",
+        "print",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "pop"
+      ],
+      "description": "A pop invitation for Glow Studio, at the exact invitation size (480 x 672). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "invitation",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-invitation-restaurant-bold",
+      "title": "Saveurs — Invitation (Bold)",
+      "category": "invitations",
+      "tags": [
+        "invitation",
+        "event",
+        "print",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "bold"
+      ],
+      "description": "A bold invitation for Saveurs, at the exact invitation size (480 x 672). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "invitation",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-invitation-restaurant-light",
+      "title": "Saveurs — Invitation (Light)",
+      "category": "invitations",
+      "tags": [
+        "invitation",
+        "event",
+        "print",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "light"
+      ],
+      "description": "A light invitation for Saveurs, at the exact invitation size (480 x 672). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "invitation",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-invitation-restaurant-pop",
+      "title": "Saveurs — Invitation (Pop)",
+      "category": "invitations",
+      "tags": [
+        "invitation",
+        "event",
+        "print",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "pop"
+      ],
+      "description": "A pop invitation for Saveurs, at the exact invitation size (480 x 672). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "invitation",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-invitation-real-estate-bold",
+      "title": "Horizon Immobilier — Invitation (Bold)",
+      "category": "invitations",
+      "tags": [
+        "invitation",
+        "event",
+        "print",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "bold"
+      ],
+      "description": "A bold invitation for Horizon Immobilier, at the exact invitation size (480 x 672). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "invitation",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-invitation-real-estate-light",
+      "title": "Horizon Immobilier — Invitation (Light)",
+      "category": "invitations",
+      "tags": [
+        "invitation",
+        "event",
+        "print",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "light"
+      ],
+      "description": "A light invitation for Horizon Immobilier, at the exact invitation size (480 x 672). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "invitation",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-invitation-real-estate-pop",
+      "title": "Horizon Immobilier — Invitation (Pop)",
+      "category": "invitations",
+      "tags": [
+        "invitation",
+        "event",
+        "print",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "pop"
+      ],
+      "description": "A pop invitation for Horizon Immobilier, at the exact invitation size (480 x 672). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "invitation",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-invitation-music-bold",
+      "title": "Nébula Live — Invitation (Bold)",
+      "category": "invitations",
+      "tags": [
+        "invitation",
+        "event",
+        "print",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "bold"
+      ],
+      "description": "A bold invitation for Nébula Live, at the exact invitation size (480 x 672). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "invitation",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-invitation-music-light",
+      "title": "Nébula Live — Invitation (Light)",
+      "category": "invitations",
+      "tags": [
+        "invitation",
+        "event",
+        "print",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "light"
+      ],
+      "description": "A light invitation for Nébula Live, at the exact invitation size (480 x 672). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "invitation",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-invitation-music-pop",
+      "title": "Nébula Live — Invitation (Pop)",
+      "category": "invitations",
+      "tags": [
+        "invitation",
+        "event",
+        "print",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "pop"
+      ],
+      "description": "A pop invitation for Nébula Live, at the exact invitation size (480 x 672). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "invitation",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-invitation-bakery-bold",
+      "title": "Four Doré — Invitation (Bold)",
+      "category": "invitations",
+      "tags": [
+        "invitation",
+        "event",
+        "print",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "bold"
+      ],
+      "description": "A bold invitation for Four Doré, at the exact invitation size (480 x 672). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "invitation",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-invitation-bakery-light",
+      "title": "Four Doré — Invitation (Light)",
+      "category": "invitations",
+      "tags": [
+        "invitation",
+        "event",
+        "print",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "light"
+      ],
+      "description": "A light invitation for Four Doré, at the exact invitation size (480 x 672). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "invitation",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-invitation-bakery-pop",
+      "title": "Four Doré — Invitation (Pop)",
+      "category": "invitations",
+      "tags": [
+        "invitation",
+        "event",
+        "print",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "pop"
+      ],
+      "description": "A pop invitation for Four Doré, at the exact invitation size (480 x 672). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "invitation",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-card-coffee-shop-bold",
+      "title": "Maison Café — Business card (Bold)",
+      "category": "cards",
+      "tags": [
+        "business card",
+        "contact",
+        "print",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "bold"
+      ],
+      "description": "A bold business card for Maison Café, at the exact business-card size (336 x 192). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "business-card",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Inter"
+      ]
+    },
+    {
+      "slug": "factory-card-coffee-shop-light",
+      "title": "Maison Café — Business card (Light)",
+      "category": "cards",
+      "tags": [
+        "business card",
+        "contact",
+        "print",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "light"
+      ],
+      "description": "A light business card for Maison Café, at the exact business-card size (336 x 192). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "business-card",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Lora"
+      ]
+    },
+    {
+      "slug": "factory-card-coffee-shop-pop",
+      "title": "Maison Café — Business card (Pop)",
+      "category": "cards",
+      "tags": [
+        "business card",
+        "contact",
+        "print",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "pop"
+      ],
+      "description": "A pop business card for Maison Café, at the exact business-card size (336 x 192). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "business-card",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Manrope"
+      ]
+    },
+    {
+      "slug": "factory-card-fashion-bold",
+      "title": "Atelier Lina — Business card (Bold)",
+      "category": "cards",
+      "tags": [
+        "business card",
+        "contact",
+        "print",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "bold"
+      ],
+      "description": "A bold business card for Atelier Lina, at the exact business-card size (336 x 192). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "business-card",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-card-fashion-light",
+      "title": "Atelier Lina — Business card (Light)",
+      "category": "cards",
+      "tags": [
+        "business card",
+        "contact",
+        "print",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "light"
+      ],
+      "description": "A light business card for Atelier Lina, at the exact business-card size (336 x 192). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "business-card",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-card-fashion-pop",
+      "title": "Atelier Lina — Business card (Pop)",
+      "category": "cards",
+      "tags": [
+        "business card",
+        "contact",
+        "print",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "pop"
+      ],
+      "description": "A pop business card for Atelier Lina, at the exact business-card size (336 x 192). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "business-card",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-card-fitness-bold",
+      "title": "Pulse Gym — Business card (Bold)",
+      "category": "cards",
+      "tags": [
+        "business card",
+        "contact",
+        "print",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "bold"
+      ],
+      "description": "A bold business card for Pulse Gym, at the exact business-card size (336 x 192). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "business-card",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-card-fitness-light",
+      "title": "Pulse Gym — Business card (Light)",
+      "category": "cards",
+      "tags": [
+        "business card",
+        "contact",
+        "print",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "light"
+      ],
+      "description": "A light business card for Pulse Gym, at the exact business-card size (336 x 192). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "business-card",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-card-fitness-pop",
+      "title": "Pulse Gym — Business card (Pop)",
+      "category": "cards",
+      "tags": [
+        "business card",
+        "contact",
+        "print",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "pop"
+      ],
+      "description": "A pop business card for Pulse Gym, at the exact business-card size (336 x 192). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "business-card",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-card-beauty-bold",
+      "title": "Glow Studio — Business card (Bold)",
+      "category": "cards",
+      "tags": [
+        "business card",
+        "contact",
+        "print",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "bold"
+      ],
+      "description": "A bold business card for Glow Studio, at the exact business-card size (336 x 192). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "business-card",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Manrope"
+      ]
+    },
+    {
+      "slug": "factory-card-beauty-light",
+      "title": "Glow Studio — Business card (Light)",
+      "category": "cards",
+      "tags": [
+        "business card",
+        "contact",
+        "print",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "light"
+      ],
+      "description": "A light business card for Glow Studio, at the exact business-card size (336 x 192). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "business-card",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Josefin Sans"
+      ]
+    },
+    {
+      "slug": "factory-card-beauty-pop",
+      "title": "Glow Studio — Business card (Pop)",
+      "category": "cards",
+      "tags": [
+        "business card",
+        "contact",
+        "print",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "pop"
+      ],
+      "description": "A pop business card for Glow Studio, at the exact business-card size (336 x 192). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "business-card",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "DM Sans"
+      ]
+    },
+    {
+      "slug": "factory-card-restaurant-bold",
+      "title": "Saveurs — Business card (Bold)",
+      "category": "cards",
+      "tags": [
+        "business card",
+        "contact",
+        "print",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "bold"
+      ],
+      "description": "A bold business card for Saveurs, at the exact business-card size (336 x 192). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "business-card",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-card-restaurant-light",
+      "title": "Saveurs — Business card (Light)",
+      "category": "cards",
+      "tags": [
+        "business card",
+        "contact",
+        "print",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "light"
+      ],
+      "description": "A light business card for Saveurs, at the exact business-card size (336 x 192). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "business-card",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-card-restaurant-pop",
+      "title": "Saveurs — Business card (Pop)",
+      "category": "cards",
+      "tags": [
+        "business card",
+        "contact",
+        "print",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "pop"
+      ],
+      "description": "A pop business card for Saveurs, at the exact business-card size (336 x 192). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "business-card",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-card-real-estate-bold",
+      "title": "Horizon Immobilier — Business card (Bold)",
+      "category": "cards",
+      "tags": [
+        "business card",
+        "contact",
+        "print",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "bold"
+      ],
+      "description": "A bold business card for Horizon Immobilier, at the exact business-card size (336 x 192). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "business-card",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-card-real-estate-light",
+      "title": "Horizon Immobilier — Business card (Light)",
+      "category": "cards",
+      "tags": [
+        "business card",
+        "contact",
+        "print",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "light"
+      ],
+      "description": "A light business card for Horizon Immobilier, at the exact business-card size (336 x 192). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "business-card",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-card-real-estate-pop",
+      "title": "Horizon Immobilier — Business card (Pop)",
+      "category": "cards",
+      "tags": [
+        "business card",
+        "contact",
+        "print",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "pop"
+      ],
+      "description": "A pop business card for Horizon Immobilier, at the exact business-card size (336 x 192). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "business-card",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-card-music-bold",
+      "title": "Nébula Live — Business card (Bold)",
+      "category": "cards",
+      "tags": [
+        "business card",
+        "contact",
+        "print",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "bold"
+      ],
+      "description": "A bold business card for Nébula Live, at the exact business-card size (336 x 192). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "business-card",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "DM Sans"
+      ]
+    },
+    {
+      "slug": "factory-card-music-light",
+      "title": "Nébula Live — Business card (Light)",
+      "category": "cards",
+      "tags": [
+        "business card",
+        "contact",
+        "print",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "light"
+      ],
+      "description": "A light business card for Nébula Live, at the exact business-card size (336 x 192). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "business-card",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Inter"
+      ]
+    },
+    {
+      "slug": "factory-card-music-pop",
+      "title": "Nébula Live — Business card (Pop)",
+      "category": "cards",
+      "tags": [
+        "business card",
+        "contact",
+        "print",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "pop"
+      ],
+      "description": "A pop business card for Nébula Live, at the exact business-card size (336 x 192). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "business-card",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Lora"
+      ]
+    },
+    {
+      "slug": "factory-card-bakery-bold",
+      "title": "Four Doré — Business card (Bold)",
+      "category": "cards",
+      "tags": [
+        "business card",
+        "contact",
+        "print",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "bold"
+      ],
+      "description": "A bold business card for Four Doré, at the exact business-card size (336 x 192). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "business-card",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-card-bakery-light",
+      "title": "Four Doré — Business card (Light)",
+      "category": "cards",
+      "tags": [
+        "business card",
+        "contact",
+        "print",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "light"
+      ],
+      "description": "A light business card for Four Doré, at the exact business-card size (336 x 192). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "business-card",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-card-bakery-pop",
+      "title": "Four Doré — Business card (Pop)",
+      "category": "cards",
+      "tags": [
+        "business card",
+        "contact",
+        "print",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "pop"
+      ],
+      "description": "A pop business card for Four Doré, at the exact business-card size (336 x 192). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "business-card",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-logo-coffee-shop-bold",
+      "title": "Maison Café — Logo (Bold)",
+      "category": "logos",
+      "tags": [
+        "logo",
+        "brand",
+        "monogram",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "bold"
+      ],
+      "description": "A bold logo for Maison Café, at the exact logo size (500 x 500). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "logo",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-logo-coffee-shop-light",
+      "title": "Maison Café — Logo (Light)",
+      "category": "logos",
+      "tags": [
+        "logo",
+        "brand",
+        "monogram",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "light"
+      ],
+      "description": "A light logo for Maison Café, at the exact logo size (500 x 500). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "logo",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-logo-coffee-shop-pop",
+      "title": "Maison Café — Logo (Pop)",
+      "category": "logos",
+      "tags": [
+        "logo",
+        "brand",
+        "monogram",
+        "coffee",
+        "cafe",
+        "bakery",
+        "food",
+        "pop"
+      ],
+      "description": "A pop logo for Maison Café, at the exact logo size (500 x 500). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "logo",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-logo-fashion-bold",
+      "title": "Atelier Lina — Logo (Bold)",
+      "category": "logos",
+      "tags": [
+        "logo",
+        "brand",
+        "monogram",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "bold"
+      ],
+      "description": "A bold logo for Atelier Lina, at the exact logo size (500 x 500). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "logo",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-logo-fashion-light",
+      "title": "Atelier Lina — Logo (Light)",
+      "category": "logos",
+      "tags": [
+        "logo",
+        "brand",
+        "monogram",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "light"
+      ],
+      "description": "A light logo for Atelier Lina, at the exact logo size (500 x 500). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "logo",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-logo-fashion-pop",
+      "title": "Atelier Lina — Logo (Pop)",
+      "category": "logos",
+      "tags": [
+        "logo",
+        "brand",
+        "monogram",
+        "fashion",
+        "boutique",
+        "clothing",
+        "style",
+        "pop"
+      ],
+      "description": "A pop logo for Atelier Lina, at the exact logo size (500 x 500). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "logo",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-logo-fitness-bold",
+      "title": "Pulse Gym — Logo (Bold)",
+      "category": "logos",
+      "tags": [
+        "logo",
+        "brand",
+        "monogram",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "bold"
+      ],
+      "description": "A bold logo for Pulse Gym, at the exact logo size (500 x 500). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "logo",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Inter"
+      ]
+    },
+    {
+      "slug": "factory-logo-fitness-light",
+      "title": "Pulse Gym — Logo (Light)",
+      "category": "logos",
+      "tags": [
+        "logo",
+        "brand",
+        "monogram",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "light"
+      ],
+      "description": "A light logo for Pulse Gym, at the exact logo size (500 x 500). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "logo",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Lora"
+      ]
+    },
+    {
+      "slug": "factory-logo-fitness-pop",
+      "title": "Pulse Gym — Logo (Pop)",
+      "category": "logos",
+      "tags": [
+        "logo",
+        "brand",
+        "monogram",
+        "gym",
+        "fitness",
+        "sport",
+        "health",
+        "pop"
+      ],
+      "description": "A pop logo for Pulse Gym, at the exact logo size (500 x 500). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "logo",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Manrope"
+      ]
+    },
+    {
+      "slug": "factory-logo-beauty-bold",
+      "title": "Glow Studio — Logo (Bold)",
+      "category": "logos",
+      "tags": [
+        "logo",
+        "brand",
+        "monogram",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "bold"
+      ],
+      "description": "A bold logo for Glow Studio, at the exact logo size (500 x 500). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "logo",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-logo-beauty-light",
+      "title": "Glow Studio — Logo (Light)",
+      "category": "logos",
+      "tags": [
+        "logo",
+        "brand",
+        "monogram",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "light"
+      ],
+      "description": "A light logo for Glow Studio, at the exact logo size (500 x 500). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "logo",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-logo-beauty-pop",
+      "title": "Glow Studio — Logo (Pop)",
+      "category": "logos",
+      "tags": [
+        "logo",
+        "brand",
+        "monogram",
+        "beauty",
+        "salon",
+        "skincare",
+        "spa",
+        "pop"
+      ],
+      "description": "A pop logo for Glow Studio, at the exact logo size (500 x 500). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "logo",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-logo-restaurant-bold",
+      "title": "Saveurs — Logo (Bold)",
+      "category": "logos",
+      "tags": [
+        "logo",
+        "brand",
+        "monogram",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "bold"
+      ],
+      "description": "A bold logo for Saveurs, at the exact logo size (500 x 500). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "logo",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-logo-restaurant-light",
+      "title": "Saveurs — Logo (Light)",
+      "category": "logos",
+      "tags": [
+        "logo",
+        "brand",
+        "monogram",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "light"
+      ],
+      "description": "A light logo for Saveurs, at the exact logo size (500 x 500). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "logo",
+      "is_featured": false,
+      "fonts": [
+        "DM Sans",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-logo-restaurant-pop",
+      "title": "Saveurs — Logo (Pop)",
+      "category": "logos",
+      "tags": [
+        "logo",
+        "brand",
+        "monogram",
+        "restaurant",
+        "food",
+        "dinner",
+        "chef",
+        "pop"
+      ],
+      "description": "A pop logo for Saveurs, at the exact logo size (500 x 500). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "logo",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-logo-real-estate-bold",
+      "title": "Horizon Immobilier — Logo (Bold)",
+      "category": "logos",
+      "tags": [
+        "logo",
+        "brand",
+        "monogram",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "bold"
+      ],
+      "description": "A bold logo for Horizon Immobilier, at the exact logo size (500 x 500). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "logo",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "Manrope"
+      ]
+    },
+    {
+      "slug": "factory-logo-real-estate-light",
+      "title": "Horizon Immobilier — Logo (Light)",
+      "category": "logos",
+      "tags": [
+        "logo",
+        "brand",
+        "monogram",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "light"
+      ],
+      "description": "A light logo for Horizon Immobilier, at the exact logo size (500 x 500). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "logo",
+      "is_featured": false,
+      "fonts": [
+        "Anton",
+        "Josefin Sans"
+      ]
+    },
+    {
+      "slug": "factory-logo-real-estate-pop",
+      "title": "Horizon Immobilier — Logo (Pop)",
+      "category": "logos",
+      "tags": [
+        "logo",
+        "brand",
+        "monogram",
+        "real estate",
+        "house",
+        "property",
+        "home",
+        "pop"
+      ],
+      "description": "A pop logo for Horizon Immobilier, at the exact logo size (500 x 500). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "logo",
+      "is_featured": false,
+      "fonts": [
+        "Bebas Neue",
+        "DM Sans"
+      ]
+    },
+    {
+      "slug": "factory-logo-music-bold",
+      "title": "Nébula Live — Logo (Bold)",
+      "category": "logos",
+      "tags": [
+        "logo",
+        "brand",
+        "monogram",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "bold"
+      ],
+      "description": "A bold logo for Nébula Live, at the exact logo size (500 x 500). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "logo",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-logo-music-light",
+      "title": "Nébula Live — Logo (Light)",
+      "category": "logos",
+      "tags": [
+        "logo",
+        "brand",
+        "monogram",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "light"
+      ],
+      "description": "A light logo for Nébula Live, at the exact logo size (500 x 500). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "logo",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-logo-music-pop",
+      "title": "Nébula Live — Logo (Pop)",
+      "category": "logos",
+      "tags": [
+        "logo",
+        "brand",
+        "monogram",
+        "music",
+        "concert",
+        "event",
+        "party",
+        "pop"
+      ],
+      "description": "A pop logo for Nébula Live, at the exact logo size (500 x 500). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "logo",
+      "is_featured": false,
+      "fonts": [
+        "Josefin Sans",
+        "Poppins"
+      ]
+    },
+    {
+      "slug": "factory-logo-bakery-bold",
+      "title": "Four Doré — Logo (Bold)",
+      "category": "logos",
+      "tags": [
+        "logo",
+        "brand",
+        "monogram",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "bold"
+      ],
+      "description": "A bold logo for Four Doré, at the exact logo size (500 x 500). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "logo",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-logo-bakery-light",
+      "title": "Four Doré — Logo (Light)",
+      "category": "logos",
+      "tags": [
+        "logo",
+        "brand",
+        "monogram",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "light"
+      ],
+      "description": "A light logo for Four Doré, at the exact logo size (500 x 500). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "logo",
+      "is_featured": false,
+      "fonts": [
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-logo-bakery-pop",
+      "title": "Four Doré — Logo (Pop)",
+      "category": "logos",
+      "tags": [
+        "logo",
+        "brand",
+        "monogram",
+        "bakery",
+        "bread",
+        "pastry",
+        "food",
+        "pop"
+      ],
+      "description": "A pop logo for Four Doré, at the exact logo size (500 x 500). Replace the wording, photo slot and colours to make it yours.",
+      "preset": "logo",
+      "is_featured": false,
+      "fonts": [
+        "Manrope",
+        "Oswald"
+      ]
+    },
+    {
+      "slug": "factory-resume-designer-bold",
+      "title": "Product designer resume (Bold)",
+      "category": "resumes",
+      "tags": [
+        "resume",
+        "cv",
+        "job",
+        "career",
+        "a4",
+        "bold"
+      ],
+      "description": "A clean one-page A4 resume for a product designer: coloured sidebar with contact and skills, experience on white. Replace every line with your own story.",
+      "preset": "resume",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-resume-designer-light",
+      "title": "Product designer resume (Light)",
+      "category": "resumes",
+      "tags": [
+        "resume",
+        "cv",
+        "job",
+        "career",
+        "a4",
+        "light"
+      ],
+      "description": "A clean one-page A4 resume for a product designer: coloured sidebar with contact and skills, experience on white. Replace every line with your own story.",
+      "preset": "resume",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-resume-designer-pop",
+      "title": "Product designer resume (Pop)",
+      "category": "resumes",
+      "tags": [
+        "resume",
+        "cv",
+        "job",
+        "career",
+        "a4",
+        "pop"
+      ],
+      "description": "A clean one-page A4 resume for a product designer: coloured sidebar with contact and skills, experience on white. Replace every line with your own story.",
+      "preset": "resume",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-resume-developer-bold",
+      "title": "Software developer resume (Bold)",
+      "category": "resumes",
+      "tags": [
+        "resume",
+        "cv",
+        "job",
+        "career",
+        "a4",
+        "bold"
+      ],
+      "description": "A clean one-page A4 resume for a software developer: coloured sidebar with contact and skills, experience on white. Replace every line with your own story.",
+      "preset": "resume",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-resume-developer-light",
+      "title": "Software developer resume (Light)",
+      "category": "resumes",
+      "tags": [
+        "resume",
+        "cv",
+        "job",
+        "career",
+        "a4",
+        "light"
+      ],
+      "description": "A clean one-page A4 resume for a software developer: coloured sidebar with contact and skills, experience on white. Replace every line with your own story.",
+      "preset": "resume",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-resume-developer-pop",
+      "title": "Software developer resume (Pop)",
+      "category": "resumes",
+      "tags": [
+        "resume",
+        "cv",
+        "job",
+        "career",
+        "a4",
+        "pop"
+      ],
+      "description": "A clean one-page A4 resume for a software developer: coloured sidebar with contact and skills, experience on white. Replace every line with your own story.",
+      "preset": "resume",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-resume-chef-bold",
+      "title": "Head chef resume (Bold)",
+      "category": "resumes",
+      "tags": [
+        "resume",
+        "cv",
+        "job",
+        "career",
+        "a4",
+        "bold"
+      ],
+      "description": "A clean one-page A4 resume for a head chef: coloured sidebar with contact and skills, experience on white. Replace every line with your own story.",
+      "preset": "resume",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-resume-chef-light",
+      "title": "Head chef resume (Light)",
+      "category": "resumes",
+      "tags": [
+        "resume",
+        "cv",
+        "job",
+        "career",
+        "a4",
+        "light"
+      ],
+      "description": "A clean one-page A4 resume for a head chef: coloured sidebar with contact and skills, experience on white. Replace every line with your own story.",
+      "preset": "resume",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-resume-chef-pop",
+      "title": "Head chef resume (Pop)",
+      "category": "resumes",
+      "tags": [
+        "resume",
+        "cv",
+        "job",
+        "career",
+        "a4",
+        "pop"
+      ],
+      "description": "A clean one-page A4 resume for a head chef: coloured sidebar with contact and skills, experience on white. Replace every line with your own story.",
+      "preset": "resume",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-resume-teacher-bold",
+      "title": "Primary teacher resume (Bold)",
+      "category": "resumes",
+      "tags": [
+        "resume",
+        "cv",
+        "job",
+        "career",
+        "a4",
+        "bold"
+      ],
+      "description": "A clean one-page A4 resume for a primary teacher: coloured sidebar with contact and skills, experience on white. Replace every line with your own story.",
+      "preset": "resume",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-resume-teacher-light",
+      "title": "Primary teacher resume (Light)",
+      "category": "resumes",
+      "tags": [
+        "resume",
+        "cv",
+        "job",
+        "career",
+        "a4",
+        "light"
+      ],
+      "description": "A clean one-page A4 resume for a primary teacher: coloured sidebar with contact and skills, experience on white. Replace every line with your own story.",
+      "preset": "resume",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-resume-teacher-pop",
+      "title": "Primary teacher resume (Pop)",
+      "category": "resumes",
+      "tags": [
+        "resume",
+        "cv",
+        "job",
+        "career",
+        "a4",
+        "pop"
+      ],
+      "description": "A clean one-page A4 resume for a primary teacher: coloured sidebar with contact and skills, experience on white. Replace every line with your own story.",
+      "preset": "resume",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-resume-marketer-bold",
+      "title": "Marketing lead resume (Bold)",
+      "category": "resumes",
+      "tags": [
+        "resume",
+        "cv",
+        "job",
+        "career",
+        "a4",
+        "bold"
+      ],
+      "description": "A clean one-page A4 resume for a marketing lead: coloured sidebar with contact and skills, experience on white. Replace every line with your own story.",
+      "preset": "resume",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-resume-marketer-light",
+      "title": "Marketing lead resume (Light)",
+      "category": "resumes",
+      "tags": [
+        "resume",
+        "cv",
+        "job",
+        "career",
+        "a4",
+        "light"
+      ],
+      "description": "A clean one-page A4 resume for a marketing lead: coloured sidebar with contact and skills, experience on white. Replace every line with your own story.",
+      "preset": "resume",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-resume-marketer-pop",
+      "title": "Marketing lead resume (Pop)",
+      "category": "resumes",
+      "tags": [
+        "resume",
+        "cv",
+        "job",
+        "career",
+        "a4",
+        "pop"
+      ],
+      "description": "A clean one-page A4 resume for a marketing lead: coloured sidebar with contact and skills, experience on white. Replace every line with your own story.",
+      "preset": "resume",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-resume-nurse-bold",
+      "title": "Registered nurse resume (Bold)",
+      "category": "resumes",
+      "tags": [
+        "resume",
+        "cv",
+        "job",
+        "career",
+        "a4",
+        "bold"
+      ],
+      "description": "A clean one-page A4 resume for a registered nurse: coloured sidebar with contact and skills, experience on white. Replace every line with your own story.",
+      "preset": "resume",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-resume-nurse-light",
+      "title": "Registered nurse resume (Light)",
+      "category": "resumes",
+      "tags": [
+        "resume",
+        "cv",
+        "job",
+        "career",
+        "a4",
+        "light"
+      ],
+      "description": "A clean one-page A4 resume for a registered nurse: coloured sidebar with contact and skills, experience on white. Replace every line with your own story.",
+      "preset": "resume",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-resume-nurse-pop",
+      "title": "Registered nurse resume (Pop)",
+      "category": "resumes",
+      "tags": [
+        "resume",
+        "cv",
+        "job",
+        "career",
+        "a4",
+        "pop"
+      ],
+      "description": "A clean one-page A4 resume for a registered nurse: coloured sidebar with contact and skills, experience on white. Replace every line with your own story.",
+      "preset": "resume",
+      "is_featured": false,
+      "fonts": [
+        "Inter",
+        "Montserrat"
+      ]
+    },
+    {
+      "slug": "factory-certificate-achievement-bold",
+      "title": "Certificate of Achievement (Bold)",
+      "category": "education",
+      "tags": [
+        "certificate",
+        "diploma",
+        "award",
+        "a4",
+        "print",
+        "bold"
+      ],
+      "description": "An A4 landscape certificate of achievement with a fine double border and a seal: replace the name, the line and the signatures.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Great Vibes",
+        "Inter",
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-certificate-achievement-light",
+      "title": "Certificate of Achievement (Light)",
+      "category": "education",
+      "tags": [
+        "certificate",
+        "diploma",
+        "award",
+        "a4",
+        "print",
+        "light"
+      ],
+      "description": "An A4 landscape certificate of achievement with a fine double border and a seal: replace the name, the line and the signatures.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Great Vibes",
+        "Inter",
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-certificate-achievement-pop",
+      "title": "Certificate of Achievement (Pop)",
+      "category": "education",
+      "tags": [
+        "certificate",
+        "diploma",
+        "award",
+        "a4",
+        "print",
+        "pop"
+      ],
+      "description": "An A4 landscape certificate of achievement with a fine double border and a seal: replace the name, the line and the signatures.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Great Vibes",
+        "Inter",
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-certificate-excellence-bold",
+      "title": "Excellence Award (Bold)",
+      "category": "education",
+      "tags": [
+        "certificate",
+        "diploma",
+        "award",
+        "a4",
+        "print",
+        "bold"
+      ],
+      "description": "An A4 landscape excellence award with a fine double border and a seal: replace the name, the line and the signatures.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Great Vibes",
+        "Inter",
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-certificate-excellence-light",
+      "title": "Excellence Award (Light)",
+      "category": "education",
+      "tags": [
+        "certificate",
+        "diploma",
+        "award",
+        "a4",
+        "print",
+        "light"
+      ],
+      "description": "An A4 landscape excellence award with a fine double border and a seal: replace the name, the line and the signatures.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Great Vibes",
+        "Inter",
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-certificate-excellence-pop",
+      "title": "Excellence Award (Pop)",
+      "category": "education",
+      "tags": [
+        "certificate",
+        "diploma",
+        "award",
+        "a4",
+        "print",
+        "pop"
+      ],
+      "description": "An A4 landscape excellence award with a fine double border and a seal: replace the name, the line and the signatures.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Great Vibes",
+        "Inter",
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-certificate-appreciation-bold",
+      "title": "Certificate of Appreciation (Bold)",
+      "category": "education",
+      "tags": [
+        "certificate",
+        "diploma",
+        "award",
+        "a4",
+        "print",
+        "bold"
+      ],
+      "description": "An A4 landscape certificate of appreciation with a fine double border and a seal: replace the name, the line and the signatures.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Great Vibes",
+        "Inter",
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-certificate-appreciation-light",
+      "title": "Certificate of Appreciation (Light)",
+      "category": "education",
+      "tags": [
+        "certificate",
+        "diploma",
+        "award",
+        "a4",
+        "print",
+        "light"
+      ],
+      "description": "An A4 landscape certificate of appreciation with a fine double border and a seal: replace the name, the line and the signatures.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Great Vibes",
+        "Inter",
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-certificate-appreciation-pop",
+      "title": "Certificate of Appreciation (Pop)",
+      "category": "education",
+      "tags": [
+        "certificate",
+        "diploma",
+        "award",
+        "a4",
+        "print",
+        "pop"
+      ],
+      "description": "An A4 landscape certificate of appreciation with a fine double border and a seal: replace the name, the line and the signatures.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Great Vibes",
+        "Inter",
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-certificate-training-bold",
+      "title": "Training Certificate (Bold)",
+      "category": "education",
+      "tags": [
+        "certificate",
+        "diploma",
+        "award",
+        "a4",
+        "print",
+        "bold"
+      ],
+      "description": "An A4 landscape training certificate with a fine double border and a seal: replace the name, the line and the signatures.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Great Vibes",
+        "Inter",
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-certificate-training-light",
+      "title": "Training Certificate (Light)",
+      "category": "education",
+      "tags": [
+        "certificate",
+        "diploma",
+        "award",
+        "a4",
+        "print",
+        "light"
+      ],
+      "description": "An A4 landscape training certificate with a fine double border and a seal: replace the name, the line and the signatures.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Great Vibes",
+        "Inter",
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-certificate-training-pop",
+      "title": "Training Certificate (Pop)",
+      "category": "education",
+      "tags": [
+        "certificate",
+        "diploma",
+        "award",
+        "a4",
+        "print",
+        "pop"
+      ],
+      "description": "An A4 landscape training certificate with a fine double border and a seal: replace the name, the line and the signatures.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Great Vibes",
+        "Inter",
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-certificate-participation-bold",
+      "title": "Certificate of Participation (Bold)",
+      "category": "education",
+      "tags": [
+        "certificate",
+        "diploma",
+        "award",
+        "a4",
+        "print",
+        "bold"
+      ],
+      "description": "An A4 landscape certificate of participation with a fine double border and a seal: replace the name, the line and the signatures.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Great Vibes",
+        "Inter",
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-certificate-participation-light",
+      "title": "Certificate of Participation (Light)",
+      "category": "education",
+      "tags": [
+        "certificate",
+        "diploma",
+        "award",
+        "a4",
+        "print",
+        "light"
+      ],
+      "description": "An A4 landscape certificate of participation with a fine double border and a seal: replace the name, the line and the signatures.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Great Vibes",
+        "Inter",
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-certificate-participation-pop",
+      "title": "Certificate of Participation (Pop)",
+      "category": "education",
+      "tags": [
+        "certificate",
+        "diploma",
+        "award",
+        "a4",
+        "print",
+        "pop"
+      ],
+      "description": "An A4 landscape certificate of participation with a fine double border and a seal: replace the name, the line and the signatures.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Great Vibes",
+        "Inter",
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-certificate-diploma-bold",
+      "title": "Diploma (Bold)",
+      "category": "education",
+      "tags": [
+        "certificate",
+        "diploma",
+        "award",
+        "a4",
+        "print",
+        "bold"
+      ],
+      "description": "An A4 landscape diploma with a fine double border and a seal: replace the name, the line and the signatures.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Great Vibes",
+        "Inter",
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-certificate-diploma-light",
+      "title": "Diploma (Light)",
+      "category": "education",
+      "tags": [
+        "certificate",
+        "diploma",
+        "award",
+        "a4",
+        "print",
+        "light"
+      ],
+      "description": "An A4 landscape diploma with a fine double border and a seal: replace the name, the line and the signatures.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Great Vibes",
+        "Inter",
+        "Lora",
+        "Playfair Display"
+      ]
+    },
+    {
+      "slug": "factory-certificate-diploma-pop",
+      "title": "Diploma (Pop)",
+      "category": "education",
+      "tags": [
+        "certificate",
+        "diploma",
+        "award",
+        "a4",
+        "print",
+        "pop"
+      ],
+      "description": "An A4 landscape diploma with a fine double border and a seal: replace the name, the line and the signatures.",
+      "preset": "",
+      "is_featured": false,
+      "fonts": [
+        "Great Vibes",
+        "Inter",
+        "Lora",
+        "Playfair Display"
+      ]
     }
   ]
 }
