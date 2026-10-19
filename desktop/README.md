@@ -4,6 +4,12 @@ Studio Nova Desktop is an Electron shell around the existing Studio Nova editor.
 
 The window is frameless and opens straight on the studio (designs, templates, create) — never on the marketing home page. The app draws a macOS-style title bar with traffic-light window controls (`frontend/src/app/DesktopTitlebar.tsx`, wired to `main.cjs` through the small `preload.cjs` bridge, `window.studioNovaDesktop`) and sizes its layouts to the window minus that bar.
 
+## Offline and local mode
+
+The studio is usable with no connection and no account. Guest designs live in the app's IndexedDB (the stable `127.0.0.1:48291` origin is what makes them survive restarts), so opening, editing, autosaving, exporting and browsing the bundled template catalogue all work offline.
+
+Account pages need the app's local server. It starts beside the window and a first launch may spend up to half a minute migrating and seeding the catalogues; the window no longer waits for it and no longer dead-ends on “We can’t reach Studio Nova”. Anonymous or offline visitors to `/dashboard` (and to `/design/:id`) are sent to `/studio`, which lists the designs on this computer. The web app retries its session check quietly while the engine finishes starting, so signing in and cloud designs appear as soon as it answers. A missing or crashed engine simply leaves the app in local mode; the AI assistant keeps needing its provider key and a connection.
+
 Background removal runs on the GPU (WebGPU) when one is available, with WebAssembly as fallback. On first launch the local server also downloads the full-size U²-Net model in the background (one-time, hash-verified); once installed it is advertised automatically and gives noticeably better cut-outs than the small bundled model.
 
 ## Updates

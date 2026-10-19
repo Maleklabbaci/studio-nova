@@ -1,6 +1,6 @@
 /// <reference types="vitest/config" />
 import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
 import { fileURLToPath, URL } from 'node:url'
 import react from '@vitejs/plugin-react'
 import { defineConfig, type Plugin } from 'vite'
@@ -24,14 +24,21 @@ const DESKTOP_BUILD = process.env.STUDIO_NOVA_DESKTOP_BUILD === '1'
  * their production URL (/media/templates/photos/…).
  */
 function staticTemplatesPlugin(): Plugin {
+  // The desktop build writes to dist-desktop (see desktop's build:resources):
+  // the catalogue must land in that bundle too, or templates disappear from
+  // the offline studio.
+  let outputDir = fileURLToPath(new URL('./dist', import.meta.url))
   return {
     name: 'studio-nova-static-templates',
     apply: 'build',
+    configResolved(config) {
+      outputDir = resolve(config.root, config.build.outDir)
+    },
     closeBundle() {
       const source = fileURLToPath(new URL('../backend/data/templates', import.meta.url))
-      const dist = fileURLToPath(new URL('./dist', import.meta.url))
-      const outDir = join(dist, 'templates-data')
-      mkdirSync(join(outDir, 'thumbs'), { recursive: true })
+      const dist = outputDir
+      const templateDir = join(dist, 'templates-data')
+      mkdirSync(join(templateDir, 'thumbs'), { recursive: true })
       const catalogue: Array<Record<string, unknown>> = []
       try {
         const manifest = JSON.parse(readFileSync(join(source, 'manifest.json'), 'utf8')) as { templates?: Array<Record<string, unknown>> }
@@ -41,10 +48,10 @@ function staticTemplatesPlugin(): Plugin {
           try {
             const raw = readFileSync(join(source, `${slug}.json`), 'utf8')
             const doc = JSON.parse(raw) as { width?: number; height?: number; pages?: unknown[] }
-            writeFileSync(join(outDir, `${slug}.json`), raw)
+            writeFileSync(join(templateDir, `${slug}.json`), raw)
             const thumb = join(source, 'thumbs', `${slug}.webp`)
             const hasThumb = existsSync(thumb)
-            if (hasThumb) copyFileSync(thumb, join(outDir, 'thumbs', `${slug}.webp`))
+            if (hasThumb) copyFileSync(thumb, join(templateDir, 'thumbs', `${slug}.webp`))
             catalogue.push({
               slug,
               title: typeof item.title === 'string' ? item.title : slug,
@@ -70,7 +77,7 @@ function staticTemplatesPlugin(): Plugin {
       } catch {
         // No generated catalogue in this checkout: the static site just keeps the API behaviour.
       }
-      writeFileSync(join(outDir, 'catalogue.json'), JSON.stringify(catalogue))
+      writeFileSync(join(templateDir, 'catalogue.json'), JSON.stringify(catalogue))
     },
   }
 }

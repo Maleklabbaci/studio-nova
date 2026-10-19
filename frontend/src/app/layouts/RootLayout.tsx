@@ -22,7 +22,7 @@ export function RootLayout() {
     if (lastPath.current === location.pathname) return undefined
     lastPath.current = location.pathname
     window.scrollTo(0, 0)
-    document.getElementById('nova-desktop-main')?.scrollTo(0, 0)
+    document.getElementById('nova-desktop-main')?.scrollTo?.(0, 0)
     const main = document.getElementById('main')
     main?.focus({ preventScroll: true })
     return undefined

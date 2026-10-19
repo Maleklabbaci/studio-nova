@@ -2,6 +2,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { configureBackgroundRemoval } from '@/editor/engine/bgRemoval/install'
 import { ApiError, authApi, configApi, DEFAULT_CONFIG, isApiError, normalizeAppConfig, setUnauthorizedHandler, STATIC_FALLBACK_CONFIG } from '@/lib/api'
+import { isDesktopApp } from '@/lib/desktop'
 import type { ApiUser, AppConfig, RegisterInput } from '@/types/api'
 
 export type AuthStatus = 'loading' | 'authenticated' | 'anonymous'
@@ -40,6 +41,14 @@ export interface AuthContextValue {
   retryBootstrap(): void
 }
 
+/**
+ * The desktop shell starts its local engine alongside the window, and a first
+ * launch spends a while migrating and seeding. A failed session check is
+ * therefore expected for a few seconds and retried quietly; on the web the
+ * visitor gets the explicit "Try again" button instead.
+ */
+const BOOTSTRAP_RETRY_DELAYS = [2000, 4000, 8000, 15000, 30000] as const
+
 export const AuthContext = createContext<AuthContextValue | null>(null)
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -63,37 +72,75 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const controller = new AbortController()
-    void (async () => {
-      const [me, cfg] = await Promise.allSettled([authApi.me(controller.signal), configApi.get(controller.signal)])
-      if (controller.signal.aborted) return
-      // Auth status first: a broken or missing /config/ (e.g. a static-only
-      // deployment with no backend) must never leave the app stuck loading.
-      if (me.status === 'fulfilled') {
-        const nextUser = me.value?.user ?? null
-        userRef.current = nextUser
-        setUserState(nextUser)
-        setStatus(nextUser ? 'authenticated' : 'anonymous')
-        setBootstrapError(null)
-      } else {
-        setBootstrapError(isApiError(me.reason) ? me.reason : new ApiError({ status: 0, code: 'network_error', message: 'Could not reach Studio Nova.' }))
-        userRef.current = null
-        setUserState(null)
-        setStatus('anonymous')
+    let retryTimer: ReturnType<typeof setTimeout> | undefined
+    let retries = 0
+    let inFlight = false
+    let disposed = false
+
+    const scheduleRetry = () => {
+      // Only the desktop shell owns a local engine that may still be starting.
+      if (!isDesktopApp() || retries >= BOOTSTRAP_RETRY_DELAYS.length) return
+      const delay = BOOTSTRAP_RETRY_DELAYS[retries] ?? 30000
+      retries += 1
+      retryTimer = setTimeout(() => void load(), delay)
+    }
+
+    async function load(): Promise<void> {
+      if (disposed || controller.signal.aborted || inFlight) return
+      inFlight = true
+      retryTimer = undefined
+      try {
+        const [me, cfg] = await Promise.allSettled([authApi.me(controller.signal), configApi.get(controller.signal)])
+        if (disposed || controller.signal.aborted) return
+        // Auth status first: a broken or missing /config/ (e.g. a static-only
+        // deployment with no backend) must never leave the app stuck loading.
+        if (me.status === 'fulfilled') {
+          const nextUser = me.value?.user ?? null
+          userRef.current = nextUser
+          setUserState(nextUser)
+          setStatus(nextUser ? 'authenticated' : 'anonymous')
+          setBootstrapError(null)
+          retries = 0
+        } else {
+          setBootstrapError(isApiError(me.reason) ? me.reason : new ApiError({ status: 0, code: 'network_error', message: 'Could not reach Studio Nova.' }))
+          userRef.current = null
+          setUserState(null)
+          setStatus('anonymous')
+          scheduleRetry()
+        }
+        if (cfg.status === 'fulfilled') {
+          const safeConfig = normalizeAppConfig(cfg.value)
+          setConfig(safeConfig)
+          // Before any consumer sees the new config, so the editor's toolbar already knows whether the button works.
+          configureBackgroundRemoval(safeConfig)
+        } else {
+          // No backend answered (static-only deployment): enable what runs
+          // entirely in the browser — background removal with the model
+          // bundled with the site — and keep every server-bound feature off.
+          setConfig(STATIC_FALLBACK_CONFIG)
+          configureBackgroundRemoval(STATIC_FALLBACK_CONFIG)
+        }
+      } finally {
+        inFlight = false
       }
-      if (cfg.status === 'fulfilled') {
-        const safeConfig = normalizeAppConfig(cfg.value)
-        setConfig(safeConfig)
-        // Before any consumer sees the new config, so the editor's toolbar already knows whether the button works.
-        configureBackgroundRemoval(safeConfig)
-      } else {
-        // No backend answered (static-only deployment): enable what runs
-        // entirely in the browser — background removal with the model
-        // bundled with the site — and keep every server-bound feature off.
-        setConfig(STATIC_FALLBACK_CONFIG)
-        configureBackgroundRemoval(STATIC_FALLBACK_CONFIG)
-      }
-    })()
-    return () => controller.abort()
+    }
+
+    // Coming back online is the moment to look again, both in the browser and in the desktop shell.
+    const retryNow = () => {
+      if (disposed) return
+      clearTimeout(retryTimer)
+      retries = 0
+      void load()
+    }
+
+    void load()
+    window.addEventListener('online', retryNow)
+    return () => {
+      disposed = true
+      clearTimeout(retryTimer)
+      window.removeEventListener('online', retryNow)
+      controller.abort()
+    }
   }, [attempt])
 
   const applyUser = useCallback((next: ApiUser | null) => {

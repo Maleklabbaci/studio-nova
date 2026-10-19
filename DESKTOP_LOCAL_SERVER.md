@@ -52,7 +52,8 @@ la config MCP de l'utilisateur).
 ## Limites connues / phases suivantes
 
 1. **Premier démarrage ~30 s** (migrations + catalogues) ; la fenêtre
-   s'ouvre dès que le serveur répond, sinon l'app propose de réessayer.
+   s'ouvre tout de suite sur le studio local, et les fonctions de compte
+   s'activent dès que le serveur répond (sans redémarrage).
 2. **PDF serveur off** : l'export PDF navigateur continue de marcher.
    Embarquer Chromium = phase 2.
 3. **Taille** : le sidecar ajoute quelques dizaines de Mo à l'installeur.
@@ -101,6 +102,13 @@ Les mises à jour de l'app migrent la base sur place.
   une fenêtre de marque (ciel de nuit, étoile, barre de progression, statut
   en direct) s'affiche pendant que le serveur local démarre — fini l'écran
   vide des premiers démarrages. Elle se ferme dès que le studio est prêt.
+- **Le studio local ouvre toujours** : la fenêtre n'attend plus la fin des
+  migrations du moteur embarqué (jusqu'à ~30 s au premier lancement). Si le
+  serveur local ou Internet manque, l'app s'ouvre sur `/studio` — les
+  designs de l'appareil, les templates fournis et l'éditeur fonctionnent
+  hors ligne. Les pages de compte ne sont plus un cul-de-sac : la garde
+  d'authentification redirige vers `/studio`, et l'app réessaie la session
+  toute seule pendant que le moteur finit de démarrer.
 - **Icône sur le bureau : au choix de l'utilisateur** (Windows,
   `desktop/installer.nsh`) : l'installeur pose la question sur une page
   dédiée, après le choix du dossier d'installation. Case cochée par
