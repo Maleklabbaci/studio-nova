@@ -34,18 +34,43 @@ function isNewerVersion(latest, current) {
 
 const PLATFORM_KEYS = { win32: 'windows', darwin: 'macos', linux: 'linux' }
 
-/** The installer file name for `platform` from a download manifest, or ''. */
+/**
+ * Where a manifest may send the browser for an installer. The published
+ * manifest points at the GitHub release assets, because the site host caps
+ * files at 25 MB and every installer is around 180 MB.
+ */
+const INSTALLER_HOSTS = new Set(['github.com', 'objects.githubusercontent.com'])
+
+/** The absolute https installer URL a manifest entry names, or '' when it is not a trusted one. */
+function absoluteInstaller(value) {
+  if (typeof value !== 'string' || !value) return ''
+  try {
+    const url = new URL(value)
+    if (url.protocol !== 'https:' || url.username || url.password) return ''
+    return INSTALLER_HOSTS.has(url.hostname.toLowerCase()) ? url.href : ''
+  } catch {
+    return ''
+  }
+}
+
+/**
+ * The installer for `platform` from a download manifest, or ''. Either a plain
+ * file name (resolved next to the manifest) or an absolute https URL on a
+ * trusted host; anything else — relative paths, http, other hosts — is refused.
+ */
 function pickInstaller(manifest, platform) {
   const key = PLATFORM_KEYS[platform]
   const downloads = manifest && typeof manifest === 'object' ? manifest.downloads : null
   const file = key && downloads && typeof downloads === 'object' ? downloads[key] : null
-  // A plain file name only: the URL is built by joining it to the manifest's
-  // own directory, never taken from the manifest itself.
-  return typeof file === 'string' && /^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(file) ? file : ''
+  if (typeof file !== 'string' || !file) return ''
+  if (/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(file)) return file
+  return absoluteInstaller(file)
 }
 
-/** Absolute URL of the installer next to the manifest that advertised it. */
+/** Absolute URL of the installer: the manifest's own when it names one, otherwise next to the manifest. */
 function installerUrl(manifestUrl, file) {
+  const direct = absoluteInstaller(file)
+  if (direct) return direct
   const url = new URL(manifestUrl)
   url.pathname = url.pathname.replace(/[^/]*$/, file)
   url.search = ''
