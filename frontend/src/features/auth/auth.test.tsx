@@ -303,3 +303,38 @@ describe('AuthModal', () => {
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
   })
 })
+
+describe('desktop shell', () => {
+  afterEach(() => {
+    delete window.studioNovaDesktop
+  })
+
+  it('never dead-ends on the account pages without a server: anonymous visitors get the local studio', async () => {
+    window.studioNovaDesktop = {
+      platform: 'win32',
+      minimize: vi.fn(),
+      toggleMaximize: vi.fn(),
+      close: vi.fn(),
+      isMaximized: async () => false,
+      onMaximizedChange: () => () => undefined,
+    }
+    const { router } = renderApp('/dashboard', { handlers: [http.get('*/api/v1/auth/me/', () => HttpResponse.error())] })
+    expect(await screen.findByRole('heading', { name: 'Your studio' })).toBeInTheDocument()
+    expect(router.state.location.pathname).toBe('/studio')
+    expect(screen.queryByText('We can’t reach Studio Nova')).not.toBeInTheDocument()
+  })
+
+  it('opens its front door on the local studio when nobody is signed in', async () => {
+    window.studioNovaDesktop = {
+      platform: 'darwin',
+      minimize: vi.fn(),
+      toggleMaximize: vi.fn(),
+      close: vi.fn(),
+      isMaximized: async () => false,
+      onMaximizedChange: () => () => undefined,
+    }
+    const { router } = renderApp('/')
+    expect(await screen.findByRole('heading', { name: 'Your studio' })).toBeInTheDocument()
+    expect(router.state.location.pathname).toBe('/studio')
+  })
+})

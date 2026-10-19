@@ -1,14 +1,13 @@
 import { lazy, Suspense } from 'react'
 import { Navigate, type RouteObject } from 'react-router-dom'
 import { RequireAuth } from '@/features/auth/RequireAuth'
-import { isDesktopApp } from '@/lib/desktop'
 import { PageLoader } from './PageLoader'
+import { HomeRoute } from './HomeRoute'
 import { RouteErrorPage } from './RouteErrorPage'
 import { AuthLayout } from './layouts/AuthLayout'
 import { MarketingLayout } from './layouts/MarketingLayout'
 import { RootLayout } from './layouts/RootLayout'
 
-const LandingPage = lazy(() => import('@/pages/LandingPage'))
 const TemplatesPage = lazy(() => import('@/pages/TemplatesPage'))
 const FeaturesPage = lazy(() => import('@/pages/FeaturesPage'))
 const FaqPage = lazy(() => import('@/pages/FaqPage'))
@@ -21,6 +20,7 @@ const ForgotPasswordPage = lazy(() => import('@/pages/auth/ForgotPasswordPage'))
 const ResetPasswordPage = lazy(() => import('@/pages/auth/ResetPasswordPage'))
 const VerifyEmailPage = lazy(() => import('@/pages/auth/VerifyEmailPage'))
 const CreatePage = lazy(() => import('@/pages/CreatePage'))
+const StudioPage = lazy(() => import('@/pages/StudioPage'))
 const LocalEditorPage = lazy(() => import('@/pages/LocalEditorPage'))
 const DesignEditorPage = lazy(() => import('@/pages/DesignEditorPage'))
 const SharedDesignPage = lazy(() => import('@/pages/SharedDesignPage'))
@@ -45,8 +45,9 @@ export const routes: RouteObject[] = [
         element: <MarketingLayout />,
         children: [
           // The desktop app opens straight on the studio (designs, templates,
-          // create) — the marketing home page is for the web site only.
-          { index: true, element: isDesktopApp() ? <Navigate to="/dashboard" replace /> : <LandingPage /> },
+          // create) — the marketing home page is for the web site only. The
+          // destination is decided at render time, not when this module loads.
+          { index: true, element: <HomeRoute /> },
           { path: 'templates', element: <TemplatesPage /> },
           { path: 'templates/:slug', element: <TemplateDetailPage /> },
           { path: 'features', element: <FeaturesPage /> },
@@ -67,6 +68,7 @@ export const routes: RouteObject[] = [
         ],
       },
       { path: 'create', element: page(<CreatePage />) },
+      { path: 'studio', element: page(<StudioPage />) },
       { path: 'local/:localId', element: page(<LocalEditorPage />) },
       { path: 's/:token', element: page(<SharedDesignPage />) },
       { element: <RequireAuth keepOpenWhenSessionEnds />, children: [{ path: 'design/:id', element: page(<DesignEditorPage />) }] },

@@ -12,7 +12,7 @@
   "scripts": {
     "test": "node updateCheck.test.cjs",
     "dev": "cross-env STUDIO_NOVA_DESKTOP_DEV=1 electron .",
-    "build:resources": "cross-env STUDIO_NOVA_DESKTOP_BUILD=1 npm --prefix ../frontend run build -- --base=./ --outDir=dist-desktop && npm --prefix ../mcp-server run build",
+    "build:resources": "cross-env STUDIO_NOVA_DESKTOP_BUILD=1 npm --prefix ../frontend run build -- --base=/ --outDir=dist-desktop && npm --prefix ../mcp-server run build",
     "build:backend": "node backend/build-sidecar.mjs",
     "smoke:backend": "node backend/smoke-test.mjs",
     "package:windows": "electron-builder --win nsis --config electron-builder.yml && node scripts/copy-installers.cjs && node scripts/write-download-manifest.cjs",

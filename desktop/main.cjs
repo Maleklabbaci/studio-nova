@@ -193,7 +193,7 @@ function proxyApiRequest(req, res) {
     sendJson(res, 503, {
       error: {
         code: 'desktop_server_not_configured',
-        message: 'Cloud accounts and shared templates need a Studio Nova server. Configure apiOrigin in desktop-config.json.',
+        message: 'Studio Nova’s account service is not available, so the app is in local mode. Designs on this device keep working.',
       },
     })
     return
@@ -320,12 +320,21 @@ function backendExecutable() {
 
 /**
  * Starts the embedded Django server (SQLite in the per-user data dir) and
- * returns its origin, or '' when no sidecar is bundled. A cloud apiOrigin
- * from desktop-config.json still wins over the local server.
+ * returns its origin as soon as the process is launched, or '' when no
+ * sidecar is bundled. A cloud apiOrigin from desktop-config.json still wins
+ * over the local server.
+ *
+ * It deliberately does not wait for `/api/v1/health/`: a first start migrates
+ * and seeds the catalogues for up to half a minute, and the window must open
+ * on the local studio meanwhile. `waitForBackend` watches readiness in the
+ * background and the web app retries its session check by itself.
  */
 async function startBackend() {
   const executable = backendExecutable()
-  if (!executable) return ''
+  if (!executable) {
+    console.warn('Studio Nova: no embedded local server found; running in local-only mode.')
+    return ''
+  }
   backendPort = await nextAvailablePort(BACKEND_DEFAULT_PORT)
   const dataDir = path.join(app.getPath('userData'), 'backend-data')
   fs.mkdirSync(dataDir, { recursive: true })
@@ -344,10 +353,12 @@ async function startBackend() {
   backendProcess.on('exit', (code) => {
     if (!shuttingDown && code !== 0 && code !== null) console.error(`Studio Nova local server exited with code ${code}.`)
   })
-  const origin = `http://127.0.0.1:${backendPort}`
-  // First start migrates and seeds the local catalogues: give it a head
-  // start, but open the window even if it is still preparing.
-  const deadline = Date.now() + 20000
+  return `http://127.0.0.1:${backendPort}`
+}
+
+/** Resolves true once the local server answers its health check, or false after `timeoutMs`. */
+async function waitForBackend(origin, timeoutMs) {
+  const deadline = Date.now() + timeoutMs
   while (Date.now() < deadline && !shuttingDown) {
     const healthy = await new Promise((resolve) => {
       const request = http.get(`${origin}/api/v1/health/`, (response) => {
@@ -360,23 +371,41 @@ async function startBackend() {
         resolve(false)
       })
     })
-    if (healthy) break
-    await new Promise((resolve) => setTimeout(resolve, 500))
+    if (healthy) return true
+    await new Promise((resolve) => setTimeout(resolve, 400))
   }
-  return origin
+  return false
 }
 
 async function startPackagedServices() {
   seedConfigurationExamples()
   const config = loadDesktopConfig()
-  const localBackend = await startBackend()
-  apiOrigin = safeOrigin(config.apiOrigin || process.env.STUDIO_NOVA_API_URL || '') || localBackend
 
   localServer = http.createServer(handleRequest)
   await new Promise((resolve, reject) => {
     localServer.once('error', reject)
     localServer.listen(APP_PORT, '127.0.0.1', resolve)
   })
+
+  const configuredOrigin = safeOrigin(config.apiOrigin || process.env.STUDIO_NOVA_API_URL || '')
+  if (configuredOrigin) {
+    apiOrigin = configuredOrigin
+  } else {
+    const localBackend = await startBackend()
+    if (localBackend) {
+      // Requests can reach the proxy from the moment the window opens.
+      apiOrigin = localBackend
+      // A warm install answers in a second or two: let it, so the app opens
+      // signed in. A cold one keeps preparing in the background.
+      const readyNow = await waitForBackend(localBackend, 5000)
+      if (!readyNow) {
+        void waitForBackend(localBackend, 180000).then((ready) => {
+          if (ready) console.log(`Studio Nova local server ready at ${localBackend}`)
+          else console.error('Studio Nova local server did not become ready; the studio keeps working locally.')
+        })
+      }
+    }
+  }
 
   mcpPort = await nextAvailablePort(MCP_DEFAULT_PORT)
   const mcpRoot = path.join(process.resourcesPath, 'mcp-server')
@@ -636,7 +665,7 @@ if (!hasSingleInstance) {
         createSplash()
         setSplashStatus('Starting the local engine…')
         await startPackagedServices()
-        setSplashStatus('Loading your designs…')
+        setSplashStatus('Opening your studio…')
       }
       createWindow()
       if (localServer) {
